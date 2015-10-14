@@ -1,12 +1,17 @@
 package view;
 
 import javafx.scene.shape.Shape;
+import javafx.geometry.Pos;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.Expression;
 import javafx.scene.layout.*;
 
-
+/**
+ * 
+ * @author florian, nico, thomas
+ *
+ */
 public class BinaryGraphicExpression extends GraphicExpression{
 
 	public enum Orientation {
@@ -18,7 +23,13 @@ public class BinaryGraphicExpression extends GraphicExpression{
 	Orientation orientation;
 	
 	
-
+	/**
+	 * Construteur par defaut, Construit une expression 
+	 * @param firstExpression la premiére expression type -> expression 
+	 * @param secondExpression la seconde expression type -> expression
+	 * @param operator un opérateur 
+	 * @param orientation l'orientation de l'expression (vertical / horizontal)
+	 */
 	public BinaryGraphicExpression (GraphicExpression firstExpression, 
 									GraphicExpression secondExpression, 
 									Shape operator,
@@ -28,20 +39,33 @@ public class BinaryGraphicExpression extends GraphicExpression{
 		this.secondExpression 	= secondExpression;
 		this.operator 			= operator;
 		this.orientation 		= orientation;
+		
+		structOfExpression();
 	}
 
 	
-	public BorderPane structOfExpression(Orientation orientation){
+	/**
+	 * Structure l'expression selon son orientation
+	 * ex:
+	 * 		horizontal pour une addition ( a + b)
+	 * 		vertical pour une fraction ( a/b )
+	 * L'expression est encapsulé dans un hBox (horizontal) ou un vBox (vertical)
+	 * afin que les eléments de l'expression soit toujours aligné et centré
+	 * @return l'expression structuré selon son orientation
+	 */
+	public BorderPane structOfExpression(){
 		BorderPane border = new BorderPane();
 		
-		if (Orientation.HORIZONTAL == orientation) {
+		if (Orientation.HORIZONTAL == this.orientation) {
 			HBox hbox = new HBox();
+			hbox.setAlignment(Pos.CENTER);
 			hbox.setSpacing(5);
 			hbox.getChildren().addAll(firstExpression, operator, secondExpression);
 			border.setCenter(hbox);
 			this.getChildren().add(border);
 		}else {
 			VBox vbox = new VBox();
+			vbox.setAlignment(Pos.CENTER);
 			vbox.setSpacing(0);
 			vbox.getChildren().addAll(firstExpression, operator, secondExpression);
 			border.setCenter(vbox);

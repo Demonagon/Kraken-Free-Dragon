@@ -14,7 +14,6 @@ import javafx.scene.text.Text;
  * @author florian
  *
  */
-
 public class PrimaryGraphicExpression extends GraphicExpression {
 	
 	private Text expr;
@@ -22,6 +21,8 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	
 	/**
 	 * constructeur par defaut
+	 * construit un litéral (expression primaire) avec une taille est une couleur par defaut
+	 * l'expression primaire construite capte les evenements survols et click de souris
 	 */
 	public PrimaryGraphicExpression() {
 		expr = new Text("Default");
@@ -42,6 +43,7 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	/**
 	 * constructeur avec choix du positionnement, le texte debutera au centre du rectangle donée dans les params 
 	 * - l'element est positionner par rapport a l'angle inferieur gauche
+	 * (capte le survol et le click de souris) 
 	 * @param pHeigth hauteur (elle sera diviser par 2)
 	 * @param pWidth largeur (elle sera diviser par 2)
 	 * @param pFont taille de la police d'ecriture 
