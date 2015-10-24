@@ -27,7 +27,7 @@ public class Main extends Application {
     	Shape fois = new Text("x");
     	
     	PrimaryExpression a = new PrimaryExpression("LITTERAL", "a");
-    	PrimaryExpression b = new PrimaryExpression("LITTERAL", "b");;
+    	PrimaryExpression b = new PrimaryExpression("LITTERAL", "b");
     	PrimaryExpression c = new PrimaryExpression("LITTERAL", "c");
     	
     	BinaryExpression fois_1 = new BinaryExpression(a, b, fois, BinaryGraphicExpression.Orientation.HORIZONTAL);
