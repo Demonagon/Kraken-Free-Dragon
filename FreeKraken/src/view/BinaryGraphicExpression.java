@@ -40,6 +40,12 @@ public class BinaryGraphicExpression extends GraphicExpression{
 		this.operator 			= operator;
 		this.orientation 		= orientation;
 		
+		//event
+		onMouseEntered();
+		onMouseExited();
+		onMousePressed();
+		onMouseReleased();		
+		
 		structOfExpression();
 	}
 
