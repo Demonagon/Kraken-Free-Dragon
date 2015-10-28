@@ -1,6 +1,7 @@
 package view;
 
 
+import controller.DragAndDropMemory;
 import view.BinaryGraphicExpression.Orientation;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,12 +12,14 @@ import javafx.scene.text.Text;
 import javafx.scene.shape.Shape;
 import javafx.scene.paint.Color;
 
+
+
 public class Main extends Application {
-    
 	
 	
 	@Override
     public void start(Stage primaryStage) {
+    	DragAndDropMemory.memory = new DragAndDropMemory();
     	//=================== Partie de test A SUPPRIMER DANS L'AVENIR   =============================================
         StackPane center = new StackPane();
     	BorderPane root = new BorderPane();
