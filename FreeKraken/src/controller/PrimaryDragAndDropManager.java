@@ -1,37 +1,38 @@
 package controller;
 
-import view.PrimaryGraphicExpression;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.text.Text;
-import javafx.scene.Group;
-
 
 
 /**
  * 
- * @author florian campanella, Thomas Rambaldi
+ * @author florian Campanella, Thomas Rambaldi
  *
+ * implemente les methodes de drag and drop pour le primary graphic expression
  */
-public class DragAndDropManagment {
-	
+public class PrimaryDragAndDropManager extends DragAndDropManager{
+
 	Text expr;
-	Group group;
+
 	
-	public DragAndDropManagment(Group group, Text expr) {
+	/**
+	 * constructeur
+	 * @param group type Droup
+	 * @param expr type Text
+	 */
+	public PrimaryDragAndDropManager(Group group, Text expr) {
+		super(group);
 		this.expr = expr;
-		this.group = group;
 	}
 
 	
-
-	/**
-	 * detection du D&D 
-	 */
+	@Override
 	public void onDragDetected() {
 		expr.setOnDragDetected(new EventHandler<MouseEvent>() {
 		    public void handle(MouseEvent event) {
@@ -44,18 +45,16 @@ public class DragAndDropManagment {
 		        /* Put a string on a dragboard */
 		        ClipboardContent content = new ClipboardContent();
 		        content.putString(expr.getText());
-		        DragAndDropMemory.memory.setSource(thisInstance);
+		        DragAndDropMemory.memory.setSource(group);
 		        db.setContent(content);
 		        event.consume();
 		    }
 		});
 	}
 	
-	/**
-	 * On se deplace une fois le D&D detecter
-	 */
+	@Override
 	public void onDragOver () {
-		thisInstance.setOnDragOver(new EventHandler<DragEvent>() {
+		group.setOnDragOver(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* data is dragged over the target */
 		        /* accept it only if it is not dragged from the same node 
@@ -66,19 +65,21 @@ public class DragAndDropManagment {
 		});
 	}
 	
+	@Override
 	public void onDragEntered () {
-		thisInstance.setOnDragEntered(new EventHandler<DragEvent>() {
+		group.setOnDragEntered(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		    /* the drag-and-drop gesture entered the target */
 		    /* show to the user that it is an actual gesture target */
-		        DragAndDropMemory.memory.setTarget(thisInstance);
+		        DragAndDropMemory.memory.setTarget(group);
 		    	event.consume();
 		    }
 		});
 	}
 	
+	@Override
 	public void onDragExited () {
-		thisInstance.setOnDragExited(new EventHandler<DragEvent>() {
+		group.setOnDragExited(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* mouse moved away, remove the graphical cues */
 		        event.consume();
@@ -86,8 +87,9 @@ public class DragAndDropManagment {
 		});
 	}	
 	
+	@Override
 	public void onDragDropped () {
-		thisInstance.setOnDragDropped(new EventHandler<DragEvent>() {
+		group.setOnDragDropped(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* data dropped */
 		        /* if there is a string data on dragboard, read it and use it */
@@ -104,6 +106,7 @@ public class DragAndDropManagment {
 		});
 	}
 	
+	@Override
 	public void onDragDone() {
 		expr.setOnDragDone(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
@@ -115,15 +118,6 @@ public class DragAndDropManagment {
 		        event.consume();
 		    }
 		});
-	}
-	
-	public void onDragAndDropEvent() {
-		onDragDetected();
-		onDragOver();
-		onDragEntered();
-		onDragExited();
-		onDragDropped();
-		onDragDone();
 	}
 	
 }
