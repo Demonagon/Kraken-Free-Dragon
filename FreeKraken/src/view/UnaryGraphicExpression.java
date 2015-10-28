@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import model.Expression;
 import view.BinaryGraphicExpression.Orientation;
 
@@ -49,6 +50,14 @@ public class UnaryGraphicExpression extends GraphicExpression{
 			hbox.setSpacing(5);
 			hbox.getChildren().addAll(decoOpen, expression, decoClose);
 			border.setCenter(hbox);
+			this.getChildren().add(border);
+		}
+		if (Orientation.VERTICAL == this.orientation) {
+			VBox vbox = new VBox();
+			vbox.setAlignment(Pos.CENTER);
+			vbox.setSpacing(5);
+			vbox.getChildren().addAll(decoOpen, expression, decoClose);
+			border.setCenter(vbox);
 			this.getChildren().add(border);
 		}
 		return border;

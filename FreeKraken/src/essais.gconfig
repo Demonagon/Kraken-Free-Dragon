@@ -1,0 +1,4 @@
+PLUS h "+" ""
+FOIS h "*" ""
+DIVIDE v "-" ""
+PARENTHESIS h "(" ")"

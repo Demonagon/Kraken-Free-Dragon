@@ -6,6 +6,8 @@ import view.PrimaryGraphicExpression;
 
 public class PrimaryExpression implements Expression{
 	
+	public static final String general_expression_type = "EXPRESSION";
+	
 	String type;
 	String name;
 	
@@ -15,7 +17,7 @@ public class PrimaryExpression implements Expression{
 	}
 	
 	@Override
-	public PrimaryExpression clone() {
+	public PrimaryExpression cloneExpression() {
 		return new PrimaryExpression(type, name);
 	}
 	
@@ -34,15 +36,31 @@ public class PrimaryExpression implements Expression{
 		return graphicExpression;
 	}
 
-	/*@Override
-	public boolean isCompatible(Expression expression) {
-		if( expression instanceof BinaryExpression ) return false;
-		if( expression instanceof UnaryExpression ) return false;
-		PrimaryExpression p_expression = (PrimaryExpression) expression;
-		if( p_expression.getType() == "EXPRESSION" ) return true; // Correspondance mémoire ?
-		if( p_expression.getType() != this.type ) return false;
-		return true; // Correspondance mémoire ?
-	}*/
+	@Override
+	public boolean compare(Expression expression) {
+		if( ! (expression instanceof PrimaryExpression) ) return false;
+		
+		PrimaryExpression primary_expression = (PrimaryExpression) expression;
+		if( primary_expression.getType() != getType() ) return false;
+		if( primary_expression.getName() != getName() ) return false;
+		
+		return true;
+	}
+
+	@Override
+	public boolean doesMatchModel(Expression model) {
+		if( model instanceof PrimaryExpression && model.getType() == general_expression_type ) return true;
+		if( ! (model instanceof PrimaryExpression) ) return false;
+		if( ! (model.getType() == getType()) ) return false;
+		
+		PrimaryExpression primary_model = (PrimaryExpression) model;
+		return primary_model.getName() == getName();
+	}
+
+	@Override
+	public String expressionToString() {
+		return getName();
+	}
 
 
 }
