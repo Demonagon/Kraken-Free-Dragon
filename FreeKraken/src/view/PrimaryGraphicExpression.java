@@ -1,20 +1,28 @@
 package view;
 
-import model.Expression;
+import controller.DragAndDropManagment;
 import javafx.event.EventHandler;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import model.Expression;
 
 /**
  * 
- * @author Florian Campanella
+ * @author Florian Campanella, Nicolas Leotier, Thomas Rambaldi
+ * 
+ * Crée un élément de base d'une expression, un littéral.
  *
  */
 public class PrimaryGraphicExpression extends GraphicExpression {
 	
 	private Text expr;
+	private PrimaryGraphicExpression thisInstance = this;
+
 	
 	
 	/**
@@ -25,54 +33,35 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	public PrimaryGraphicExpression() {
 		expr = new Text("Default");
 		expr.getStyleClass().add("defaultFont");
-
+		
 		//event
 		onMouseEntered();
 		onMouseExited();
 		onMousePressed();
 		onMouseReleased();
+		
+		new DragAndDropManagment(this, expr).onDragAndDropEvent();
+		
 		
 		// on l'ajoute toujours au noeud
 		this.getChildren().add(expr);
 	}
 	
 	
-	/**
-	 * constructeur avec choix du positionnement, le texte debutera au centre du rectangle donée dans les params 
-	 * - l'element est positionner par rapport a l'angle inferieur gauche
-	 * (capte le survol et le click de souris) 
-	 * @param pHeigth hauteur (elle sera diviser par 2)
-	 * @param pWidth largeur (elle sera diviser par 2)
-	 * @param pFont taille de la police d'ecriture 
-	 */
-	public PrimaryGraphicExpression (int posX, int posY, int pFont){
-		expr = new Text(posX, posY, "Default"); // (x, y, "texte")
-		expr.setFont(Font.font("Verdana", pFont));
-		expr.getStyleClass().add("defaultFont");
-		
-		//event
-		onMouseEntered();
-		onMouseExited();
-		onMousePressed();
-		onMouseReleased();
-		
-		// on ajoute notre noeud à l'arbre
-		this.getChildren().add(expr);
-	}
 
 	
 	/**
 	 * l'evenement quand la souris survols sur le texte
+	 * A partir d'une feuille de style css
 	 */
 	private void onMouseEntered() {
 		this.setOnMouseEntered(new EventHandler<MouseEvent>(){
-            public void handle(MouseEvent me){
-//            	expr.getStyleClass().add("primaryGraphicExpr_OnMouseEntered");
-            	expr.setFill(Color.RED);
+            public void handle(MouseEvent event){
+            	expr.getStyleClass().add("primaryGraphicExpr_OnMouseEntered");
+        
             }
         });
 	}
-	
 	
 	/**
 	 * l'evenement quand la souris sort du texte aprés l'avoir survolée
@@ -85,28 +74,18 @@ public class PrimaryGraphicExpression extends GraphicExpression {
         });
 	}
 	
-	
 	/**
 	 * l'evenement au click
 	 */
 	private void onMousePressed() {
 		 this.setOnMousePressed(new EventHandler<MouseEvent>(){
 			 public void handle(MouseEvent event){
-	            	/* début modification Nicolas pour la détection des bords en vue du DnD */
-	            	
-					/*expr.setFill(Color.YELLOW);
-					Reflection r = new Reflection();
-					r.setFraction(0.7f);
-					expr.setFont(Font.font(null, FontWeight.BOLD, 36));
-					expr.setEffect(r);*/
-	            	
-	            	// on enlève 1/8 à la hauteur et la largeur pour avoir quelque chose qui ressemble à la vrai valeur
+				 	// on enlève 1/8 à la hauteur et la largeur pour avoir quelque chose qui ressemble à la vrai valeur
 	            	final double width =  getText().getLayoutBounds().getWidth() - (getText().getLayoutBounds().getWidth()/8);;
 	            	final double height = getText().getLayoutBounds().getHeight() - (getText().getLayoutBounds().getHeight() * 3/8);
 	            	
 	            	// on inverse le Y pour avoir une valeur positive
 	            	final double cursorY = - event.getY();
-	            	
 	            	final double cursorX = event.getX();
 	            	
 	            	// le nombre de pixel à partir du bord qui décrit la zone détecté
@@ -134,34 +113,27 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	            		 && cursorY < pixelDetectionAccuracy)
 	            			position = "BOTTOM";
 	            	
-	            	String dim = 
-	            			  "(width: "   + width             + ", height: "  + height             + ")";
+	            	String dim 		= "(width: " + width + ", height: " + height + ")";
 	            	
-	            	String coord =
-	            	          "(x: "       + cursorX      + ", y: "       + cursorY       + ")";
+	            	String coord 	= "(x: " + cursorX + ", y: " + cursorY + ")";
 	            	
 	            	System.out.println(dim);
-	            	System.out.println(coord);
+	            	System.out.println(coord); // TODO DEL this lines
 	            	System.out.println(position);
-	            	
-	            	/* fin modification Nicolas */
 	            }
 	        });
 	}
-	
 	
 	/**
 	 * l'evenement au relachement du click
 	 */
 	private void onMouseReleased() {
 		 this.setOnMouseReleased(new EventHandler<MouseEvent>(){
-	            public void handle(MouseEvent me){
-	            	expr.setTranslateX(expr.getY()-10);
-	            	expr.setEffect(getEffect());
+	            public void handle(MouseEvent event){
+
 	            }
 	        });
 	}
-	
 	
 	/**
 	 * setteurs
@@ -171,7 +143,6 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 		this.expr.setText(pExpression);
 	}
 	
-	
 	/**
 	 * getteur de la variable expr
 	 * @return type text
@@ -179,7 +150,6 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	public Text getText() {
 		return expr;
 	}
-
 
 	@Override
 	public Expression getExpression() {
