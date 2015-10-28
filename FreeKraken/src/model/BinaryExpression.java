@@ -1,36 +1,30 @@
 package model;
 
-import view.BinaryGraphicExpression;
 import view.GraphicExpression;
-import javafx.scene.shape.Shape;
 
 public class BinaryExpression implements Expression {
 
 	String type;
 	Expression first_expression;
 	Expression second_expression;
-	Shape operator;
-	BinaryGraphicExpression.Orientation orientation;
 	
-	public BinaryExpression(String type, Expression first_expression, Expression second_expression, Shape operator, BinaryGraphicExpression.Orientation orientation) {
+	public BinaryExpression(String type, Expression first_expression, Expression second_expression) {
 		this.first_expression = first_expression;
 		this.second_expression = second_expression;
-		this.operator = operator;
-		this.orientation = orientation;
 		this.type = type;
 	}
 	
 	@Override
 	public BinaryExpression cloneExpression() {
-		return new BinaryExpression(type, first_expression.cloneExpression(), second_expression.cloneExpression(), operator, orientation);
+		return new BinaryExpression(type, first_expression.cloneExpression(), second_expression.cloneExpression());
 	}
 
 	@Override
 	public GraphicExpression generateExpression() {
-		return new BinaryGraphicExpression(first_expression.generateExpression(),
-										   second_expression.generateExpression(),
-										   OperatorDuplicator.copyOperator(operator),
-										   orientation);
+		return Configuration.graphic.getConfiguration(type)
+				.generateBinaryExpression(
+					first_expression.generateExpression(),
+					second_expression.generateExpression() );
 	}
 
 	@Override

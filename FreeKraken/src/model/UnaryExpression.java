@@ -9,26 +9,22 @@ public class UnaryExpression implements Expression {
 
 	String type;
 	Expression sub_expression;
-	Shape first_decoration;
-	Shape second_decoration;
-	BinaryGraphicExpression.Orientation orientation;
 	
-	public UnaryExpression(String type, Expression sub_expression, Shape first_decoration, Shape second_decoration, BinaryGraphicExpression.Orientation orientation) {
+	public UnaryExpression(String type, Expression sub_expression) {
 		this.sub_expression = sub_expression;
-		this.first_decoration = first_decoration;
-		this.second_decoration = second_decoration;
-		this.orientation = orientation;
 		this.type = type;
 	}
 	
 	@Override
 	public UnaryExpression cloneExpression() {
-		return new UnaryExpression(type, sub_expression.cloneExpression(), first_decoration, second_decoration, orientation);
+		return new UnaryExpression(type, sub_expression.cloneExpression() );
 	}
 
 	@Override
 	public GraphicExpression generateExpression() {
-		return new UnaryGraphicExpression(sub_expression.generateExpression(), OperatorDuplicator.copyOperator(first_decoration), OperatorDuplicator.copyOperator(second_decoration), orientation);
+		return Configuration.graphic.getConfiguration(type)
+				.generateUnaryExpression(
+					sub_expression.generateExpression() );
 	}
 	
 	public Expression subExpression() {
