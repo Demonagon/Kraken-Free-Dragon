@@ -2,6 +2,7 @@ package main;
 
 
 import model.BinaryExpression;
+import model.Configuration;
 import model.Expression;
 import model.PrimaryExpression;
 import model.Rule;
@@ -13,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import javafx.scene.shape.Shape;
 import javafx.scene.paint.Color;
 
@@ -120,6 +120,7 @@ public class Main extends Application {
     
     // sert juste a lancer l'application
     public static void main(String[] args) {
+    	Configuration.init();
         launch(args);
     }
 }
