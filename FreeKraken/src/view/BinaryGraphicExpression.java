@@ -2,10 +2,14 @@ package view;
 
 import javafx.scene.shape.Shape;
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.Expression;
 import javafx.scene.layout.*;
+import javafx.scene.Node;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 
 /**
  * 
@@ -19,26 +23,35 @@ public class BinaryGraphicExpression extends GraphicExpression{
 	}
 	GraphicExpression firstExpression;
 	GraphicExpression secondExpression;
-	Shape operator;
+	Node operator;
 	Orientation orientation;
 	
 	
 	/**
 	 * Construteur par defaut, Construit une expression 
-	 * @param firstExpression la premiére expression type -> expression 
+	 * @param firstExpression la premiï¿½re expression type -> expression 
 	 * @param secondExpression la seconde expression type -> expression
-	 * @param operator un opérateur 
+	 * @param operator un opï¿½rateur 
 	 * @param orientation l'orientation de l'expression (vertical / horizontal)
 	 */
 	public BinaryGraphicExpression (GraphicExpression firstExpression, 
 									GraphicExpression secondExpression, 
-									Shape operator,
+									Node operator,
 									Orientation orientation) {
 		
 		this.firstExpression 	= firstExpression;
 		this.secondExpression 	= secondExpression;
 		this.operator 			= operator;
 		this.orientation 		= orientation;
+		
+    	final ContextMenu contextMenu = new ChoiceContextMenu();
+    	((Label)operator).setContextMenu(contextMenu);
+    	((Label)operator).setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+    	        contextMenu.show(operator, Side.BOTTOM, 0, 0);
+			}
+    	});
 		
 		//event
 		onMouseEntered();
@@ -55,9 +68,9 @@ public class BinaryGraphicExpression extends GraphicExpression{
 	 * ex:
 	 * 		horizontal pour une addition ( a + b)
 	 * 		vertical pour une fraction ( a/b )
-	 * L'expression est encapsulé dans un hBox (horizontal) ou un vBox (vertical)
-	 * afin que les eléments de l'expression soit toujours aligné et centré
-	 * @return l'expression structuré selon son orientation
+	 * L'expression est encapsulï¿½ dans un hBox (horizontal) ou un vBox (vertical)
+	 * afin que les elï¿½ments de l'expression soit toujours alignï¿½ et centrï¿½
+	 * @return l'expression structurï¿½ selon son orientation
 	 */
 	public BorderPane structOfExpression(){
 		BorderPane border = new BorderPane();
@@ -94,7 +107,7 @@ public class BinaryGraphicExpression extends GraphicExpression{
 	
 	
 	/**
-	 * l'evenement quand la souris sort du texte aprés l'avoir survolée
+	 * l'evenement quand la souris sort du texte aprï¿½s l'avoir survolï¿½e
 	 */
 	private void onMouseExited() {
 		this.setOnMouseExited(new EventHandler<MouseEvent>(){

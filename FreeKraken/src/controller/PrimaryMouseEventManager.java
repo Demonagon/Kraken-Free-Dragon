@@ -5,6 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 
 
 /**
@@ -15,7 +16,7 @@ import javafx.scene.text.Text;
  */
 public class PrimaryMouseEventManager extends MouseEventManager {
 
-	Text expr;
+	Label expr;
 	
 	
 	
@@ -24,7 +25,7 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 	 * @param group Type Group
 	 * @param expr Type Text
 	 */
-	public PrimaryMouseEventManager(Group group, Text expr) {
+	public PrimaryMouseEventManager(Group group, Label expr) {
 		super(group);
 		this.expr = expr;
 	}
@@ -44,7 +45,7 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 	public void onMouseExited() {
 		group.setOnMouseExited(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent me){
-            	expr.setFill(Color.BLACK);
+            	expr.setTextFill(Color.BLACK);
             }
         });
 	}
@@ -53,7 +54,7 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 	public void onMousePressed() {
 		 group.setOnMousePressed(new EventHandler<MouseEvent>(){
 			 public void handle(MouseEvent event){
-				 	// on enlève 1/8 à la hauteur et la largeur pour avoir quelque chose qui ressemble à la vrai valeur
+				 	// on enlï¿½ve 1/8 ï¿½ la hauteur et la largeur pour avoir quelque chose qui ressemble ï¿½ la vrai valeur
 	            	final double width =  getText().getLayoutBounds().getWidth() - (getText().getLayoutBounds().getWidth()/8);;
 	            	final double height = getText().getLayoutBounds().getHeight() - (getText().getLayoutBounds().getHeight() * 3/8);
 	            	
@@ -61,13 +62,13 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 	            	final double cursorY = - event.getY();
 	            	final double cursorX = event.getX();
 	            	
-	            	// le nombre de pixel à partir du bord qui décrit la zone détecté
+	            	// le nombre de pixel ï¿½ partir du bord qui dï¿½crit la zone dï¿½tectï¿½
 	            	final int pixelDetectionAccuracy = 10;
 	            	String position = "Coin";
 	            	
-	            	// détecter le position de la souris au moment du drop
-	            	// la valeur de retour devra surement être stocké dans un enum mais
-	            	// je ne connais pas Java assez bien, on y réfléchira
+	            	// dï¿½tecter le position de la souris au moment du drop
+	            	// la valeur de retour devra surement ï¿½tre stockï¿½ dans un enum mais
+	            	// je ne connais pas Java assez bien, on y rï¿½flï¿½chira
 	            	
 	            	if(cursorX < pixelDetectionAccuracy
 	            	&& cursorY > pixelDetectionAccuracy
@@ -111,7 +112,7 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 	 * getteur de la variable expr
 	 * @return type text
 	 */
-	public Text getText() {
+	public Label getText() {
 		return expr;
 	}
 	

@@ -3,12 +3,16 @@ package view;
 import javafx.scene.shape.Shape;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Expression;
 import view.BinaryGraphicExpression.Orientation;
+import javafx.scene.Node;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 
 /**
  * 
@@ -17,20 +21,39 @@ import view.BinaryGraphicExpression.Orientation;
  */
 public class UnaryGraphicExpression extends GraphicExpression{
 	
-	Shape decoOpen, decoClose;
+	Node decoOpen, decoClose;
 	GraphicExpression expression;
 	Orientation orientation;
 	
 	
 	public UnaryGraphicExpression(GraphicExpression expression, 
-									Shape decoOpen,
-									Shape decoClose,
+									Node decoOpen,
+									Node decoClose,
 									Orientation orientation) {
 		
 		this.expression = expression;
 		this.decoOpen = decoOpen;
 		this.decoClose = decoClose;
 		this.orientation = orientation;
+		
+		// ContextMenu
+    	final ContextMenu contextMenu = new ChoiceContextMenu();
+    	((Label)decoOpen).setContextMenu(contextMenu);
+    	((Label)decoOpen).setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+    	        contextMenu.show(decoOpen, Side.BOTTOM, 0, 0);
+			}
+    	});
+    	
+    	final ContextMenu contextMenu2 = new ChoiceContextMenu();
+    	((Label)decoClose).setContextMenu(contextMenu2);
+    	((Label)decoClose).setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+    	        contextMenu2.show(decoClose, Side.BOTTOM, 0, 0);
+			}
+    	});
 		
 		//event
 		onMouseEntered();
@@ -64,11 +87,11 @@ public class UnaryGraphicExpression extends GraphicExpression{
 	}
 	
 	/*		Getters		*/
-	public Shape getDecoOpen() {
+	public Node getDecoOpen() {
 		return decoOpen;
 	}
 	
-	public Shape getDecoClose() {
+	public Node getDecoClose() {
 		return decoClose;
 	}
 	
@@ -83,11 +106,11 @@ public class UnaryGraphicExpression extends GraphicExpression{
 	}
 	
 	/*		Setters		*/
-	public void setDecoOpen(Shape decoOpen) {
+	public void setDecoOpen(Node decoOpen) {
 		this.decoOpen = decoOpen;
 	}
 
-	public void setDecoClose(Shape decoClose) {
+	public void setDecoClose(Node decoClose) {
 		this.decoClose = decoClose;
 	}
 

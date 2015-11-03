@@ -5,13 +5,13 @@ import model.Pair;
 import view.BinaryGraphicExpression;
 import view.GraphicExpression;
 import view.UnaryGraphicExpression;
-import javafx.scene.shape.Shape;
+import javafx.scene.Node;
 
 public class GraphicExpressionConfiguration {
-	private Pair<Shape, Shape> operators;
+	private Pair<Node, Node> operators;
 	private BinaryGraphicExpression.Orientation orientation;
 	
-	public GraphicExpressionConfiguration(BinaryGraphicExpression.Orientation orientation, Pair<Shape, Shape> operators) {
+	public GraphicExpressionConfiguration(BinaryGraphicExpression.Orientation orientation, Pair<Node, Node> operators) {
 		this.orientation = orientation;
 		this.operators = operators;
 	}

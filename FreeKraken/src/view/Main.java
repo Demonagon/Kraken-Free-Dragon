@@ -11,7 +11,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.scene.shape.Shape;
 import javafx.scene.paint.Color;
-
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.TextField;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Side;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Label;
+import javafx.scene.Node;
 
 
 public class Main extends Application {
@@ -27,16 +35,16 @@ public class Main extends Application {
     	PrimaryGraphicExpression lit2 = new PrimaryGraphicExpression();
     	PrimaryGraphicExpression lit3 = new PrimaryGraphicExpression();
     	
-    	Shape operator = new Text("+");
-    	Shape div = new Text("-");
-    	((Text) operator).getStyleClass().add("defaultFont");
+    	Node operator = new Label("+");
+    	Node div = new Label("-");
+    	((Label) operator).getStyleClass().add("defaultFont");
     	
-    	Shape shapeOpen= new Text("sqrt(");
-    	Shape shapeClose = new Text(")");
-    	((Text) shapeClose).getStyleClass().add("defaultFont");
-    	((Text) shapeOpen).getStyleClass().add("defaultFont");
+    	Node shapeOpen= new Label("sqrt(");
+    	Node shapeClose = new Label(")");
+    	((Label) shapeClose).getStyleClass().add("defaultFont");
+    	((Label) shapeOpen).getStyleClass().add("defaultFont");
     	Orientation orientation = Orientation.HORIZONTAL;
-    	((Text) div).getStyleClass().add("defaultFont");;
+    	((Label) div).getStyleClass().add("defaultFont");;
     	Orientation orientation1 = Orientation.VERTICAL;
     	
     	lit.setExpression("a");
@@ -48,17 +56,15 @@ public class Main extends Application {
     	
     	BinaryGraphicExpression bin2 = new BinaryGraphicExpression(lol, lit3, div, orientation1);
 
-
     	
     	//=====================================================================================================
 
-    	
     	
     	// ajout des noeuds dans l'arbre du group
     	center.getChildren().add(bin2);
     	root.setCenter(center);
 
-    	//création de la scéne et de ses propriétés par defaut
+    	//crï¿½ation de la scï¿½ne et de ses propriï¿½tï¿½s par defaut
     	Scene scene = new Scene(root, 750, 500, Color.LIGHTGRAY);
     	
     	primaryStage.widthProperty().addListener(e -> {
@@ -70,7 +76,6 @@ public class Main extends Application {
             	scene.getStylesheets().add(getClass().getResource("cssLarge.fxml").toExternalForm()); 
             }
         });
-    	
     	    	
         primaryStage.setTitle("New DragonBox");
         primaryStage.setScene(scene);

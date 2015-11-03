@@ -3,6 +3,7 @@ package model.graphicConfigurationParser;
 import view.BinaryGraphicExpression;
 import view.StringGraphicOperator;
 import javafx.scene.shape.Shape;
+import javafx.scene.Node;
 
 public class OperatorParser {
 
@@ -13,7 +14,7 @@ public class OperatorParser {
 		else return null;
 	}
 	
-	public static Shape parseOperator(String string) {
+	public static Node parseOperator(String string) {
 		if ( string == null ) return null;
 		return new StringGraphicOperator( getUsefullPart(string) );
 	}

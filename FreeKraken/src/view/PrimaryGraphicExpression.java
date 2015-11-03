@@ -3,17 +3,22 @@ package view;
 import controller.*;
 import javafx.scene.text.Text;
 import model.Expression;
+import javafx.event.EventHandler;
+import javafx.geometry.Side;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 /**
  * 
  * @author Florian Campanella, Nicolas Leotier, Thomas Rambaldi
  * 
- * Crée un élément de base d'une expression, un littéral.
+ * Crï¿½e un ï¿½lï¿½ment de base d'une expression, un littï¿½ral.
  *
  */
 public class PrimaryGraphicExpression extends GraphicExpression {
 	
-	private Text expr;
+	private Label expr;
 	private DragAndDropManager DADmanager;
 	private MouseEventManager MEmanager;
 	
@@ -21,13 +26,23 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	
 	/**
 	 * constructeur par defaut
-	 * construit un litéral (expression primaire) avec une taille est une couleur par defaut
+	 * construit un litï¿½ral (expression primaire) avec une taille est une couleur par defaut
 	 * l'expression primaire construite capte les evenements survols et click de souris
 	 */
 	public PrimaryGraphicExpression() {
-		expr = new Text("Default");
+		expr = new Label("Default");
 		DADmanager = new PrimaryDragAndDropManager(this, expr);
 		MEmanager = new PrimaryMouseEventManager(this, expr);
+		
+		// ContextMenu
+    	final ContextMenu contextMenu = new ChoiceContextMenu();
+    	expr.setContextMenu(contextMenu);
+    	expr.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+    	        contextMenu.show(expr, Side.BOTTOM, 0, 0);
+			}
+    	});
 		
 		expr.getStyleClass().add("defaultFont");
 		
@@ -53,7 +68,7 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	 * getteur de la variable expr
 	 * @return type text
 	 */
-	public Text getText() {
+	public Label getText() {
 		return expr;
 	}
 

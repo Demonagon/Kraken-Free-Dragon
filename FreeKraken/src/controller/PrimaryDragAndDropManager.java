@@ -8,6 +8,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 
 
 /**
@@ -18,7 +19,7 @@ import javafx.scene.text.Text;
  */
 public class PrimaryDragAndDropManager extends DragAndDropManager{
 
-	Text expr;
+	Label expr;
 
 	
 	/**
@@ -26,7 +27,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	 * @param group type Droup
 	 * @param expr type Text
 	 */
-	public PrimaryDragAndDropManager(Group group, Text expr) {
+	public PrimaryDragAndDropManager(Group group, Label expr) {
 		super(group);
 		this.expr = expr;
 	}
