@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.Expression;
 import view.GraphicExpressionFactory;
 import view.implementation.GraphicExpression;
 import view.implementation.PrimaryGraphicExpression;
@@ -27,18 +28,18 @@ public class GraphicConfiguration implements GraphicExpressionFactory {
 	}
 	
 	@Override
-	public Object generateBinaryExpression(String type, Object first, Object second) {
-		return getConfiguration(type).generateBinaryExpression((GraphicExpression) first, (GraphicExpression) second);
+	public Object generateBinaryExpression(Expression expression, String type, Object first, Object second) {
+		return getConfiguration(type).generateBinaryExpression(expression, (GraphicExpression) first, (GraphicExpression) second);
 	}
 
 	@Override
-	public Object generateUnaryExpression(String type, Object sub) {
-		return getConfiguration(type).generateUnaryExpression((GraphicExpression) sub);
+	public Object generateUnaryExpression(Expression expression, String type, Object sub) {
+		return getConfiguration(type).generateUnaryExpression(expression, (GraphicExpression) sub);
 	}
 
 	@Override
-	public Object generatePrimaryExpression(String type, String name) {
-		PrimaryGraphicExpression graphicExpression = new PrimaryGraphicExpression();
+	public Object generatePrimaryExpression(Expression expression, String type, String name) {
+		PrimaryGraphicExpression graphicExpression = new PrimaryGraphicExpression(expression);
 		graphicExpression.setExpression(name);
 		return graphicExpression;
 	}

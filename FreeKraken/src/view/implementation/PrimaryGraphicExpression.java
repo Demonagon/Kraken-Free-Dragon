@@ -20,6 +20,7 @@ import controller.PrimaryMouseEventManager;
  */
 public class PrimaryGraphicExpression extends GraphicExpression {
 	
+	Expression model;
 	private Label expr;
 	private DragAndDropManager DADmanager;
 	private MouseEventManager MEmanager;
@@ -31,7 +32,8 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	 * construit un lit�ral (expression primaire) avec une taille est une couleur par defaut
 	 * l'expression primaire construite capte les evenements survols et click de souris
 	 */
-	public PrimaryGraphicExpression() {
+	public PrimaryGraphicExpression(Expression model) {
+		this.model = model;
 		expr = new Label("Default");
 		DADmanager = new PrimaryDragAndDropManager(this, expr);
 		MEmanager = new PrimaryMouseEventManager(this, expr);

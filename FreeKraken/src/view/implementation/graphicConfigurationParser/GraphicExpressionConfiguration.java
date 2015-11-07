@@ -1,6 +1,7 @@
 package view.implementation.graphicConfigurationParser;
 
 import view.implementation.OperatorDuplicator;
+import model.Expression;
 import model.Pair;
 import view.implementation.BinaryGraphicExpression;
 import view.implementation.GraphicExpression;
@@ -17,15 +18,17 @@ public class GraphicExpressionConfiguration {
 		this.operators = operators;
 	}
 	
-	public GraphicExpression generateBinaryExpression(GraphicExpression first, GraphicExpression second) {
-		return new BinaryGraphicExpression(first,
+	public GraphicExpression generateBinaryExpression(Expression expression, GraphicExpression first, GraphicExpression second) {
+		return new BinaryGraphicExpression(expression,
+										   first,
 										   second,
 										   OperatorDuplicator.copyOperator(operators.first),
 										   orientation);
 	}
 	
-	public GraphicExpression generateUnaryExpression(GraphicExpression sub) {
-		return new UnaryGraphicExpression(sub,
+	public GraphicExpression generateUnaryExpression(Expression expression, GraphicExpression sub) {
+		return new UnaryGraphicExpression(expression,
+										  sub,
 										  OperatorDuplicator.copyOperator(operators.first),
 										  OperatorDuplicator.copyOperator(operators.second),
 										  orientation);

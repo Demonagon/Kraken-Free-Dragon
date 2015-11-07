@@ -22,9 +22,9 @@ public class Main extends Application {
     	//=================== Partie de test A SUPPRIMER DANS L'AVENIR   =============================================
         StackPane center = new StackPane();
     	BorderPane root = new BorderPane();
-    	PrimaryGraphicExpression lit = new PrimaryGraphicExpression();
-    	PrimaryGraphicExpression lit2 = new PrimaryGraphicExpression();
-    	PrimaryGraphicExpression lit3 = new PrimaryGraphicExpression();
+    	PrimaryGraphicExpression lit = new PrimaryGraphicExpression(null);
+    	PrimaryGraphicExpression lit2 = new PrimaryGraphicExpression(null);
+    	PrimaryGraphicExpression lit3 = new PrimaryGraphicExpression(null);
     	
     	Node operator = new Label("+");
     	Node div = new Label("-");
@@ -42,10 +42,10 @@ public class Main extends Application {
     	lit2.setExpression("b");
     	lit3.setExpression("c");
     	
-    	BinaryGraphicExpression bin1 = new BinaryGraphicExpression(lit, lit2, operator, orientation);
-    	UnaryGraphicExpression lol = new UnaryGraphicExpression(bin1, shapeOpen, shapeClose, orientation);
+    	BinaryGraphicExpression bin1 = new BinaryGraphicExpression(null, lit, lit2, operator, orientation);
+    	UnaryGraphicExpression lol = new UnaryGraphicExpression(null, bin1, shapeOpen, shapeClose, orientation);
     	
-    	BinaryGraphicExpression bin2 = new BinaryGraphicExpression(lol, lit3, div, orientation1);
+    	BinaryGraphicExpression bin2 = new BinaryGraphicExpression(null, lol, lit3, div, orientation1);
 
     	
     	//=====================================================================================================

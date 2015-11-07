@@ -20,16 +20,18 @@ import view.implementation.BinaryGraphicExpression.Orientation;
  */
 public class UnaryGraphicExpression extends GraphicExpression{
 	
+	Expression model;
 	Node decoOpen, decoClose;
 	GraphicExpression expression;
 	Orientation orientation;
 	
 	
-	public UnaryGraphicExpression(GraphicExpression expression, 
+	public UnaryGraphicExpression(Expression model,
+									GraphicExpression expression, 
 									Node decoOpen,
 									Node decoClose,
 									Orientation orientation) {
-		
+		this.model = model;
 		this.expression = expression;
 		this.decoOpen = decoOpen;
 		this.decoClose = decoClose;

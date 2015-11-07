@@ -20,6 +20,7 @@ public class BinaryExpression implements Expression {
 	@Override
 	public Object generateExpression() {
 		return Configuration.graphic.generateBinaryExpression(
+					this,
 					type,
 					first_expression.generateExpression(),
 					second_expression.generateExpression() );

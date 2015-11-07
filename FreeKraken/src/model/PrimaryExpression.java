@@ -27,7 +27,7 @@ public class PrimaryExpression implements Expression{
 
 	@Override
 	public Object generateExpression() {
-		return Configuration.graphic.generatePrimaryExpression(type, name);
+		return Configuration.graphic.generatePrimaryExpression(this, type, name);
 	}
 
 	@Override

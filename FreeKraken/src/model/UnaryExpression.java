@@ -17,7 +17,8 @@ public class UnaryExpression implements Expression {
 
 	@Override
 	public Object generateExpression() {
-		return Configuration.graphic.generateUnaryExpression(	
+		return Configuration.graphic.generateUnaryExpression(
+					this,
 					type,
 					sub_expression.generateExpression() );
 	}

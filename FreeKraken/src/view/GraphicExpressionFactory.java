@@ -1,12 +1,14 @@
 package view;
 
+import model.Expression;
+
 public interface GraphicExpressionFactory {
 
-	public Object generateBinaryExpression(String type, Object first, Object second);
+	public Object generateBinaryExpression(Expression expression, String type, Object first, Object second);
 	
-	public Object generateUnaryExpression(String type, Object sub);
+	public Object generateUnaryExpression(Expression expression, String type, Object sub);
 	
-	public Object generatePrimaryExpression(String type, String name);
+	public Object generatePrimaryExpression(Expression expression, String type, String name);
 	
 	public void init();
 }

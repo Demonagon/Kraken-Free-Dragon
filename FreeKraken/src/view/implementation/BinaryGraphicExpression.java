@@ -22,6 +22,8 @@ public class BinaryGraphicExpression extends GraphicExpression{
 	public enum Orientation {
 		VERTICAL, HORIZONTAL
 	}
+	
+	Expression model;
 	GraphicExpression firstExpression;
 	GraphicExpression secondExpression;
 	Node operator;
@@ -35,11 +37,13 @@ public class BinaryGraphicExpression extends GraphicExpression{
 	 * @param operator un op�rateur 
 	 * @param orientation l'orientation de l'expression (vertical / horizontal)
 	 */
-	public BinaryGraphicExpression (GraphicExpression firstExpression, 
+	public BinaryGraphicExpression (Expression model,
+									GraphicExpression firstExpression, 
 									GraphicExpression secondExpression, 
 									Node operator,
 									Orientation orientation) {
 		
+		this.model = model;
 		this.firstExpression 	= firstExpression;
 		this.secondExpression 	= secondExpression;
 		this.operator 			= operator;
