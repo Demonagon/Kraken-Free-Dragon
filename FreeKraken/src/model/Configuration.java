@@ -1,11 +1,13 @@
 package model;
 
+import view.GraphicExpressionFactory;
+
 public class Configuration {
 	
-	public static GraphicConfiguration graphic;
+	public static GraphicExpressionFactory graphic;
 	
-	public static void init() {
-		graphic = new GraphicConfiguration();
+	public static void init(GraphicExpressionFactory factory) {
+		graphic = factory;
 		graphic.init();
 	}
 }

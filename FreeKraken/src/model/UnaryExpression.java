@@ -1,10 +1,5 @@
 package model;
 
-import view.BinaryGraphicExpression;
-import view.GraphicExpression;
-import view.UnaryGraphicExpression;
-import javafx.scene.shape.Shape;
-
 public class UnaryExpression implements Expression {
 
 	String type;
@@ -21,9 +16,9 @@ public class UnaryExpression implements Expression {
 	}
 
 	@Override
-	public GraphicExpression generateExpression() {
-		return Configuration.graphic.getConfiguration(type)
-				.generateUnaryExpression(
+	public Object generateExpression() {
+		return Configuration.graphic.generateUnaryExpression(	
+					type,
 					sub_expression.generateExpression() );
 	}
 	

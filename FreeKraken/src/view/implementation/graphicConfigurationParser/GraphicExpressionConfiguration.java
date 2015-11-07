@@ -1,10 +1,11 @@
-package model.graphicConfigurationParser;
+package view.implementation.graphicConfigurationParser;
 
-import model.OperatorDuplicator;
+import view.implementation.OperatorDuplicator;
 import model.Pair;
-import view.BinaryGraphicExpression;
-import view.GraphicExpression;
-import view.UnaryGraphicExpression;
+import view.implementation.BinaryGraphicExpression;
+import view.implementation.GraphicExpression;
+import view.implementation.PrimaryGraphicExpression;
+import view.implementation.UnaryGraphicExpression;
 import javafx.scene.Node;
 
 public class GraphicExpressionConfiguration {

@@ -1,4 +1,4 @@
-package view;
+package view.implementation;
 
 import model.Expression;
 import javafx.scene.Group;

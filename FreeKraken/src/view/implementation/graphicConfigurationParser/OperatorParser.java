@@ -1,8 +1,7 @@
-package model.graphicConfigurationParser;
+package view.implementation.graphicConfigurationParser;
 
-import view.BinaryGraphicExpression;
-import view.StringGraphicOperator;
-import javafx.scene.shape.Shape;
+import view.implementation.BinaryGraphicExpression;
+import view.implementation.StringGraphicOperator;
 import javafx.scene.Node;
 
 public class OperatorParser {

@@ -1,25 +1,16 @@
-package view;
+package view.implementation;
 
 
-import controller.DragAndDropMemory;
-import view.BinaryGraphicExpression.Orientation;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
-import javafx.scene.shape.Shape;
-import javafx.scene.paint.Color;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.TextField;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Side;
-import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.control.Label;
 import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import view.implementation.BinaryGraphicExpression.Orientation;
+import controller.DragAndDropMemory;
 
 
 public class Main extends Application {

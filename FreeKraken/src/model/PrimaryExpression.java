@@ -1,9 +1,5 @@
 package model;
 
-import view.GraphicExpression;
-import view.PrimaryGraphicExpression;
-
-
 public class PrimaryExpression implements Expression{
 	
 	public static final String general_expression_type = "EXPRESSION";
@@ -30,10 +26,8 @@ public class PrimaryExpression implements Expression{
 	}
 
 	@Override
-	public GraphicExpression generateExpression() {
-		PrimaryGraphicExpression graphicExpression = new PrimaryGraphicExpression();
-		graphicExpression.setExpression(name);
-		return graphicExpression;
+	public Object generateExpression() {
+		return Configuration.graphic.generatePrimaryExpression(type, name);
 	}
 
 	@Override

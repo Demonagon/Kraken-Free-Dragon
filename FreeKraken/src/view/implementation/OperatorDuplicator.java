@@ -1,7 +1,5 @@
-package model;
+package view.implementation;
 
-import javafx.scene.shape.Shape;
-import view.StringGraphicOperator;
 import javafx.scene.Node;
 
 public class OperatorDuplicator {

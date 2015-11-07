@@ -1,13 +1,15 @@
-package view;
+package view.implementation;
 
-import controller.*;
-import javafx.scene.text.Text;
-import model.Expression;
 import javafx.event.EventHandler;
 import javafx.geometry.Side;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import model.Expression;
+import controller.DragAndDropManager;
+import controller.MouseEventManager;
+import controller.PrimaryDragAndDropManager;
+import controller.PrimaryMouseEventManager;
 
 /**
  * 

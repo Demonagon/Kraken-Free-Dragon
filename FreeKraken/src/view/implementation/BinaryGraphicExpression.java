@@ -1,15 +1,16 @@
-package view;
+package view.implementation;
 
-import javafx.scene.shape.Shape;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
-import model.Expression;
-import javafx.scene.layout.*;
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import model.Expression;
 
 /**
  * 

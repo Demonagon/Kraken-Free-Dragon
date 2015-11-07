@@ -1,15 +1,14 @@
-package model;
+package view.implementation.graphicConfigurationParser;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.graphicConfigurationParser.GraphicConfigurationParser;
-import model.graphicConfigurationParser.GraphicExpressionConfiguration;
-import model.graphicConfigurationParser.ParseException;
-import javafx.scene.shape.Shape;
+import view.GraphicExpressionFactory;
+import view.implementation.GraphicExpression;
+import view.implementation.PrimaryGraphicExpression;
 
-public class GraphicConfiguration {
+public class GraphicConfiguration implements GraphicExpressionFactory {
 	
 	public static final String config_file_path = "bin/essais.gconfig"; 
 	
@@ -27,6 +26,24 @@ public class GraphicConfiguration {
 		return configurations.get(string);
 	}
 	
+	@Override
+	public Object generateBinaryExpression(String type, Object first, Object second) {
+		return getConfiguration(type).generateBinaryExpression((GraphicExpression) first, (GraphicExpression) second);
+	}
+
+	@Override
+	public Object generateUnaryExpression(String type, Object sub) {
+		return getConfiguration(type).generateUnaryExpression((GraphicExpression) sub);
+	}
+
+	@Override
+	public Object generatePrimaryExpression(String type, String name) {
+		PrimaryGraphicExpression graphicExpression = new PrimaryGraphicExpression();
+		graphicExpression.setExpression(name);
+		return graphicExpression;
+	}
+	
+	@Override
 	public void init() {
 		File config_file = new File(config_file_path);
 		

@@ -1,10 +1,6 @@
-package view;
+package view.implementation;
 
-import javafx.event.EventHandler;
-import javafx.geometry.Side;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 
 public class StringGraphicOperator extends Label {
 	

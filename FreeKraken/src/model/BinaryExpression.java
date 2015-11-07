@@ -1,7 +1,5 @@
 package model;
 
-import view.GraphicExpression;
-
 public class BinaryExpression implements Expression {
 
 	String type;
@@ -20,9 +18,9 @@ public class BinaryExpression implements Expression {
 	}
 
 	@Override
-	public GraphicExpression generateExpression() {
-		return Configuration.graphic.getConfiguration(type)
-				.generateBinaryExpression(
+	public Object generateExpression() {
+		return Configuration.graphic.generateBinaryExpression(
+					type,
 					first_expression.generateExpression(),
 					second_expression.generateExpression() );
 	}

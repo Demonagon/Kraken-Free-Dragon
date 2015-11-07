@@ -1,6 +1,6 @@
 package controller;
 
-import view.PrimaryGraphicExpression;
+import view.implementation.PrimaryGraphicExpression;
 import javafx.scene.Group;
 
 
