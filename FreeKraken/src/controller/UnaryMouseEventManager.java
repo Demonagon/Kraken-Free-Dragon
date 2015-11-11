@@ -1,39 +1,85 @@
 package controller;
 
-import javafx.scene.Group;
+import view.implementation.UnaryGraphicExpression;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 
 
 public class UnaryMouseEventManager extends MouseEventManager{
 
+	private UnaryGraphicExpression unaryExpression;
+	private Timeline doubleClickTimeline;
 	
-	public UnaryMouseEventManager(Group group) {
-		super(group);
-		// TODO Auto-generated constructor stub
+	public UnaryMouseEventManager(Node node, UnaryGraphicExpression unaryExpression) {
+		super(node);
+		this.unaryExpression = unaryExpression;
+		doubleClickTimeline = null;
 	}
 
 	@Override
 	public void onMouseEntered() {
-		// TODO Auto-generated method stub
-		
+		node.setOnMouseEntered(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+            	// not implemented methode
+            }
+        });		
 	}
 
 	@Override
 	public void onMouseExited() {
-		// TODO Auto-generated method stub
-		
+		node.setOnMouseExited(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent me){
+            	// not implemented methode
+            }
+        });
 	}
-
+	
+	
+	public void completeClickEvent () {
+		System.out.println("click simple gauche: ");
+		doubleClickTimeline = null;
+	}
+	
+	
 	@Override
 	public void onMousePressed() {
-		
-		// TODO Auto-generated method stub
-		
+		 node.setOnMousePressed(new EventHandler<MouseEvent>(){
+			 public void handle(MouseEvent event){
+				  if(event.getButton().equals(MouseButton.PRIMARY)){ // click gauche
+					  if (doubleClickTimeline == null) { doubleClickTimeline = new Timeline(new KeyFrame(
+							  Duration.millis(500),
+						        ae -> completeClickEvent()));
+						doubleClickTimeline.play();
+					  }
+					  if(event.getClickCount() == 2){ // double click
+						  if (doubleClickTimeline != null) {
+							  System.out.println("double click gauche");
+							  doubleClickTimeline.stop();
+							  doubleClickTimeline = null;
+						  }
+			          }
+			            
+			        }else if (event.getButton().equals(MouseButton.SECONDARY)){ // click droit
+			        	if(event.getClickCount() == 1){
+			        		System.out.println("simple click droit");
+			            }
+			        }
+	            }
+	        });
 	}
-
+	
+	
 	@Override
 	public void onMouseReleased() {
-		// TODO Auto-generated method stub
-		
+		 node.setOnMouseReleased(new EventHandler<MouseEvent>(){
+	            public void handle(MouseEvent event){
+	            	// not implemented methode
+	            }
+	        });
 	}
-
 }

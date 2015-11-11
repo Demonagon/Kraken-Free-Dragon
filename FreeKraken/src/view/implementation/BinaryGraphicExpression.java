@@ -1,5 +1,9 @@
 package view.implementation;
 
+import controller.BinaryDragAndDropManager;
+import controller.BinaryMouseEventManager;
+import controller.DragAndDropManager;
+import controller.MouseEventManager;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
@@ -28,6 +32,9 @@ public class BinaryGraphicExpression extends GraphicExpression{
 	GraphicExpression secondExpression;
 	Node operator;
 	Orientation orientation;
+	private DragAndDropManager dADmanager;
+	private MouseEventManager mEmanager;
+	
 	
 	
 	/**
@@ -48,6 +55,8 @@ public class BinaryGraphicExpression extends GraphicExpression{
 		this.secondExpression 	= secondExpression;
 		this.operator 			= operator;
 		this.orientation 		= orientation;
+		dADmanager = new BinaryDragAndDropManager(this);
+		mEmanager = new BinaryMouseEventManager(operator, this);
 		
     	final ContextMenu contextMenu = new ChoiceContextMenu();
     	((Label)operator).setContextMenu(contextMenu);
@@ -58,11 +67,9 @@ public class BinaryGraphicExpression extends GraphicExpression{
 			}
     	});
 		
-		//event
-		onMouseEntered();
-		onMouseExited();
-		onMousePressed();
-		onMouseReleased();		
+    	//event
+		mEmanager.onMouseEvent();
+		dADmanager.onDragAndDropEvent();		
 		
 		structOfExpression();
 	}
@@ -99,56 +106,6 @@ public class BinaryGraphicExpression extends GraphicExpression{
 	}
 	
 	
-	/**
-	 * l'evenement quand la souris survols sur le texte
-	 */
-	private void onMouseEntered() {
-		this.setOnMouseEntered(new EventHandler<MouseEvent>(){
-            public void handle(MouseEvent me){
-            	//TODO
-            }
-        });
-	}
-	
-	
-	/**
-	 * l'evenement quand la souris sort du texte apr�s l'avoir survol�e
-	 */
-	private void onMouseExited() {
-		this.setOnMouseExited(new EventHandler<MouseEvent>(){
-            public void handle(MouseEvent me){
-            	//TODO
-            }
-        });
-	}
-	
-	
-	/**
-	 * l'evenement au click
-	 */
-	private void onMousePressed() {
-		 this.setOnMousePressed(new EventHandler<MouseEvent>(){
-	            public void handle(MouseEvent me){
-	              // TODO
-	            }
-	        });
-	}
-	
-	
-	/**
-	 * l'evenement au relachement du click
-	 */
-	private void onMouseReleased() {
-		 this.setOnMouseReleased(new EventHandler<MouseEvent>(){
-	            public void handle(MouseEvent me){
-	            	//TODO
-	            }
-	        });
-	}
-
-
-
-
 	@Override
 	public Expression getExpression() {
 		// TODO Auto-generated method stub
