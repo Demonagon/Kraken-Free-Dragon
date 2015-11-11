@@ -151,7 +151,6 @@ public class BinaryGraphicExpression extends GraphicExpression{
 
 	@Override
 	public Expression getExpression() {
-		// TODO Auto-generated method stub
-		return null;
+		return model;
 	}
 }
