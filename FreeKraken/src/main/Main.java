@@ -1,6 +1,10 @@
 package main;
 
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -10,6 +14,7 @@ import javafx.stage.Stage;
 import model.BinaryExpression;
 import model.Configuration;
 import model.Expression;
+import model.KrakenTree;
 import model.PrimaryExpression;
 import model.Rule;
 import model.UnaryExpression;
@@ -124,10 +129,118 @@ public class Main extends Application {
     }
     
     
+	public static void mainTestRules(String[] args) {
+    	Configuration.init(new GraphicConfiguration());
+        launch(args);
+	}
+	
+	static List<Rule> applicInput(String input, List<Expression> expressions) {
+		System.out.println("les règles possibles à l'input " + input + " sur " + expressions + " sont :");
+		List<Rule> rules = KrakenTree.processInput(input, expressions).second;
+		System.out.println( rules );
+		return rules;
+	}
+	
+	static List<Rule> applicInput(String input, Expression expression) {
+		System.out.println("les règles possibles à l'input " + input + " sur " + expression.expressionToString() + " sont :");
+		List<Rule> rules = KrakenTree.processInput(input, expression).second;
+		System.out.println( rules );
+		return rules;
+	}
+	
+	public static void mainTestRulesDeductionMinigame(String[] args) {
+		Configuration.init(new GraphicConfiguration());
+		
+		
+		Expression expr_A = new PrimaryExpression("EXPRESSION", "A");
+		Expression expr_B = new PrimaryExpression("EXPRESSION", "B");
+		Expression zero = new PrimaryExpression("ZERO", "0");
+		Expression plus_AB = new BinaryExpression("PLUS", expr_A.cloneExpression(), expr_B.cloneExpression());
+		Expression plus_BA = new BinaryExpression("PLUS", expr_B.cloneExpression(), expr_A.cloneExpression());
+		Expression plus_A0 = new BinaryExpression("PLUS", expr_A.cloneExpression(), zero.cloneExpression());
+
+		// A + B 	=(drag_and_drop)=> 		B + A
+		// A + 0 	=(clic_gauche)=> 		A
+		// A 		=(double_clic_gauche)=> A + 0
+		Configuration.rules.addRule("drag_and_drop", new Rule(plus_AB.cloneExpression(), plus_BA.cloneExpression()));
+		Configuration.rules.addRule("clic_gauche", new Rule(plus_A0.cloneExpression(), expr_A.cloneExpression()));
+		Configuration.rules.addRule("double_clic_gauche", new Rule(expr_A.cloneExpression(), plus_A0.cloneExpression()));
+		
+		BinaryExpression expression = new BinaryExpression("PLUS",
+										new PrimaryExpression("NUMBER", "1"), 
+										zero.cloneExpression());
+		
+		int input = -1;
+		Scanner scanner = new Scanner(System.in);
+		
+		while(input != 4) {
+			input = -1;
+			do {
+				System.out.println("La formule est :");
+				System.out.println(expression);
+				System.out.println("Quel opération appliquer sur la racine :");
+				System.out.println("1 : drag_and_drop");
+				System.out.println("2 : clic_gauche");
+				System.out.println("3 : double_clic_gauche");
+				input = scanner.nextInt();
+			} while (input <= 0 || input > 3);
+		}
+		
+		List<Expression> input_targets = new LinkedList<Expression>();
+		input_targets.add(expression.secondExpression());
+		input_targets.add(zero);
+		
+		List<Rule> rules = applicInput("drag_and_drop", expression);
+		
+		if( rules.size() > 0 ) {
+			Rule rule = rules.get(0);
+			
+			System.out.println("L'application de la première règle est :");
+			System.out.println( rule.applic(expression) );
+		}
+	}
+	
+	public static void mainTestRulesDeduction(String[] args) {
+		Configuration.init(new GraphicConfiguration());
+		
+		
+		Expression expr_A = new PrimaryExpression("EXPRESSION", "A");
+		Expression expr_B = new PrimaryExpression("EXPRESSION", "B");
+		Expression zero = new PrimaryExpression("ZERO", "0");
+		Expression plus_AB = new BinaryExpression("PLUS", expr_A.cloneExpression(), expr_B.cloneExpression());
+		Expression plus_BA = new BinaryExpression("PLUS", expr_B.cloneExpression(), expr_A.cloneExpression());
+		Expression plus_A0 = new BinaryExpression("PLUS", expr_A.cloneExpression(), zero.cloneExpression());
+
+		// A + B 	=(drag_and_drop)=> 		B + A
+		// A + 0 	=(clic_gauche)=> 		A
+		// A 		=(double_clic_gauche)=> A + 0
+		Configuration.rules.addRule("drag_and_drop", new Rule(plus_AB.cloneExpression(), plus_BA.cloneExpression()));
+		Configuration.rules.addRule("clic_gauche", new Rule(plus_A0.cloneExpression(), expr_A.cloneExpression()));
+		Configuration.rules.addRule("double_clic_gauche", new Rule(expr_A.cloneExpression(), plus_A0.cloneExpression()));
+		
+		BinaryExpression expression = new BinaryExpression("PLUS",
+										new PrimaryExpression("NUMBER", "1"), 
+											new BinaryExpression("PLUS",
+												new PrimaryExpression("NUMBER", "2"),
+													new BinaryExpression("PLUS",
+														new PrimaryExpression("NUMBER", "3"), zero)));
+		
+		List<Expression> input_targets = new LinkedList<Expression>();
+		input_targets.add(expression.secondExpression());
+		input_targets.add(zero);
+		
+		List<Rule> rules = applicInput("drag_and_drop", expression);
+		
+		if( rules.size() > 0 ) {
+			Rule rule = rules.get(0);
+			
+			System.out.println("L'application de la première règle est :");
+			System.out.println( rule.applic(expression) );
+		}
+	}
     
     // sert juste a lancer l'application
     public static void main(String[] args) {
-    	Configuration.init(new GraphicConfiguration());
-        launch(args);
+    	mainTestRulesDeduction(args);
     }
 }

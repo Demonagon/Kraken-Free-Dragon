@@ -10,6 +10,16 @@ public class Rule {
 		this.result_model = result_model;
 	}
 	
+	public boolean canApplic(Expression input) {
+		if( ! input.doesMatchModel(input_model) ) return false;
+		
+		Memory memory = new Memory();
+		
+		if( ! memory.init(input_model, input) ) return false;
+		
+		return true;
+	}
+	
 	public Expression applic(Expression input) throws IllegalArgumentException
 	{
 		if( ! input.doesMatchModel(input_model) ) throw new IllegalArgumentException();

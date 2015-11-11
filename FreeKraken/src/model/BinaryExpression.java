@@ -1,14 +1,19 @@
 package model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class BinaryExpression implements Expression {
 
 	String type;
 	Expression first_expression;
 	Expression second_expression;
 	
+	Expression father;
+	
 	public BinaryExpression(String type, Expression first_expression, Expression second_expression) {
-		this.first_expression = first_expression;
-		this.second_expression = second_expression;
+		setFirstExpression(first_expression);
+		setSecondExpression(second_expression);
 		this.type = type;
 	}
 	
@@ -56,10 +61,12 @@ public class BinaryExpression implements Expression {
 	
 	public void setFirstExpression(Expression expression) {
 		first_expression = expression;
+		first_expression.setFather(this);
 	}
 	
 	public void setSecondExpression(Expression expression) {
 		second_expression = expression;
+		second_expression.setFather(this);
 	}
 
 	@Override
@@ -68,7 +75,35 @@ public class BinaryExpression implements Expression {
 	}
 
 	@Override
+	public String toString() {
+		return expressionToString();
+	}
+	
+	@Override
 	public String expressionToString() {
 		return "( " + firstExpression().expressionToString() + " " + getType() + " " + secondExpression().expressionToString() + " )";
+	}
+
+	@Override
+	public void setFather(Expression father) {
+		this.father = father;
+	}
+
+	@Override
+	public Expression getFather() {
+		return father;
+	}
+
+	@Override
+	public List<Expression> generatePathList() {
+		if( father == null ) {
+			List<Expression> list = new LinkedList<Expression>();
+			list.add(this);
+			return list;
+		}
+		
+		List<Expression> list = father.generatePathList();
+		list.add(this);
+		return list;
 	}
 }

@@ -1,12 +1,17 @@
 package model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class UnaryExpression implements Expression {
 
 	String type;
 	Expression sub_expression;
 	
+	Expression father;
+	
 	public UnaryExpression(String type, Expression sub_expression) {
-		this.sub_expression = sub_expression;
+		setSubExpression(sub_expression);
 		this.type = type;
 	}
 	
@@ -29,6 +34,7 @@ public class UnaryExpression implements Expression {
 	
 	public void setSubExpression(Expression expression) {
 		sub_expression = expression;
+		sub_expression.setFather(this);
 	}
 
 	@Override
@@ -57,8 +63,36 @@ public class UnaryExpression implements Expression {
 	}
 
 	@Override
+	public String toString() {
+		return expressionToString();
+	}
+
+	@Override
 	public String expressionToString() {
 		return getType() + "( " + subExpression().expressionToString() + " )";
+	}
+
+	@Override
+	public void setFather(Expression father) {
+		this.father = father;
+	}
+
+	@Override
+	public Expression getFather() {
+		return father;
+	}
+
+	@Override
+	public List<Expression> generatePathList() {
+		if( father == null ) {
+			List<Expression> list = new LinkedList<Expression>();
+			list.add(this);
+			return list;
+		}
+		
+		List<Expression> list = father.generatePathList();
+		list.add(this);
+		return list;
 	}
 
 }
