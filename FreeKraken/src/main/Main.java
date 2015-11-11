@@ -184,7 +184,11 @@ public class Main extends Application {
 				System.out.println("3 : double_clic_gauche");
 				input = scanner.nextInt();
 			} while (input <= 0 || input > 3);
+			
+			
 		}
+		
+		scanner.close();
 		
 		List<Expression> input_targets = new LinkedList<Expression>();
 		input_targets.add(expression.secondExpression());

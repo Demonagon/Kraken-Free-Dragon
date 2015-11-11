@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.Expression;
+import model.Rule;
 import view.GraphicExpressionFactory;
+import view.implementation.BinaryGraphicExpression;
 import view.implementation.GraphicExpression;
 import view.implementation.PrimaryGraphicExpression;
+import view.implementation.StringGraphicOperator;
 
 public class GraphicConfiguration implements GraphicExpressionFactory {
 	
@@ -56,6 +59,15 @@ public class GraphicConfiguration implements GraphicExpressionFactory {
 		}
 		
 		System.out.println(configurations.size() + " configuration(s) graphique(s) ont été chargées.");
+	}
+
+	@Override
+	public Object generateRuleExpression(Rule rule) {
+		return new BinaryGraphicExpression(null,
+								(GraphicExpression) rule.getInputModel().generateExpression(),
+								(GraphicExpression) rule.getResultModel().generateExpression(),
+								new StringGraphicOperator("=>"),
+								BinaryGraphicExpression.Orientation.HORIZONTAL);
 	}
 
 }

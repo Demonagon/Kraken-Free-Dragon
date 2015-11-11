@@ -35,5 +35,17 @@ public class Rule {
 	public String toString() {
 		return input_model.expressionToString() + " ==> " + result_model.expressionToString();
 	}
+	
+	public Expression getInputModel() {
+		return input_model;
+	}
+	
+	public Expression getResultModel() {
+		return result_model;
+	}
+	
+	public Object generateExpression() {
+		return Configuration.graphic.generateRuleExpression(this);
+	}
 
 }
