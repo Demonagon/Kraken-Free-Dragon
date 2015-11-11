@@ -1,40 +1,68 @@
 package controller;
 
+import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 
 
 public class BinaryMouseEventManager extends MouseEventManager{
 
+	Label binary;
 	
 	
-	public BinaryMouseEventManager(Group group) {
+	public BinaryMouseEventManager(Group group, Label expr) {
 		super(group);
-		// TODO Auto-generated constructor stub
+		this.binary = binary;
 	}
 
 	@Override
 	public void onMouseEntered() {
-		// TODO Auto-generated method stub
+		group.setOnMouseEntered(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+            	System.out.println("souri sur binary expre");
+            }
+        });
 		
 	}
 
 	@Override
 	public void onMouseExited() {
-		// TODO Auto-generated method stub
-		
+		group.setOnMouseExited(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent me){
+            }
+        });
 	}
 
 	@Override
 	public void onMousePressed() {
-		// TODO Auto-generated method stub
-		
+		group.setOnMousePressed(new EventHandler<MouseEvent>(){
+			 public void handle(MouseEvent event){
+				 
+				  if(event.getButton().equals(MouseButton.PRIMARY)){ // click gauche
+					  if(event.getClickCount() == 2){ // double click
+			           
+					  }else if(event.getClickCount() == 1){ // simple click
+
+					  }
+			            
+			        }else if (event.getButton().equals(MouseButton.SECONDARY)){ // click droit
+			        	if(event.getClickCount() == 1){
+
+			        	}
+			        }
+			 }
+		});
 	}
 
 	@Override
 	public void onMouseReleased() {
-		// TODO Auto-generated method stub
-		
+		 group.setOnMouseReleased(new EventHandler<MouseEvent>(){
+	            public void handle(MouseEvent event){
+	            }
+	        });
 	}
 
 

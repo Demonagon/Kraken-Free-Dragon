@@ -67,7 +67,7 @@ public class Main extends Application {
             	scene.getStylesheets().add(getClass().getResource("cssLarge.fxml").toExternalForm()); 
             }
         });
-    	    	
+    	
         primaryStage.setTitle("New DragonBox");
         primaryStage.setScene(scene);
 //        primaryStage.setFullScreen(true); // mettre en plein ecran responsive
