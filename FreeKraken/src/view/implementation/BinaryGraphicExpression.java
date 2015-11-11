@@ -50,8 +50,8 @@ public class BinaryGraphicExpression extends GraphicExpression{
 		this.orientation 		= orientation;
 		
     	final ContextMenu contextMenu = new ChoiceContextMenu();
-    	((Label)operator).setContextMenu(contextMenu);
-    	((Label)operator).setOnMouseClicked(new EventHandler<MouseEvent>() {
+    	((Label) operator).setContextMenu(contextMenu);
+    	((Label) operator).setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
     	        contextMenu.show(operator, Side.BOTTOM, 0, 0);
