@@ -32,6 +32,7 @@ public class GraphicConfiguration implements GraphicExpressionFactory {
 	
 	@Override
 	public Object generateBinaryExpression(Expression expression, String type, Object first, Object second) {
+		if( getConfiguration(type) == null ) throw new IllegalArgumentException();
 		return getConfiguration(type).generateBinaryExpression(expression, (GraphicExpression) first, (GraphicExpression) second);
 	}
 

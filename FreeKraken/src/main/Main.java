@@ -1,12 +1,14 @@
 package main;
 
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -18,6 +20,7 @@ import model.KrakenTree;
 import model.PrimaryExpression;
 import model.Rule;
 import model.UnaryExpression;
+import view.implementation.ChoiceContextMenu;
 import view.implementation.GraphicExpression;
 import view.implementation.graphicConfigurationParser.GraphicConfiguration;
 
@@ -91,42 +94,6 @@ public class Main extends Application {
         
         return new Rule(input_model, result_model);
 	}
-    
-	@Override
-    public void start(Stage primaryStage) {
-    	// test
-        StackPane center = new StackPane();
-    	BorderPane root = new BorderPane();
-    	
-    	Expression expression = test_02_expression();
-    	Rule rule = test_02_rule();
-        
-        System.out.println("Application de la règle");
-        System.out.println(rule);
-        System.out.println("à la formule");
-        System.out.println(expression.expressionToString());
-        
-        //*
-        try {
-        	expression = rule.applic(expression);
-        	System.out.println("Ce qui donne");
-        	System.out.println(expression.expressionToString());
-        }
-        catch(IllegalArgumentException e) {
-        	System.out.println("Formule incompatible.");
-        } //*/
-    	
-    	// ajout des noeuds dans l'arbre du group
-    	center.getChildren().add( (GraphicExpression) expression.generateExpression() );
-    	root.setCenter(center);
-    	
-    	Scene scene = new Scene(root, 750, 500, Color.LIGHTGRAY);
-    	
-        //definition de la fenetre d'affichage
-        primaryStage.setTitle("Free Kraken");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
     
     
 	public static void mainTestRules(String[] args) {
@@ -242,9 +209,57 @@ public class Main extends Application {
 			System.out.println( rule.applic(expression) );
 		}
 	}
+	
+	public static void mainTestContextMenu(String[] args) {
+	}
+    
+	@Override
+    public void start(Stage primaryStage) {
+
+        KrakenTree tree = new KrakenTree(new GraphicConfiguration());
+    	// test
+        StackPane center = new StackPane();
+    	BorderPane root = new BorderPane();
+
+		Expression expr_A = new PrimaryExpression("EXPRESSION", "A");
+		Expression expr_B = new PrimaryExpression("EXPRESSION", "B");
+		Expression zero = new PrimaryExpression("ZERO", "0");
+		Expression plus_AB = new BinaryExpression("PLUS", expr_A.cloneExpression(), expr_B.cloneExpression());
+		Expression plus_BA = new BinaryExpression("PLUS", expr_B.cloneExpression(), expr_A.cloneExpression());
+		Expression plus_A0 = new BinaryExpression("PLUS", expr_A.cloneExpression(), zero.cloneExpression());
+
+		// A + B 	=(drag_and_drop)=> 		B + A
+		// A + 0 	=(clic_gauche)=> 		A
+		// A 		=(double_clic_gauche)=> A + 0
+		
+		ArrayList<Rule> rules = new ArrayList<Rule>();
+		
+		rules.add(new Rule(plus_AB.cloneExpression(), plus_BA.cloneExpression()));
+		rules.add(new Rule(plus_A0.cloneExpression(), expr_A.cloneExpression()));
+		rules.add(new Rule(expr_A.cloneExpression() , plus_A0.cloneExpression()));
+    	
+    	Expression expression = plus_A0.cloneExpression();
+    	tree.setRoot(expression);
+    	
+    	// ajout des noeuds dans l'arbre du group
+    	center.getChildren().add( (GraphicExpression) expression.generateExpression() );
+    	root.setCenter(center);
+    	
+    	Scene scene = new Scene(root, 750, 500, Color.LIGHTGRAY);
+    	
+        //definition de la fenetre d'affichage
+        primaryStage.setTitle("Free Kraken");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+		
+		// ContextMenu
+    	final ContextMenu contextMenu = new ChoiceContextMenu(rules, expression, tree, center);
+    	
+    	contextMenu.show(primaryStage);
+    }
     
     // sert juste a lancer l'application
     public static void main(String[] args) {
-    	mainTestRulesDeduction(args);
+        launch(args);
     }
 }

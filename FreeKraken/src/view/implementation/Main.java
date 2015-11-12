@@ -1,15 +1,25 @@
 package view.implementation;
 
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.BinaryExpression;
+import model.Configuration;
+import model.Expression;
+import model.KrakenTree;
+import model.PrimaryExpression;
+import model.Rule;
 import view.implementation.BinaryGraphicExpression.Orientation;
+import view.implementation.graphicConfigurationParser.GraphicConfiguration;
 import controller.DragAndDropMemory;
 
 
@@ -74,6 +84,30 @@ public class Main extends Application {
         primaryStage.setMinHeight(200); // taille min de la fenetre
         primaryStage.setMinWidth(200);
         primaryStage.show();
+        
+        KrakenTree tree = new KrakenTree(new GraphicConfiguration());
+
+		Expression expr_A = new PrimaryExpression("EXPRESSION", "A");
+		Expression expr_B = new PrimaryExpression("EXPRESSION", "B");
+		Expression zero = new PrimaryExpression("ZERO", "0");
+		Expression plus_AB = new BinaryExpression("PLUS", expr_A.cloneExpression(), expr_B.cloneExpression());
+		Expression plus_BA = new BinaryExpression("PLUS", expr_B.cloneExpression(), expr_A.cloneExpression());
+		Expression plus_A0 = new BinaryExpression("PLUS", expr_A.cloneExpression(), zero.cloneExpression());
+
+		// A + B 	=(drag_and_drop)=> 		B + A
+		// A + 0 	=(clic_gauche)=> 		A
+		// A 		=(double_clic_gauche)=> A + 0
+		
+		ArrayList<Rule> rules = new ArrayList<Rule>();
+		
+		rules.add(new Rule(plus_AB.cloneExpression(), plus_BA.cloneExpression()));
+		rules.add(new Rule(plus_A0.cloneExpression(), expr_A.cloneExpression()));
+		rules.add(new Rule(expr_A.cloneExpression() , plus_A0.cloneExpression()));
+		
+		// ContextMenu
+    	final ContextMenu contextMenu = new ChoiceContextMenu(rules, null, tree, null);
+    	
+    	contextMenu.show(primaryStage);
     }
     
 

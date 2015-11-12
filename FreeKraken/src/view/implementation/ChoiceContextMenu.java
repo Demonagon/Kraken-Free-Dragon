@@ -1,18 +1,23 @@
 package view.implementation;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import model.Expression;
 import model.KrakenTree;
 import model.Rule;
+import javafx.scene.layout.StackPane;
 
 public class ChoiceContextMenu extends ContextMenu {
 	
 	List<Rule> rules;
 	Expression expression;
 	KrakenTree tree;
+	StackPane pane;
 	
 	/*
 	public ChoiceContextMenu() {
@@ -37,15 +42,44 @@ public class ChoiceContextMenu extends ContextMenu {
 	}
 	*/
 	
-	public ChoiceContextMenu(List<Rule> rules, Expression expression, KrakenTree tree) {
+	public ChoiceContextMenu(List<Rule> rules, Expression expression, KrakenTree tree, StackPane pane) {
 		this.rules = rules;
 		this.expression = expression;
 		this.tree = tree;
+		this.pane = pane;
 		
-		MenuItem item1 = new MenuItem("Multiplication");
-		item1.setGraphic((GraphicExpression)(rules.get(0).generateExpression()));
-		MenuItem item2 = new MenuItem("Division");
+		//tree.applicRule(expression, rules.get(0));
 		
-		getItems().addAll(item1, item2);
+		List<MenuItem> items = generateItemsMenu();
+		
+		getItems().addAll(items);
+	}
+	
+	public void refreshWindow() {
+		pane.getChildren().clear();
+		pane.getChildren().add((GraphicExpression) (tree.getRoot().generateExpression()) );
+	}
+	
+	public List<MenuItem> generateItemsMenu()
+	{
+		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
+		
+		for(Rule rule : rules)
+		{
+			MenuItem item = new MenuItem();
+			
+			item.setGraphic((GraphicExpression)(rule.generateExpression()));
+			item.setOnAction(new EventHandler<ActionEvent>() {
+			    @Override
+			    public void handle(ActionEvent e) {
+			    	tree.applicRule(expression, rule);
+			    	refreshWindow();
+			    }
+			});
+			
+			items.add(item);
+		}
+		
+		return items;
 	}
 }

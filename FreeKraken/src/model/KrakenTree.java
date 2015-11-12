@@ -9,13 +9,17 @@ public class KrakenTree {
 	private Expression root;
 	
 	public KrakenTree(GraphicExpressionFactory factory) {
-		Configuration.graphic = factory;
+		Configuration.init(factory);
 		
 	}
 	
 	public void setRoot(Expression root) {
 		this.root = root;
 		root.setFather(null);
+	}
+	
+	public Expression getRoot() {
+		return root;
 	}
 	
 	public void applicRule(Expression expression, Rule rule) {
