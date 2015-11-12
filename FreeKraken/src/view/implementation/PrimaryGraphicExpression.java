@@ -1,10 +1,6 @@
 package view.implementation;
 
-import javafx.event.EventHandler;
-import javafx.geometry.Side;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import model.Expression;
 import controller.DragAndDropManager;
 import controller.MouseEventManager;
@@ -37,16 +33,6 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 		expr = new Label("Default");
 		DADmanager = new PrimaryDragAndDropManager(this, expr);
 		MEmanager = new PrimaryMouseEventManager(this, expr);
-		
-		// ContextMenu
-    	final ContextMenu contextMenu = new ChoiceContextMenu();
-    	expr.setContextMenu(contextMenu);
-    	expr.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-    	        contextMenu.show(expr, Side.BOTTOM, 0, 0);
-			}
-    	});
 		
 		expr.getStyleClass().add("defaultFont");
 		

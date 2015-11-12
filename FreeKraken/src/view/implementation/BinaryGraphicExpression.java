@@ -2,10 +2,7 @@ package view.implementation;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.geometry.Side;
 import javafx.scene.Node;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -48,15 +45,6 @@ public class BinaryGraphicExpression extends GraphicExpression{
 		this.secondExpression 	= secondExpression;
 		this.operator 			= operator;
 		this.orientation 		= orientation;
-		
-    	final ContextMenu contextMenu = new ChoiceContextMenu();
-    	((Label) operator).setContextMenu(contextMenu);
-    	((Label) operator).setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-    	        contextMenu.show(operator, Side.BOTTOM, 0, 0);
-			}
-    	});
 		
 		//event
 		onMouseEntered();

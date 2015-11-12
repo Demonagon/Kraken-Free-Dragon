@@ -2,10 +2,7 @@ package view.implementation;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.geometry.Side;
 import javafx.scene.Node;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -36,25 +33,6 @@ public class UnaryGraphicExpression extends GraphicExpression{
 		this.decoOpen = decoOpen;
 		this.decoClose = decoClose;
 		this.orientation = orientation;
-		
-		// ContextMenu
-    	final ContextMenu contextMenu = new ChoiceContextMenu();
-    	((Label)decoOpen).setContextMenu(contextMenu);
-    	((Label)decoOpen).setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-    	        contextMenu.show(decoOpen, Side.BOTTOM, 0, 0);
-			}
-    	});
-    	
-    	final ContextMenu contextMenu2 = new ChoiceContextMenu();
-    	((Label)decoClose).setContextMenu(contextMenu2);
-    	((Label)decoClose).setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-    	        contextMenu2.show(decoClose, Side.BOTTOM, 0, 0);
-			}
-    	});
 		
 		//event
 		onMouseEntered();
