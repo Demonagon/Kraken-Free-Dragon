@@ -15,11 +15,6 @@ import model.Expression;
 import view.implementation.BinaryGraphicExpression.Orientation;
 
 
-
-
-
-
-
 /**
  * 
  * @author Thomas
@@ -45,7 +40,7 @@ public class UnaryGraphicExpression extends GraphicExpression{
 		this.decoOpen = decoOpen;
 		this.decoClose = decoClose;
 		this.orientation = orientation;
-		dADmanagerOpen = new UnaryDragAndDropManager(this, decoOpen, decoClose);
+		dADmanagerOpen = new UnaryDragAndDropManager(this, decoOpen, decoClose, this, tower);
 		mEmanagerOpen = new UnaryMouseEventManager(decoOpen,this, tower);
 		
     	//event

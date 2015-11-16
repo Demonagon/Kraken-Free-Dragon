@@ -1,6 +1,7 @@
 package controller;
 
 import view.implementation.ControlTower;
+import view.implementation.GraphicExpression;
 import view.implementation.PrimaryGraphicExpression;
 import javafx.scene.Group;
 
@@ -13,11 +14,15 @@ import javafx.scene.Group;
  *
  */
 public class DragAndDropMemory {
-	
-	public Group source;
-	public Group target;
-	public static DragAndDropMemory memory;
 
+	public static DragAndDropMemory memory;
+	private Group source;
+	private Group target;
+	private ControlTower tower;
+
+	public DragAndDropMemory (ControlTower tower) {
+		this.tower = tower;
+	}
 
 	/**
 	 * setteur de l'attribut source
@@ -34,10 +39,13 @@ public class DragAndDropMemory {
 	 */
 	public void setTarget(Group target) {
 		this.target = target;
+		notifyDragAndDrop();
 	}
 	
 	
-	//ControlTower.tower. TODO
+	public void notifyDragAndDrop () {
+		tower.processDragAndDrop((GraphicExpression) source, (GraphicExpression) target);
+	}
 	
 	
 	/**

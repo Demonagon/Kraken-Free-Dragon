@@ -8,18 +8,21 @@ import model.Expression;
 import model.Rule;
 import view.GraphicExpressionFactory;
 import view.implementation.BinaryGraphicExpression;
+import view.implementation.ControlTower;
 import view.implementation.GraphicExpression;
 import view.implementation.PrimaryGraphicExpression;
 import view.implementation.StringGraphicOperator;
 
 public class GraphicConfiguration implements GraphicExpressionFactory {
 	
-	public static final String config_file_path = "bin/essais.gconfig"; 
+	public static final String config_file_path = "bin/essais.gconfig";
 	
 	private Map<String, GraphicExpressionConfiguration > configurations;
+	private ControlTower tower;
 
-	public GraphicConfiguration() {
+	public GraphicConfiguration(ControlTower tower) {
 		configurations = new HashMap<String, GraphicExpressionConfiguration >();
+		this.tower = tower;
 	}
 	
 	public void addConfiguration(String string, GraphicExpressionConfiguration value) {
@@ -42,7 +45,7 @@ public class GraphicConfiguration implements GraphicExpressionFactory {
 
 	@Override
 	public Object generatePrimaryExpression(Expression expression, String type, String name) {
-		PrimaryGraphicExpression graphicExpression = new PrimaryGraphicExpression(expression);
+		PrimaryGraphicExpression graphicExpression = new PrimaryGraphicExpression(expression, tower);
 		graphicExpression.setExpression(name);
 		return graphicExpression;
 	}
@@ -52,7 +55,7 @@ public class GraphicConfiguration implements GraphicExpressionFactory {
 		File config_file = new File(config_file_path);
 		
 		try {
-			GraphicConfigurationParser.read(config_file);
+			GraphicConfigurationParser.read(config_file, tower);
 		} catch (ParseException e) {
 			System.out.println("Erreur. Le fichier de configuration contient une erreur syntaxique.");
 			e.printStackTrace();

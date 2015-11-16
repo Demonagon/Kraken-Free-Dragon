@@ -1,5 +1,7 @@
 package controller;
 
+import view.implementation.ControlTower;
+import view.implementation.PrimaryGraphicExpression;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -19,7 +21,9 @@ import javafx.util.Duration;
 public class PrimaryMouseEventManager extends MouseEventManager {
 
 	Label expr;
-	Timeline doubleClickTimeline;
+	private Timeline doubleClickTimeline;
+	private ControlTower tower;
+	private PrimaryGraphicExpression primary;
 	
 	
 	/**
@@ -27,9 +31,11 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 	 * @param group Type Group
 	 * @param expr Type Text
 	 */
-	public PrimaryMouseEventManager(Group group, Label expr) {
+	public PrimaryMouseEventManager(Group group, Label expr, PrimaryGraphicExpression primary, ControlTower tower) {
 		super(group);
 		this.expr = expr;
+		this.tower = tower;
+		this.primary = primary;
 		doubleClickTimeline = null;
 	}
 
@@ -39,7 +45,6 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 		node.setOnMouseEntered(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
             	expr.getStyleClass().add("primaryGraphicExpr_OnMouseEntered");
-            	System.out.println("survol avec souris de: " + expr.getText());
             }
         });
 	}
@@ -55,7 +60,7 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 	
 	
 	public void completeClickEvent () {
-		System.out.println("click simple gauche: " + expr.getText());
+		tower.processSimpleLeftClick(primary);
 		doubleClickTimeline = null;
 	}
 	
@@ -75,13 +80,13 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 							  doubleClickTimeline.stop();
 							  doubleClickTimeline = null;
 						  }
-			              System.out.println("Double clicked gauche: "+ expr.getText());
-			          }
+						  tower.processDoubleLeftClick(primary);
+					  }
 			            
 			        }else if (event.getButton().equals(MouseButton.SECONDARY)){ // click droit
 			        	if(event.getClickCount() == 1){
-			            	System.out.println("click simple droit: " + expr.getText());
-			            }
+			        		tower.processRigthClick(primary);
+			        	}
 			        }
 	            }
 	        });

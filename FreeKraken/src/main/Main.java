@@ -21,6 +21,7 @@ import model.PrimaryExpression;
 import model.Rule;
 import model.UnaryExpression;
 import view.implementation.ChoiceContextMenu;
+import view.implementation.ControlTower;
 import view.implementation.GraphicExpression;
 import view.implementation.graphicConfigurationParser.GraphicConfiguration;
 

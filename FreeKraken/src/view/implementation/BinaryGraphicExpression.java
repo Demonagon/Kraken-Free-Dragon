@@ -4,10 +4,8 @@ import controller.BinaryDragAndDropManager;
 import controller.BinaryMouseEventManager;
 import controller.DragAndDropManager;
 import controller.MouseEventManager;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -45,15 +43,16 @@ public class BinaryGraphicExpression extends GraphicExpression{
 									GraphicExpression firstExpression, 
 									GraphicExpression secondExpression, 
 									Node operator,
-									Orientation orientation) {
+									Orientation orientation,
+									ControlTower tower) {
 		
 		this.model = model;
 		this.firstExpression 	= firstExpression;
 		this.secondExpression 	= secondExpression;
 		this.operator 			= operator;
 		this.orientation 		= orientation;
-		dADmanager = new BinaryDragAndDropManager(this);
-		mEmanager = new BinaryMouseEventManager(operator, this);
+		dADmanager = new BinaryDragAndDropManager(this, this,tower);
+		mEmanager = new BinaryMouseEventManager(operator, this, tower);
     	//event
 		mEmanager.onMouseEvent();
 		dADmanager.onDragAndDropEvent();		

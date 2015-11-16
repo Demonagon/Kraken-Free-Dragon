@@ -44,7 +44,7 @@ public class UnaryMouseEventManager extends MouseEventManager{
 	
 	
 	public void completeClickEvent () {
-		System.out.println("click simple gauche: ");
+		tower.processSimpleLeftClick(unaryExpression);
 		doubleClickTimeline = null;
 	}
 	
@@ -61,7 +61,7 @@ public class UnaryMouseEventManager extends MouseEventManager{
 					  }
 					  if(event.getClickCount() == 2){ // double click
 						  if (doubleClickTimeline != null) {
-							  System.out.println("double click gauche");
+							  tower.processDoubleLeftClick(unaryExpression);
 							  doubleClickTimeline.stop();
 							  doubleClickTimeline = null;
 						  }
@@ -69,8 +69,8 @@ public class UnaryMouseEventManager extends MouseEventManager{
 			            
 			        }else if (event.getButton().equals(MouseButton.SECONDARY)){ // click droit
 			        	if(event.getClickCount() == 1){
-			        		System.out.println("simple click droit");
-			            }
+			        		tower.processRigthClick(unaryExpression);
+			        	}
 			        }
 	            }
 	        });

@@ -1,5 +1,7 @@
 package controller;
 
+import view.implementation.ControlTower;
+import view.implementation.PrimaryGraphicExpression;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.input.ClipboardContent;
@@ -20,16 +22,20 @@ import javafx.scene.control.Label;
 public class PrimaryDragAndDropManager extends DragAndDropManager{
 
 	Label expr;
-
+	private PrimaryGraphicExpression primary;
+	private ControlTower tower;
+	private DragAndDropMemory memory = new DragAndDropMemory(tower);
 	
 	/**
 	 * constructeur
 	 * @param group type Droup
 	 * @param expr type Text
 	 */
-	public PrimaryDragAndDropManager(Group group, Label expr) {
+	public PrimaryDragAndDropManager(Group group, Label expr, PrimaryGraphicExpression primary, ControlTower tower) {
 		super(group);
 		this.expr = expr;
+		this.primary = primary;
+		this.tower = tower;
 	}
 
 	
@@ -46,7 +52,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 		        /* Put a string on a dragboard */
 		        ClipboardContent content = new ClipboardContent();
 		        content.putString(expr.getText());
-		        DragAndDropMemory.memory.setSource(group);
+		        memory.setSource(group);
 		        db.setContent(content);
 		        event.consume();
 		    }
@@ -72,7 +78,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 		    public void handle(DragEvent event) {
 		    /* the drag-and-drop gesture entered the target */
 		    /* show to the user that it is an actual gesture target */
-		        DragAndDropMemory.memory.setTarget(group);
+		        memory.setTarget(group);
 		    	event.consume();
 		    }
 		});
@@ -114,7 +120,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 		        /* the drag and drop gesture ended */
 		        /* if the data was successfully moved, clear it */
 		        if (event.getTransferMode() == TransferMode.MOVE) {
-		        	DragAndDropMemory.memory.swapText();
+		        	memory.swapText();
 		        }
 		        event.consume();
 		    }

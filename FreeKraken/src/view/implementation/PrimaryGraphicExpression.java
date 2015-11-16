@@ -28,11 +28,11 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	 * construit un lit�ral (expression primaire) avec une taille est une couleur par defaut
 	 * l'expression primaire construite capte les evenements survols et click de souris
 	 */
-	public PrimaryGraphicExpression(Expression model) {
+	public PrimaryGraphicExpression(Expression model, ControlTower tower) {
 		this.model = model;
 		expr = new Label("Default");
-		DADmanager = new PrimaryDragAndDropManager(this, expr);
-		MEmanager = new PrimaryMouseEventManager(this, expr);
+		DADmanager = new PrimaryDragAndDropManager(this, expr, this, tower);
+		MEmanager = new PrimaryMouseEventManager(this, expr, this, tower);
 		
 		expr.getStyleClass().add("defaultFont");
 		
