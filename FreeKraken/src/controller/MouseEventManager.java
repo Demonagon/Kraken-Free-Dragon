@@ -1,17 +1,15 @@
 package controller;
 
-import javafx.scene.Group;
-
+import javafx.scene.Node;
 
 
 public abstract class MouseEventManager {
 	
+	Node node;
 	
-	Group group;
 	
-	
-	public MouseEventManager(Group group) {
-			this.group = group;
+	public MouseEventManager(Node node) {
+			this.node = node;
 	}
 
 	

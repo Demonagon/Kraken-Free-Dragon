@@ -1,5 +1,9 @@
 package view.implementation;
 
+import controller.DragAndDropManager;
+import controller.MouseEventManager;
+import controller.UnaryDragAndDropManager;
+import controller.UnaryMouseEventManager;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -9,6 +13,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Expression;
 import view.implementation.BinaryGraphicExpression.Orientation;
+
+
 
 /**
  * 
@@ -21,7 +27,10 @@ public class UnaryGraphicExpression extends GraphicExpression{
 	Node decoOpen, decoClose;
 	GraphicExpression expression;
 	Orientation orientation;
-	
+	private DragAndDropManager dADmanagerOpen;
+	private MouseEventManager mEmanagerOpen;
+	private DragAndDropManager dADmanagerClose;
+	private MouseEventManager mEmanagerClose;
 	
 	public UnaryGraphicExpression(Expression model,
 									GraphicExpression expression, 
@@ -34,11 +43,17 @@ public class UnaryGraphicExpression extends GraphicExpression{
 		this.decoClose = decoClose;
 		this.orientation = orientation;
 		
-		//event
-		onMouseEntered();
-		onMouseExited();
-		onMousePressed();
-		onMouseReleased();
+		dADmanagerOpen = new UnaryDragAndDropManager(this);
+		mEmanagerOpen = new UnaryMouseEventManager(decoOpen,this);
+		dADmanagerClose = new UnaryDragAndDropManager(this);
+		mEmanagerClose = new UnaryMouseEventManager(decoClose,this);
+		
+		
+    	//event
+		mEmanagerOpen.onMouseEvent();
+		dADmanagerOpen.onDragAndDropEvent();
+		mEmanagerClose.onMouseEvent();
+		dADmanagerClose.onDragAndDropEvent();
 		
 		constructionSousExpressionWithDeco();
 	}
@@ -100,49 +115,4 @@ public class UnaryGraphicExpression extends GraphicExpression{
 		this.expression = expression;
 	}
 	
-	/**
-	 * l'evenement quand la souris survols sur le texte
-	 */
-	private void onMouseEntered() {
-		this.setOnMouseEntered(new EventHandler<MouseEvent>(){
-            public void handle(MouseEvent me){
-            	//TODO
-            }
-        });
-	}
-	
-	/**
-	 * l'evenement quand la souris sort du texte apr�s l'avoir survol�e
-	 */
-	private void onMouseExited() {
-		this.setOnMouseExited(new EventHandler<MouseEvent>(){
-            public void handle(MouseEvent me){
-            	//TODO
-            }
-        });
-	}
-	
-	
-	/**
-	 * l'evenement au click
-	 */
-	private void onMousePressed() {
-		 this.setOnMousePressed(new EventHandler<MouseEvent>(){
-	            public void handle(MouseEvent me){
-	              // TODO
-	            }
-	        });
-	}
-	
-	
-	/**
-	 * l'evenement au relachement du click
-	 */
-	private void onMouseReleased() {
-		 this.setOnMouseReleased(new EventHandler<MouseEvent>(){
-	            public void handle(MouseEvent me){
-	            	//TODO
-	            }
-	        });
-	}
 }
