@@ -1,9 +1,6 @@
 package controller;
 
-<<<<<<< HEAD
 import view.implementation.ControlTower;
-=======
->>>>>>> branch 'controller' of https://github.com/Demonagon/Kraken-Free-Dragon.git
 import view.implementation.UnaryGraphicExpression;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
