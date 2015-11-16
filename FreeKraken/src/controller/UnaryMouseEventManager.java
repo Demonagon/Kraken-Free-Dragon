@@ -1,5 +1,6 @@
 package controller;
 
+import view.implementation.ControlTower;
 import view.implementation.UnaryGraphicExpression;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -14,10 +15,12 @@ public class UnaryMouseEventManager extends MouseEventManager{
 
 	private UnaryGraphicExpression unaryExpression;
 	private Timeline doubleClickTimeline;
+	private ControlTower tower;
 	
-	public UnaryMouseEventManager(Node node, UnaryGraphicExpression unaryExpression) {
+	public UnaryMouseEventManager(Node node, UnaryGraphicExpression unaryExpression, ControlTower tower) {
 		super(node);
 		this.unaryExpression = unaryExpression;
+		this.tower = tower;
 		doubleClickTimeline = null;
 	}
 
