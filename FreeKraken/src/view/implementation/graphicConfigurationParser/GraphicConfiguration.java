@@ -70,7 +70,7 @@ public class GraphicConfiguration implements GraphicExpressionFactory {
 								(GraphicExpression) rule.getInputModel().generateExpression(),
 								(GraphicExpression) rule.getResultModel().generateExpression(),
 								new StringGraphicOperator("=>"),
-								BinaryGraphicExpression.Orientation.HORIZONTAL);
+								BinaryGraphicExpression.Orientation.HORIZONTAL, tower);
 	}
 
 }

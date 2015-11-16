@@ -18,6 +18,7 @@ import model.Expression;
 import model.KrakenTree;
 import model.PrimaryExpression;
 import model.Rule;
+import view.GraphicExpressionFactory;
 import view.implementation.BinaryGraphicExpression.Orientation;
 import view.implementation.graphicConfigurationParser.GraphicConfiguration;
 import controller.DragAndDropMemory;
@@ -28,13 +29,17 @@ public class Main extends Application {
 	
 	@Override
     public void start(Stage primaryStage) {
-    	DragAndDropMemory.memory = new DragAndDropMemory();
+		GraphicExpressionFactory factory;
+		KrakenTree tree = new KrakenTree(new GraphicConfiguration(tower));
+		ControlTower tower = new ControlTower(tree);
+		
+    	DragAndDropMemory.memory = new DragAndDropMemory(tower);
     	//=================== Partie de test A SUPPRIMER DANS L'AVENIR   =============================================
         StackPane center = new StackPane();
     	BorderPane root = new BorderPane();
-    	PrimaryGraphicExpression lit = new PrimaryGraphicExpression(null);
-    	PrimaryGraphicExpression lit2 = new PrimaryGraphicExpression(null);
-    	PrimaryGraphicExpression lit3 = new PrimaryGraphicExpression(null);
+    	PrimaryGraphicExpression lit = new PrimaryGraphicExpression(null, tower);
+    	PrimaryGraphicExpression lit2 = new PrimaryGraphicExpression(null, tower);
+    	PrimaryGraphicExpression lit3 = new PrimaryGraphicExpression(null, tower);
     	
     	Node operator = new Label("+");
     	Node div = new Label("-");
@@ -52,10 +57,10 @@ public class Main extends Application {
     	lit2.setExpression("b");
     	lit3.setExpression("c");
     	
-    	BinaryGraphicExpression bin1 = new BinaryGraphicExpression(null, lit, lit2, operator, orientation);
-    	UnaryGraphicExpression lol = new UnaryGraphicExpression(null, bin1, shapeOpen, shapeClose, orientation);
+    	BinaryGraphicExpression bin1 = new BinaryGraphicExpression(null, lit, lit2, operator, orientation, tower);
+    	UnaryGraphicExpression lol = new UnaryGraphicExpression(null, bin1, shapeOpen, shapeClose, orientation, tower);
     	
-    	BinaryGraphicExpression bin2 = new BinaryGraphicExpression(null, lol, lit3, div, orientation1);
+    	BinaryGraphicExpression bin2 = new BinaryGraphicExpression(null, lol, lit3, div, orientation1,tower);
 
     	
     	//=====================================================================================================
@@ -85,7 +90,7 @@ public class Main extends Application {
         primaryStage.setMinWidth(200);
         primaryStage.show();
         
-        KrakenTree tree = new KrakenTree(new GraphicConfiguration());
+       
 
 		Expression expr_A = new PrimaryExpression("EXPRESSION", "A");
 		Expression expr_B = new PrimaryExpression("EXPRESSION", "B");
