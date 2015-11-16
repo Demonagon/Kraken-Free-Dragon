@@ -18,6 +18,8 @@ import view.implementation.BinaryGraphicExpression.Orientation;
 
 
 
+
+
 /**
  * 
  * @author Thomas
@@ -31,8 +33,6 @@ public class UnaryGraphicExpression extends GraphicExpression{
 	Orientation orientation;
 	private DragAndDropManager dADmanagerOpen;
 	private MouseEventManager mEmanagerOpen;
-//	private DragAndDropManager dADmanagerClose;
-//	private MouseEventManager mEmanagerClose;
 	
 	public UnaryGraphicExpression(Expression model,
 									GraphicExpression expression, 
@@ -47,8 +47,6 @@ public class UnaryGraphicExpression extends GraphicExpression{
 		this.orientation = orientation;
 		dADmanagerOpen = new UnaryDragAndDropManager(this, decoOpen, decoClose);
 		mEmanagerOpen = new UnaryMouseEventManager(decoOpen,this, tower);
-//		dADmanagerClose = new UnaryDragAndDropManager(this);
-//		mEmanagerClose = new UnaryMouseEventManager(decoClose,this);
 		
     	//event
 		mEmanagerOpen.onMouseEvent();

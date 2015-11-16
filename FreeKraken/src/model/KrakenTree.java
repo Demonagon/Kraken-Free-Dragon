@@ -9,17 +9,13 @@ public class KrakenTree {
 	private Expression root;
 	
 	public KrakenTree(GraphicExpressionFactory factory) {
-		Configuration.init(factory);
+		Configuration.graphic = factory;
 		
 	}
 	
 	public void setRoot(Expression root) {
 		this.root = root;
 		root.setFather(null);
-	}
-	
-	public Expression getRoot() {
-		return root;
 	}
 	
 	public void applicRule(Expression expression, Rule rule) {
@@ -87,3 +83,4 @@ public class KrakenTree {
 		return new Pair<Expression, List<Rule>>(root, rules);
 	}
 }
+>>>>>>> branch 'controller' of https://github.com/Demonagon/Kraken-Free-Dragon.git
