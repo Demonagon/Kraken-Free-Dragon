@@ -1,6 +1,9 @@
 package controller;
 
+<<<<<<< HEAD
 import view.implementation.ControlTower;
+=======
+>>>>>>> branch 'controller' of https://github.com/Demonagon/Kraken-Free-Dragon.git
 import view.implementation.UnaryGraphicExpression;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,7 +19,7 @@ public class UnaryMouseEventManager extends MouseEventManager{
 	private UnaryGraphicExpression unaryExpression;
 	private Timeline doubleClickTimeline;
 	private ControlTower tower;
-	
+
 	public UnaryMouseEventManager(Node node, UnaryGraphicExpression unaryExpression, ControlTower tower) {
 		super(node);
 		this.unaryExpression = unaryExpression;
