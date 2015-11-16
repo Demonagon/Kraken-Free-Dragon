@@ -18,6 +18,10 @@ public class KrakenTree {
 		root.setFather(null);
 	}
 	
+	public Expression getRoot() {
+		return root;
+	}
+	
 	public void applicRule(Expression expression, Rule rule) {
 		if(expression == root) {
 			setRoot(rule.applic(root));
@@ -83,4 +87,3 @@ public class KrakenTree {
 		return new Pair<Expression, List<Rule>>(root, rules);
 	}
 }
->>>>>>> branch 'controller' of https://github.com/Demonagon/Kraken-Free-Dragon.git
