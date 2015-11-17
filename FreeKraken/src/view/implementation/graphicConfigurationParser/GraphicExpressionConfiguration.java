@@ -19,6 +19,10 @@ public class GraphicExpressionConfiguration {
 		this.operators = operators;
 		this.tower = tower;
 	}
+
+	public void setControlTower (ControlTower tower){
+		this.tower = tower;
+	}
 	
 	public GraphicExpression generateBinaryExpression(Expression expression, GraphicExpression first, GraphicExpression second) {
 		return new BinaryGraphicExpression(expression,

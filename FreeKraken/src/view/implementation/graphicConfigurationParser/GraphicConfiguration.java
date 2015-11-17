@@ -20,9 +20,15 @@ public class GraphicConfiguration implements GraphicExpressionFactory {
 	private Map<String, GraphicExpressionConfiguration > configurations;
 	private ControlTower tower;
 
-	public GraphicConfiguration(ControlTower tower) {
+	public GraphicConfiguration() {
 		configurations = new HashMap<String, GraphicExpressionConfiguration >();
+	}
+
+	public void setControlTower (ControlTower tower){
 		this.tower = tower;
+		for(GraphicExpressionConfiguration conf : configurations.values() ) {
+			conf.setControlTower(tower);
+		}
 	}
 	
 	public void addConfiguration(String string, GraphicExpressionConfiguration value) {

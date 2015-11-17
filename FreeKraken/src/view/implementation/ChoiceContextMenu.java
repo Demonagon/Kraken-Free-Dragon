@@ -68,7 +68,9 @@ public class ChoiceContextMenu extends ContextMenu {
 		{
 			MenuItem item = new MenuItem();
 			
-			item.setGraphic((GraphicExpression)(rule.generateExpression()));
+			GraphicExpression gExpression = (GraphicExpression) (rule.generateExpression());
+//			gExpression.get
+			item.setGraphic(gExpression);
 			item.setOnAction(new EventHandler<ActionEvent>() {
 			    @Override
 			    public void handle(ActionEvent e) {

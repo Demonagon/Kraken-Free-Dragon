@@ -9,7 +9,7 @@ public class KrakenTree {
 	private Expression root;
 	
 	public KrakenTree(GraphicExpressionFactory factory) {
-		Configuration.graphic = factory;
+		Configuration.init(factory);
 		
 	}
 	
