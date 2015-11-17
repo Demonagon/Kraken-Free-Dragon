@@ -4,10 +4,8 @@ import controller.DragAndDropManager;
 import controller.MouseEventManager;
 import controller.UnaryDragAndDropManager;
 import controller.UnaryMouseEventManager;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -46,8 +44,6 @@ public class UnaryGraphicExpression extends GraphicExpression{
     	//event
 		mEmanagerOpen.onMouseEvent();
 		dADmanagerOpen.onDragAndDropEvent();
-//		mEmanagerClose.onMouseEvent();
-//		dADmanagerClose.onDragAndDropEvent();
 		
 		constructionSousExpressionWithDeco();
 	}

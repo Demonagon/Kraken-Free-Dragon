@@ -51,7 +51,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 		        /* allow any transfer mode */
 		    	
 		        Dragboard db = decoOpen.startDragAndDrop(TransferMode.MOVE);
-		        //Petite icone
+		        //Petite icone 
 //		        db.setDragView(new Text(decoOpen.getText()).snapshot(null, null), event.getX(), event.getY());
 		        /* Put a string on a dragboard */
 		        ClipboardContent content = new ClipboardContent();

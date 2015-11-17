@@ -29,10 +29,8 @@ public class ControlTower {
 		pane.getChildren().clear();
 		pane.getChildren().add((GraphicExpression) (tree.getRoot().generateExpression()) );
 	}
-
-	public void processSimpleLeftClick(GraphicExpression expression) {
-		Pair<Expression, List<Rule>> result = KrakenTree.processInput("left_click" , expression.getExpression());
-		
+	
+	public void checkContextMenuRuleList (Pair<Expression, List<Rule>> result ) {
 		if( result.second.isEmpty() ) return;
 		
 		if( result.second.size() == 1 ) {
@@ -42,43 +40,22 @@ public class ControlTower {
 		}
 		
 		menu = new ChoiceContextMenu(result.second, result.first, tree, pane);
-
 		menu.show(stage);
+	}
+
+	public void processSimpleLeftClick(GraphicExpression expression) {
+		Pair<Expression, List<Rule>> result = KrakenTree.processInput("left_click" , expression.getExpression());
+		checkContextMenuRuleList(result);
 	}
 
 	public void processDoubleLeftClick(GraphicExpression expression) {
 		Pair<Expression, List<Rule>> result = KrakenTree.processInput("double_left_click" ,expression.getExpression());
-		
-		if( result.second.isEmpty() ) return;
-		
-		if( result.second.size() == 1 ) {
-			tree.applicRule(result.first, result.second.get(0));
-			refreshWindow();
-			return;
-		}
-		
-		menu = new ChoiceContextMenu(result.second, result.first, tree, pane);
-
-		menu.show(stage);
+		checkContextMenuRuleList(result);
 	}
 
 	public void processRigthClick(GraphicExpression expression) {
 		Pair<Expression, List<Rule>> result = KrakenTree.processInput("rigth_click" ,expression.getExpression());
-		
-		System.out.println(result.second);
-		System.out.println("jdizoqdijz");
-		
-		if( result.second.isEmpty() ) return;
-		
-		if( result.second.size() == 1 ) {
-			tree.applicRule(result.first, result.second.get(0));
-			refreshWindow();
-			return;
-		}
-		
-		menu = new ChoiceContextMenu(result.second, result.first, tree, pane);
-
-		menu.show(stage);
+		checkContextMenuRuleList(result);
 	}
 	
 	public void processDragAndDrop(GraphicExpression firstExpression, GraphicExpression secondExpression) {
@@ -87,18 +64,7 @@ public class ControlTower {
 		expressionList.add(secondExpression.getExpression());
 		
 		Pair<Expression, List<Rule>> result = KrakenTree.processInput("drag_and_drop" ,expressionList);
-		
-		if( result.second.isEmpty() ) return;
-		
-		if( result.second.size() == 1 ) {
-			tree.applicRule(result.first, result.second.get(0));
-			refreshWindow();
-			return;
-		}
-		
-		menu = new ChoiceContextMenu(result.second, result.first, tree, pane);
-
-		menu.show(stage);
+		checkContextMenuRuleList(result);
 	}
 
 }

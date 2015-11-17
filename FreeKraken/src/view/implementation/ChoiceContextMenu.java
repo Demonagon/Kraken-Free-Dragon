@@ -48,7 +48,7 @@ public class ChoiceContextMenu extends ContextMenu {
 		this.tree = tree;
 		this.pane = pane;
 		
-		//tree.applicRule(expression, rules.get(0));
+//		tree.applicRule(expression, rules);
 		
 		List<MenuItem> items = generateItemsMenu();
 		

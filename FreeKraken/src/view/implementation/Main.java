@@ -1,13 +1,8 @@
 package view.implementation;
 
 
-import java.util.ArrayList;
-
 import javafx.application.Application;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -18,10 +13,7 @@ import model.Expression;
 import model.KrakenTree;
 import model.PrimaryExpression;
 import model.Rule;
-import view.GraphicExpressionFactory;
-import view.implementation.BinaryGraphicExpression.Orientation;
 import view.implementation.graphicConfigurationParser.GraphicConfiguration;
-import controller.DragAndDropMemory;
 
 
 public class Main extends Application {

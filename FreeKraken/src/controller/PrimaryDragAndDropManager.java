@@ -41,7 +41,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	
 	@Override
 	public void onDragDetected() {
-		expr.setOnDragDetected(new EventHandler<MouseEvent>() {
+		primary.setOnDragDetected(new EventHandler<MouseEvent>() {
 		    public void handle(MouseEvent event) {
 		        /* drag was detected, start a drag-and-drop gesture*/
 		        /* allow any transfer mode */
@@ -115,7 +115,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	
 	@Override
 	public void onDragDone() {
-		expr.setOnDragDone(new EventHandler<DragEvent>() {
+		primary.setOnDragDone(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* the drag and drop gesture ended */
 		        /* if the data was successfully moved, clear it */
