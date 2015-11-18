@@ -1,6 +1,7 @@
 package view.implementation;
 
 
+import controller.DragAndDropMemory;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -30,6 +31,7 @@ public class Main extends Application {
     	GraphicConfiguration config = new GraphicConfiguration();
 		KrakenTree tree = new KrakenTree(config);
 		ControlTower tower = new ControlTower(tree, center, primaryStage);
+    	DragAndDropMemory.memory = new DragAndDropMemory(tower);
 		config.setControlTower(tower);
 		
     	Expression a = new PrimaryExpression("LITTERAL", "a");

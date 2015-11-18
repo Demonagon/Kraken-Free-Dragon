@@ -39,7 +39,6 @@ public class DragAndDropMemory {
 	 */
 	public void setTarget(Group target) {
 		this.target = target;
-		notifyDragAndDrop();
 	}
 	
 	
@@ -52,7 +51,7 @@ public class DragAndDropMemory {
 	 * Methode qui echange deux élément de type Text 
 	 * Principalement utiliser pour les élements PrimaryGraphicExpression
 	 */
-	public  void swapText() {
+	/*public  void swapText() {
 		if( ! (source instanceof PrimaryGraphicExpression) ) return;
 		if( ! (target instanceof PrimaryGraphicExpression) ) return;
 		
@@ -62,6 +61,6 @@ public class DragAndDropMemory {
 		
 		source_text.getText().setText(target_text.getText().getText());
 		target_text.getText().setText(tmp);
-	}
+	}*/
 	
 }

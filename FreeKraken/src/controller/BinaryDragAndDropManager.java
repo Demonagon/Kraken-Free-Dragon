@@ -16,7 +16,6 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 
 	private BinaryGraphicExpression binary;
 	private ControlTower tower;
-	private DragAndDropMemory memory = new DragAndDropMemory(tower);
 	
 	
 	public BinaryDragAndDropManager(Group group, BinaryGraphicExpression binary, ControlTower tower) {
@@ -38,7 +37,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 		        /* Put a string on a dragboard */
 		        ClipboardContent content = new ClipboardContent();
 //		        content.putString(binary.getText());
-		        memory.setSource(group);
+		        DragAndDropMemory.memory.setSource(group);
 		        db.setContent(content);
 		        event.consume();
 		    }
@@ -64,7 +63,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 		    public void handle(DragEvent event) {
 		    /* the drag-and-drop gesture entered the target */
 		    /* show to the user that it is an actual gesture target */
-		        memory.setTarget(group);
+		    	DragAndDropMemory.memory.setTarget(group);
 		    	event.consume();
 		    }
 		});
@@ -106,7 +105,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 		        /* the drag and drop gesture ended */
 		        /* if the data was successfully moved, clear it */
 		        if (event.getTransferMode() == TransferMode.MOVE) {
-		        	memory.swapText();
+		        	DragAndDropMemory.memory.notifyDragAndDrop();
 		        }
 		        event.consume();
 		    }

@@ -9,7 +9,6 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.text.Text;
 import javafx.scene.control.Label;
 
 
@@ -21,19 +20,18 @@ import javafx.scene.control.Label;
  */
 public class PrimaryDragAndDropManager extends DragAndDropManager{
 
-	Label expr;
+	Label label;
 	private PrimaryGraphicExpression primary;
 	private ControlTower tower;
-	private DragAndDropMemory memory = new DragAndDropMemory(tower);
 	
 	/**
 	 * constructeur
 	 * @param group type Droup
 	 * @param expr type Text
 	 */
-	public PrimaryDragAndDropManager(Group group, Label expr, PrimaryGraphicExpression primary, ControlTower tower) {
+	public PrimaryDragAndDropManager(Group group, Label label, PrimaryGraphicExpression primary, ControlTower tower) {
 		super(group);
-		this.expr = expr;
+		this.label = label;
 		this.primary = primary;
 		this.tower = tower;
 	}
@@ -46,13 +44,13 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 		        /* drag was detected, start a drag-and-drop gesture*/
 		        /* allow any transfer mode */
 		    	
-		        Dragboard db = expr.startDragAndDrop(TransferMode.MOVE);
+		        Dragboard db = primary.startDragAndDrop(TransferMode.MOVE);
 		        //Petite icone
-		        db.setDragView(new Text(expr.getText()).snapshot(null, null), event.getX(), event.getY());
+//		        db.setDragView(new Text(primary.getText().getText()).snapshot(null, null), event.getX(), event.getY());
 		        /* Put a string on a dragboard */
 		        ClipboardContent content = new ClipboardContent();
-		        content.putString(expr.getText());
-		        memory.setSource(group);
+		        content.putString(primary.getText().getText());
+		        DragAndDropMemory.memory.setSource(group);
 		        db.setContent(content);
 		        event.consume();
 		    }
@@ -78,7 +76,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 		    public void handle(DragEvent event) {
 		    /* the drag-and-drop gesture entered the target */
 		    /* show to the user that it is an actual gesture target */
-		        memory.setTarget(group);
+		    	DragAndDropMemory.memory.setTarget(group);
 		    	event.consume();
 		    }
 		});
@@ -120,7 +118,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 		        /* the drag and drop gesture ended */
 		        /* if the data was successfully moved, clear it */
 		        if (event.getTransferMode() == TransferMode.MOVE) {
-		        	memory.swapText();
+		        	DragAndDropMemory.memory.notifyDragAndDrop();
 		        }
 		        event.consume();
 		    }

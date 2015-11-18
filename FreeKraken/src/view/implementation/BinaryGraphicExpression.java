@@ -45,19 +45,36 @@ public class BinaryGraphicExpression extends GraphicExpression{
 									Node operator,
 									Orientation orientation,
 									ControlTower tower) {
-		
+		this(model, firstExpression, secondExpression, operator, orientation, tower, true);
+	}
+	
+	public BinaryGraphicExpression (Expression model,
+									GraphicExpression firstExpression, 
+									GraphicExpression secondExpression, 
+									Node operator,
+									Orientation orientation,
+									ControlTower tower,
+									boolean isClickable) {
 		this.model = model;
 		this.firstExpression 	= firstExpression;
 		this.secondExpression 	= secondExpression;
 		this.operator 			= operator;
 		this.orientation 		= orientation;
-		dADmanager = new BinaryDragAndDropManager(this, this,tower);
-		mEmanager = new BinaryMouseEventManager(operator, this, tower);
-    	//event
-		mEmanager.onMouseEvent();
-		dADmanager.onDragAndDropEvent();		
+		
+		if( isClickable) {
+			dADmanager = new BinaryDragAndDropManager(this, this,tower);
+			mEmanager = new BinaryMouseEventManager(operator, this, tower);
+	    	//event
+			mEmanager.onMouseEvent();
+			dADmanager.onDragAndDropEvent();
+		}
+		else {
+			dADmanager = null;
+			mEmanager = null;
+		}
 		
 		structOfExpression();
+		
 	}
 
 	
@@ -90,8 +107,12 @@ public class BinaryGraphicExpression extends GraphicExpression{
 		}
 		return border;
 	}
-	
-	
+	public Expression getFirstExpression() {
+		return firstExpression.getExpression();
+	}
+	public Expression getSecondExpression() {
+		return secondExpression.getExpression();
+	}
 	@Override
 	public Expression getExpression() {
 		return model;

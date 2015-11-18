@@ -33,20 +33,39 @@ public class UnaryGraphicExpression extends GraphicExpression{
 									Node decoClose,
 									Orientation orientation,
 									ControlTower tower) {
+		this(model, expression, decoOpen, decoClose, orientation, tower, true);
+	}
+	
+	public UnaryGraphicExpression  (Expression model,
+									GraphicExpression expression, 
+									Node decoOpen,
+									Node decoClose,
+									Orientation orientation,
+									ControlTower tower,
+									boolean isClickable) {
 		this.model = model;
 		this.expression = expression;
 		this.decoOpen = decoOpen;
 		this.decoClose = decoClose;
 		this.orientation = orientation;
-		dADmanagerOpen = new UnaryDragAndDropManager(this, decoOpen, decoClose, this, tower);
-		mEmanagerOpen = new UnaryMouseEventManager(decoOpen,this, tower);
 		
-    	//event
-		mEmanagerOpen.onMouseEvent();
-		dADmanagerOpen.onDragAndDropEvent();
+		if( isClickable ) {
+			dADmanagerOpen = new UnaryDragAndDropManager(this, decoOpen, decoClose, this, tower);
+			mEmanagerOpen = new UnaryMouseEventManager(decoOpen,this, tower);
+			
+			//event
+			mEmanagerOpen.onMouseEvent();
+			dADmanagerOpen.onDragAndDropEvent();
+		}
+		else {
+			dADmanagerOpen = null;
+			mEmanagerOpen = null;
+		}
 		
 		constructionSousExpressionWithDeco();
 	}
+	
+	
 	
 	public BorderPane constructionSousExpressionWithDeco(){
 		BorderPane border = new BorderPane();

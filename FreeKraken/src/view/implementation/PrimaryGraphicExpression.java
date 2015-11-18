@@ -29,21 +29,34 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	 * l'expression primaire construite capte les evenements survols et click de souris
 	 */
 	public PrimaryGraphicExpression(Expression model, ControlTower tower) {
+		this(model, tower, true);
+	}
+	
+	public PrimaryGraphicExpression(Expression model, ControlTower tower, boolean isclickable) {
+		init(model, tower);
+		if( isclickable )
+			initEvent(tower);
+	}
+	
+	public void init(Expression model, ControlTower tower) {
 		this.model = model;
 		expr = new Label("Default");
-		DADmanager = new PrimaryDragAndDropManager(this, expr, this, tower);
-		MEmanager = new PrimaryMouseEventManager(this, expr, this, tower);
 		
 		expr.getStyleClass().add("defaultFont");
 		
-		//event
-		MEmanager.onMouseEvent();
-		DADmanager.onDragAndDropEvent();
+		DADmanager = null;
+		MEmanager = null;
 		
 		// on l'ajoute toujours au noeud
 		this.getChildren().add(expr);
 	}
 	
+	public void initEvent(ControlTower tower) {
+		DADmanager = new PrimaryDragAndDropManager(this, expr, this, tower);
+		MEmanager = new PrimaryMouseEventManager(this, expr, this, tower);
+		MEmanager.onMouseEvent();
+		DADmanager.onDragAndDropEvent();
+	}
 	
 	
 	/**

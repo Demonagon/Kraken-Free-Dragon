@@ -4,14 +4,19 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.BinaryExpression;
 import model.Expression;
+import model.PrimaryExpression;
 import model.Rule;
+import model.UnaryExpression;
 import view.GraphicExpressionFactory;
 import view.implementation.BinaryGraphicExpression;
 import view.implementation.ControlTower;
 import view.implementation.GraphicExpression;
+import view.implementation.OperatorDuplicator;
 import view.implementation.PrimaryGraphicExpression;
 import view.implementation.StringGraphicOperator;
+import view.implementation.UnaryGraphicExpression;
 
 public class GraphicConfiguration implements GraphicExpressionFactory {
 	
@@ -73,10 +78,42 @@ public class GraphicConfiguration implements GraphicExpressionFactory {
 	@Override
 	public Object generateRuleExpression(Rule rule) {
 		return new BinaryGraphicExpression(null,
-								(GraphicExpression) rule.getInputModel().generateExpression(),
-								(GraphicExpression) rule.getResultModel().generateExpression(),
+								generateStaticExpression(rule.getInputModel()),
+								generateStaticExpression(rule.getResultModel()),
 								new StringGraphicOperator("=>"),
-								BinaryGraphicExpression.Orientation.HORIZONTAL, tower);
+								BinaryGraphicExpression.Orientation.HORIZONTAL, tower, false);
+	}
+	
+	public GraphicExpression generateStaticExpression(Expression expression) {
+		if( expression instanceof UnaryExpression ) {
+			UnaryExpression uexpression = (UnaryExpression) expression;
+			return generateStaticUnaryExpression(expression, uexpression.getType(), generateStaticExpression(uexpression.subExpression()) );
+		}
+		if( expression instanceof BinaryExpression ) {
+			BinaryExpression bexpression = (BinaryExpression) expression;
+			return generateStaticBinaryExpression(expression, bexpression.getType(),
+												  generateStaticExpression(bexpression.firstExpression()),
+												  generateStaticExpression(bexpression.secondExpression()));
+			
+		}
+		else {
+			PrimaryExpression pexpression = (PrimaryExpression) expression;
+			return generateStaticPrimaryExpression(expression, pexpression.getType(), pexpression.getName());
+		}
+	}
+	
+	public GraphicExpression generateStaticPrimaryExpression(Expression expression, String type, String name) {
+		PrimaryGraphicExpression graphicExpression = new PrimaryGraphicExpression(expression, tower, false);
+		graphicExpression.setExpression(name);
+		return graphicExpression;
+	}
+	
+	public GraphicExpression generateStaticBinaryExpression(Expression expression, String type, Object first, Object second) {
+		return getConfiguration(type).generateBinaryExpression(expression, (GraphicExpression) first, (GraphicExpression) second);
+	}
+
+	public GraphicExpression generateStaticUnaryExpression(Expression expression, String type, Object sub) {
+		return getConfiguration(type).generateUnaryExpression(expression, (GraphicExpression) sub);
 	}
 
 }

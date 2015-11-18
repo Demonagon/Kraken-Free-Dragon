@@ -17,7 +17,6 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	Node decoOpen, decoClose;
 	private UnaryGraphicExpression unary;
 	private ControlTower tower;
-	private DragAndDropMemory memory = new DragAndDropMemory(tower);
 	
 	public UnaryDragAndDropManager(Group group, Node decoOpen, Node decoClose, UnaryGraphicExpression unary, ControlTower tower) {
 		super(group);
@@ -39,8 +38,8 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 //		        db.setDragView(new Text(decoOpen.getText()).snapshot(null, null), event.getX(), event.getY());
 		        /* Put a string on a dragboard */
 		        ClipboardContent content = new ClipboardContent();
-//		        content.putString(decoOpen.getText());
-		        memory.setSource(group);
+//		        content.putString(decoOpen.get);
+		        DragAndDropMemory.memory.setSource(group);
 		        db.setContent(content);
 		        event.consume();
 		    }
@@ -56,7 +55,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 		        /* Put a string on a dragboard */
 		        ClipboardContent content = new ClipboardContent();
 //		        content.putString(decoOpen.getText());
-		        memory.setSource(group);
+		        DragAndDropMemory.memory.setSource(group);
 		        db.setContent(content);
 		        event.consume();
 		    }
@@ -83,7 +82,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 		    public void handle(DragEvent event) {
 		    /* the drag-and-drop gesture entered the target */
 		    /* show to the user that it is an actual gesture target */
-		        memory.setTarget(group);
+		    	DragAndDropMemory.memory.setTarget(group);
 		    	event.consume();
 		    }
 		});
@@ -125,7 +124,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 		        /* the drag and drop gesture ended */
 		        /* if the data was successfully moved, clear it */
 		        if (event.getTransferMode() == TransferMode.MOVE) {
-		        	memory.swapText();
+		        	DragAndDropMemory.memory.notifyDragAndDrop();
 		        }
 		        event.consume();
 		    }
@@ -135,7 +134,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 		        /* the drag and drop gesture ended */
 		        /* if the data was successfully moved, clear it */
 		        if (event.getTransferMode() == TransferMode.MOVE) {
-		        	memory.swapText();
+		        	DragAndDropMemory.memory.notifyDragAndDrop();
 		        }
 		        event.consume();
 		    }

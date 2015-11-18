@@ -51,7 +51,7 @@ public class KrakenTree {
 		int k = 0;
 		for(; k < path_list_1.size() && k < path_list_2.size(); k++)
 			if( path_list_1.get(k) != path_list_2.get(k) )
-				return path_list_1.subList(0, k - 1);
+				return path_list_1.subList(0, k);
 		
 		return path_list_1.subList(0, k);
 	}
@@ -62,8 +62,9 @@ public class KrakenTree {
 		
 		List<Expression> path_list = expr.get(0).generatePathList();
 		
-		for(int k = 1; k < expr.size(); k++)
+		for(int k = 1; k < expr.size(); k++) {
 			path_list = deduceRootPath(path_list, expr.get(k).generatePathList());
+		}
 		
 		return getRootFromRootPath(path_list);
 	}

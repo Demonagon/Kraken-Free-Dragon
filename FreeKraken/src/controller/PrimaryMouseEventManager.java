@@ -71,7 +71,7 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 			 public void handle(MouseEvent event){
 				  if(event.getButton().equals(MouseButton.PRIMARY)){ // click gauche
 					  if (doubleClickTimeline == null) { doubleClickTimeline = new Timeline(new KeyFrame(
-							  Duration.millis(500),
+							  Duration.millis(MouseEventManager.double_clic_time),
 						        ae -> completeClickEvent()));
 						doubleClickTimeline.play();
 					  }

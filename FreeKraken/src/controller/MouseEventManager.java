@@ -5,6 +5,8 @@ import javafx.scene.Node;
 
 public abstract class MouseEventManager {
 	
+	public final static int double_clic_time = 350;
+	
 	Node node;
 	
 	

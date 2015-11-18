@@ -40,7 +40,8 @@ public class ControlTower {
 		}
 		
 		menu = new ChoiceContextMenu(result.second, result.first, tree, pane);
-		menu.show(stage);
+
+		menu.show(stage, stage.getX() + stage.getWidth()/2, stage.getY() + stage.getHeight()/2);
 	}
 
 	public void processSimpleLeftClick(GraphicExpression expression) {
@@ -63,7 +64,7 @@ public class ControlTower {
 		expressionList.add(firstExpression.getExpression());
 		expressionList.add(secondExpression.getExpression());
 		
-		Pair<Expression, List<Rule>> result = KrakenTree.processInput("drag_and_drop" ,expressionList);
+		Pair<Expression, List<Rule>> result = KrakenTree.processInput("drag_and_drop", expressionList);
 		checkContextMenuRuleList(result);
 	}
 
