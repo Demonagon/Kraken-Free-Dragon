@@ -104,6 +104,7 @@ public class Main extends Application {
 
 		Expression expr_A = new PrimaryExpression("EXPRESSION", "A");
 		Expression expr_B = new PrimaryExpression("EXPRESSION", "B");
+		Expression expr_C = new PrimaryExpression("EXPRESSION", "C");
 		Expression plus_AB = new BinaryExpression("PLUS", expr_A.cloneExpression(), expr_B.cloneExpression());
 		Expression plus_BA = new BinaryExpression("PLUS", expr_B.cloneExpression(), expr_A.cloneExpression());
 		Expression plus_A0 = new BinaryExpression("PLUS", expr_A.cloneExpression(), zero.cloneExpression());
@@ -126,7 +127,16 @@ public class Main extends Application {
 		// A <=> A*1
 		Expression fois_A1 = new BinaryExpression("FOIS", expr_A.cloneExpression(), un.cloneExpression());
 		Configuration.rules.addRule("double_left_click", new Rule(expr_A.cloneExpression(), fois_A1.cloneExpression()) );
-		Configuration.rules.addRule("double_left_click", new Rule(expr_A.cloneExpression(), fois_A1.cloneExpression()) );
+		Configuration.rules.addRule("left_click", new Rule(fois_A1.cloneExpression(), expr_A.cloneExpression()) );
+		
+		// A*B + A*C <=> A*(B + C)
+		Expression fois_AC = new BinaryExpression("FOIS", expr_A.cloneExpression(), expr_C.cloneExpression());
+		Expression plus_AB_AC = new BinaryExpression("PLUS", fois_AB.cloneExpression(), fois_AC.cloneExpression());
+		Expression plus_BC = new BinaryExpression("PLUS", expr_B.cloneExpression(), expr_C.cloneExpression());
+		Expression paren_BC = new UnaryExpression("PARENTHESIS", plus_BC.cloneExpression());
+		Expression fois_A_BC = new BinaryExpression("FOIS", expr_A.cloneExpression(), paren_BC.cloneExpression());
+		Configuration.rules.addRule("double_left_click", new Rule(fois_A_BC.cloneExpression(), plus_AB_AC.cloneExpression()) );
+		Configuration.rules.addRule("left_click", new Rule(plus_AB_AC.cloneExpression(), fois_A_BC.cloneExpression()) );
 		
 		
 		
@@ -210,7 +220,7 @@ public class Main extends Application {
         primaryStage.setMinWidth(200);
         primaryStage.show();
         
-        createTicOrToe(tree);
+        createArithmetic(tree);
         
 		tower.refreshWindow();
     }
