@@ -1,4 +1,4 @@
-
+package model.initialisation;
 public class SpecificationUnaire implements Specification {
 
 	String name;

@@ -1,7 +1,13 @@
+package model.initialisation;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+
+import model.Configuration;
+import model.RulesConfiguration;
 
 
 public class Main {
@@ -12,8 +18,12 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 		
+		Configuration.rules = new RulesConfiguration();
+		
 		String line = null;
-		BufferedReader buff =  new BufferedReader(new FileReader("G1.txt"));
+		BufferedReader buff =  new BufferedReader(new FileReader("src/model/initialisation/G1.txt"));
+		
+		
 
 		ArrayList<Specification> list = new ArrayList<Specification>();
 		
@@ -42,6 +52,12 @@ public class Main {
 		
 		GenerGrammarRules r = new GenerGrammarRules(list);
 		r.generateGrammar();
+		/*
+		BufferedReader regle_buff =  new BufferedReader(new FileReader("src/model/initialisation/test.rules"));
+		
+		G2.readRule(regle_buff);*/
+		
+		System.out.println(Configuration.rules.getRules());
 
 	}
 

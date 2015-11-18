@@ -1,3 +1,4 @@
+package model.initialisation;
 
 public interface Specification {
 	

@@ -31,4 +31,8 @@ public class RulesConfiguration {
 			return rules.get(input_type);
 		else return new LinkedList<Rule>();
 	}
+
+	public Map< String, List<Rule> > getRules() {
+		return rules;
+	}
 }

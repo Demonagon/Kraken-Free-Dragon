@@ -1,4 +1,5 @@
 PARSER_BEGIN(G1)
+package model.initialisation;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -52,7 +53,7 @@ void Configuration() throws FileNotFoundException, UnsupportedEncodingException:
 	<EOF>
 
 	{ 	
-		PrintWriter writer = new PrintWriter("G1.txt", "UTF-8");
+		PrintWriter writer = new PrintWriter("model/initialisation/G1.txt", "UTF-8");
 		for(Specification s : listOperators)
 			writer.println(s); 
 		writer.close();

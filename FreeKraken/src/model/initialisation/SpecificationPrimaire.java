@@ -1,3 +1,4 @@
+package model.initialisation;
 
 public class SpecificationPrimaire implements Specification {
 
