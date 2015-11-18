@@ -3,14 +3,19 @@
 package model.initialisation;
 import java.util.ArrayList;
 import model.*;
+import java.io.InputStream;
 public class G2 implements G2Constants {
         public static void main(String args[]) throws ParseException {
                 G2 parser = new G2(System.in);
                 Configuration.rules = new RulesConfiguration();
                 parser.Rule();
         }
-        public static Expression readExpression(String args[]) throws ParseException {
-                G2 parser = new G2(System.in);
+public static void readRules(InputStream stream) throws ParseException {
+        G2 parser = new G2(stream);
+        parser.RuleList();
+}
+        public static Expression readExpression(InputStream stream) throws ParseException {
+                G2.ReInit(stream);
                 Expression expression = Terme0();
                 return new UnaryExpression("ROOT", expression);
         }
@@ -18,6 +23,32 @@ public class G2 implements G2Constants {
   static final public Expression Epsilon() throws ParseException {
 {if ("" != null) return null;}
     throw new Error("Missing return statement in function");
+  }
+
+  static final public void RuleList() throws ParseException {
+    label_1:
+    while (true) {
+      switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+      case MOINS_B_OP:
+      case SQRT_LEFT:
+      case NOT_LEFT:
+      case ROOT_LEFT:
+      case PARENTHESE_LEFT:
+      case BRACKETS_LEFT:
+      case LITTERAL:
+      case ZERO:
+      case UN:
+      case EXPRESSION:{
+        ;
+        break;
+        }
+      default:
+        jj_la1[0] = jj_gen;
+        break label_1;
+      }
+      Rule();
+    }
+    jj_consume_token(0);
   }
 
   static final public void Rule() throws ParseException {Expression exp1;
@@ -28,8 +59,8 @@ public class G2 implements G2Constants {
   static final public void RuleBis(Expression exp1) throws ParseException {Expression exp2;
         Token input_type_rule;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-    case LEFT_RULE_NOT_EQUIVALENT:{
-      jj_consume_token(LEFT_RULE_NOT_EQUIVALENT);
+    case LEFT_RULE_EQUIVALENT:{
+      jj_consume_token(LEFT_RULE_EQUIVALENT);
       input_type_rule = jj_consume_token(RULE_INPUT_TYPE);
       jj_consume_token(RIGHT_RULE);
       exp2 = Terme0();
@@ -38,8 +69,8 @@ Configuration.rules.addRule(input_type_rule.image.substring(1), new Rule(exp1, e
                 System.out.println(Configuration.rules.getRules());
       break;
       }
-    case LEFT_RULE_EQUIVALENT:{
-      jj_consume_token(LEFT_RULE_EQUIVALENT);
+    case LEFT_RULE_NOT_EQUIVALENT:{
+      jj_consume_token(LEFT_RULE_NOT_EQUIVALENT);
       input_type_rule = jj_consume_token(RULE_INPUT_TYPE);
       jj_consume_token(RIGHT_RULE);
       exp2 = Terme0();
@@ -47,7 +78,7 @@ Configuration.rules.addRule(input_type_rule.image.substring(1), new Rule(exp1, e
       break;
       }
     default:
-      jj_la1[0] = jj_gen;
+      jj_la1[1] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -77,7 +108,7 @@ System.out.println(exp.expressionToString());
       break;
       }
     default:
-      jj_la1[1] = jj_gen;
+      jj_la1[2] = jj_gen;
       exp1 = Epsilon();
 {if ("" != null) return exp1;}
     }
@@ -102,7 +133,7 @@ System.out.println(exp.expressionToString());
       break;
       }
     default:
-      jj_la1[2] = jj_gen;
+      jj_la1[3] = jj_gen;
       exp1 = Epsilon();
 {if ("" != null) return exp1;}
     }
@@ -157,7 +188,7 @@ System.out.println(exp.expressionToString());
       break;
       }
     default:
-      jj_la1[3] = jj_gen;
+      jj_la1[4] = jj_gen;
       exp1 = Epsilon();
 {if ("" != null) return exp1;}
     }
@@ -188,7 +219,7 @@ System.out.println(exp.expressionToString());
       break;
       }
     default:
-      jj_la1[4] = jj_gen;
+      jj_la1[5] = jj_gen;
       exp1 = Epsilon();
 {if ("" != null) return exp1;}
     }
@@ -219,7 +250,7 @@ System.out.println(exp.expressionToString());
       break;
       }
     default:
-      jj_la1[5] = jj_gen;
+      jj_la1[6] = jj_gen;
       exp1 = Epsilon();
 {if ("" != null) return exp1;}
     }
@@ -244,7 +275,7 @@ System.out.println(exp.expressionToString());
       break;
       }
     default:
-      jj_la1[6] = jj_gen;
+      jj_la1[7] = jj_gen;
       exp1 = Epsilon();
 {if ("" != null) return exp1;}
     }
@@ -289,7 +320,7 @@ System.out.println(exp.expressionToString());
       break;
       }
     default:
-      jj_la1[7] = jj_gen;
+      jj_la1[8] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -316,7 +347,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
       break;
       }
     default:
-      jj_la1[8] = jj_gen;
+      jj_la1[9] = jj_gen;
       exp2 = Epsilon();
 {if ("" != null) return exp2;}
     }
@@ -362,7 +393,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
       break;
       }
     default:
-      jj_la1[9] = jj_gen;
+      jj_la1[10] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -379,7 +410,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[10];
+  static final private int[] jj_la1 = new int[11];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static {
@@ -387,10 +418,10 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0xc0000000,0x20,0x40,0x1f80,0x6000,0x18000,0x20000,0x1ebc2000,0x80000,0x1ea00000,};
+      jj_la1_0 = new int[] {0x1ebc2000,0xc0000000,0x20,0x40,0x1f80,0x6000,0x18000,0x20000,0x1ebc2000,0x80000,0x1ea00000,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
+      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
    }
 
   /** Constructor with InputStream. */
@@ -411,7 +442,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -425,7 +456,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -442,7 +473,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -452,7 +483,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -468,7 +499,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -477,7 +508,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -533,7 +564,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 11; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {

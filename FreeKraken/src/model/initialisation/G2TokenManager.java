@@ -3,6 +3,7 @@
 package model.initialisation;
 import java.util.ArrayList;
 import model.*;
+import java.io.InputStream;
 
 /** Token Manager. */
 @SuppressWarnings("unused")public class G2TokenManager implements G2Constants {

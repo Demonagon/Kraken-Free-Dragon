@@ -1,6 +1,10 @@
 package view.implementation;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import controller.DragAndDropMemory;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,7 +18,10 @@ import model.Expression;
 import model.KrakenTree;
 import model.PrimaryExpression;
 import model.Rule;
+import model.RulesConfiguration;
 import model.UnaryExpression;
+import model.initialisation.G2;
+import model.initialisation.ParseException;
 import view.implementation.graphicConfigurationParser.GraphicConfiguration;
 
 
@@ -148,8 +155,14 @@ public class Main extends Application {
 		//Configuration.rules.addRule("double_left_click", new Rule(expr_A.cloneExpression() , plus_A1.cloneExpression()) );
 	}
 	
+	public static void readRules(KrakenTree tree) throws FileNotFoundException, ParseException {
+		Configuration.rules = new RulesConfiguration();
+		G2.readRules(new FileInputStream(new File("bin/model/initialisation/test.rules")));
+		tree.setRoot(G2.readExpression(new FileInputStream(new File("bin/model/initialisation/formula.config"))));
+	}
+	
 	@Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws FileNotFoundException, ParseException {
 		
     	
     	
@@ -162,10 +175,10 @@ public class Main extends Application {
     	DragAndDropMemory.memory = new DragAndDropMemory(tower);
 		config.setControlTower(tower);
 		
-    	Expression a = new PrimaryExpression("LITTERAL", "a");
+    	//Expression a = new PrimaryExpression("LITTERAL", "a");
 //		Expression b = new PrimaryExpression("LITTERAL", "b");
 //		Expression c = new PrimaryExpression("LITTERAL", "c");
-    	PrimaryGraphicExpression lit = new PrimaryGraphicExpression(a, tower);
+    	//PrimaryGraphicExpression lit = new PrimaryGraphicExpression(a, tower);
 //    	PrimaryGraphicExpression lit2 = new PrimaryGraphicExpression(b, tower);
 //    	PrimaryGraphicExpression lit3 = new PrimaryGraphicExpression(c, tower);
     	
@@ -197,7 +210,7 @@ public class Main extends Application {
     	
     	// ajout des noeuds dans l'arbre du group
 //    	center.getChildren().add(bin2);
-    	center.getChildren().add(lit);
+//    	center.getChildren().add(lit);
     	root.setCenter(center);
 
     	//cr�ation de la sc�ne et de ses propri�t�s par defaut
@@ -220,7 +233,9 @@ public class Main extends Application {
         primaryStage.setMinWidth(200);
         primaryStage.show();
         
-        createArithmetic(tree);
+        createTicOrToe(tree);
+        //createArithmetic(tree);
+       // readRules(tree);
         
 		tower.refreshWindow();
     }

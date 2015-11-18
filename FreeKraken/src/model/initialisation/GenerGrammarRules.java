@@ -297,6 +297,14 @@ public class GenerGrammarRules{
 
 		int compteur = 0;
 		int currentIndex = 0;
+
+
+		writer.println("void RuleList() :");
+		writer.println("{}");
+		writer.println("{");
+		writer.println("\t( Rule() ) *");
+		writer.println("\t<EOF>");
+		writer.println("}");
 		
 		writer.println("void Rule() :\n{");
 		writer.println("\tExpression exp1;");
@@ -628,15 +636,23 @@ public void generateGrammar() throws FileNotFoundException, UnsupportedEncodingE
 	writer.println("package model.initialisation;");
 	writer.println("import java.util.ArrayList;");
 	writer.println("import model.*;");
+	writer.println("import java.io.InputStream;");
 	writer.println("public class G2 {");
 	writer.println("\tpublic static void main(String args[]) throws ParseException {");
 	writer.println("\t\tG2 parser = new G2(System.in);");
 	writer.println("\t\tConfiguration.rules = new RulesConfiguration();");
 	writer.println("\t\tparser.Rule();");
 	writer.println("\t}");
+	
 
-	writer.println("\tpublic static Expression readExpression(String args[]) throws ParseException {");
-	writer.println("\t\tG2 parser = new G2(System.in);");
+	writer.println("public static void readRules(InputStream stream) throws ParseException {");
+	writer.println("\tG2 parser = new G2(stream);");
+	writer.println("\tparser.RuleList();");
+	writer.println("}");
+
+	writer.println("\tpublic static Expression readExpression(InputStream stream) throws ParseException {");
+	//writer.println("\t\tG2 parser = new G2(stream);");
+	writer.println("\t\tG2.ReInit(stream);");
 	writer.println("\t\tExpression expression = Terme0();");
 	writer.println("\t\treturn new UnaryExpression(\"ROOT\", expression);");
 	writer.println("\t}");

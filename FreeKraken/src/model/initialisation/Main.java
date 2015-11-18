@@ -21,7 +21,7 @@ public class Main {
 		Configuration.rules = new RulesConfiguration();
 		
 		String line = null;
-		BufferedReader buff =  new BufferedReader(new FileReader("src/model/initialisation/G1.txt"));
+		BufferedReader buff =  new BufferedReader(new FileReader("bin/model/initialisation/G1.txt"));
 		
 		
 
@@ -56,8 +56,6 @@ public class Main {
 		BufferedReader regle_buff =  new BufferedReader(new FileReader("src/model/initialisation/test.rules"));
 		
 		G2.readRule(regle_buff);*/
-		
-		System.out.println(Configuration.rules.getRules());
 
 	}
 

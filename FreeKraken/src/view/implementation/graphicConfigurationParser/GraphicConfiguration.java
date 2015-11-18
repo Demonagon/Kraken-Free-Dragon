@@ -6,6 +6,7 @@ import java.util.Map;
 
 import model.BinaryExpression;
 import model.Expression;
+import model.Pair;
 import model.PrimaryExpression;
 import model.Rule;
 import model.UnaryExpression;
@@ -17,6 +18,7 @@ import view.implementation.OperatorDuplicator;
 import view.implementation.PrimaryGraphicExpression;
 import view.implementation.StringGraphicOperator;
 import view.implementation.UnaryGraphicExpression;
+import javafx.scene.Node;
 
 public class GraphicConfiguration implements GraphicExpressionFactory {
 	
@@ -27,6 +29,12 @@ public class GraphicConfiguration implements GraphicExpressionFactory {
 
 	public GraphicConfiguration() {
 		configurations = new HashMap<String, GraphicExpressionConfiguration >();
+		addConfiguration("ROOT",
+					new GraphicExpressionConfiguration(BinaryGraphicExpression.Orientation.HORIZONTAL, 
+					new Pair<Node, Node>(
+							(Node) new StringGraphicOperator(""),
+							(Node) new StringGraphicOperator("")),
+					tower));
 	}
 
 	public void setControlTower (ControlTower tower){
@@ -72,7 +80,7 @@ public class GraphicConfiguration implements GraphicExpressionFactory {
 			e.printStackTrace();
 		}
 		
-		System.out.println(configurations.size() + " configuration(s) graphique(s) ont été chargées.");
+		System.out.println(configurations.size() + " configuration(s) graphique(s) ont ï¿½tï¿½ chargï¿½es.");
 	}
 
 	@Override
