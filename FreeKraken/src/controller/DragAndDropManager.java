@@ -5,15 +5,18 @@ import javafx.scene.Group;
 
 /**
  * 
- * @author florian campanella, Thomas Rambaldi
+ * @author florian campanella, Thomas Rambaldi, Nicolas Leotier
  *
- * gestion du drag and drop avec une classe abstraite 
+ * gestion du drag and drop avec une classe abstraite  DragAndDropManager
  */
 public abstract class DragAndDropManager {
 	
 	Group group;
 	
-	
+	/**
+	 * Constructeur
+	 * @param group type:Group -> import javafx.scene.Group;
+	 */
 	public DragAndDropManager(Group group) {
 		this.group = group;
 	}

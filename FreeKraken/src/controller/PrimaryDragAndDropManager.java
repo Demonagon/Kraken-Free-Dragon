@@ -13,10 +13,17 @@ import javafx.scene.control.Label;
 
 
 /**
- * 
- * @author florian Campanella, Thomas Rambaldi
+ * @author florian Campanella, Thomas Rambaldi, Nicolas Leotier
  *
- * implemente les methodes de drag and drop pour le primary graphic expression
+ * implemente les methodes de drag and drop pour le PrimaryGraphicExpression
+ * on y trouve les methodes 
+ * 		onDragDetected();
+ *		onDragOver();
+ *		onDragEntered();
+ * 		onDragExited();
+ *		onDragDropped();
+ *		onDragDone();
+ * -> DragAndDropManager étant une classe abstraite
  */
 public class PrimaryDragAndDropManager extends DragAndDropManager{
 
@@ -24,10 +31,13 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	private PrimaryGraphicExpression primary;
 	private ControlTower tower;
 	
+	
 	/**
-	 * constructeur
-	 * @param group type Droup
-	 * @param expr type Text
+	 * constructeur PrimaryDragAndDropManager
+	 * @param group type:group -> import javafx.scene.Group;
+	 * @param label type:Label -> import javafx.scene.control.Label;
+	 * @param primary type:PrimaryGraphicExpression -> import view.implementation.PrimaryGraphicExpression;
+	 * @param tower type:ControlTower -> import view.implementation.ControlTower;
 	 */
 	public PrimaryDragAndDropManager(Group group, Label label, PrimaryGraphicExpression primary, ControlTower tower) {
 		super(group);
@@ -37,13 +47,14 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	}
 
 	
+	/**
+	 * voir la doc de la classe abstraite DragAndDropManager
+	 */
 	@Override
 	public void onDragDetected() {
 		primary.setOnDragDetected(new EventHandler<MouseEvent>() {
 		    public void handle(MouseEvent event) {
 		        /* drag was detected, start a drag-and-drop gesture*/
-		        /* allow any transfer mode */
-		    	
 		        Dragboard db = primary.startDragAndDrop(TransferMode.MOVE);
 		        //Petite icone
 //		        db.setDragView(new Text(primary.getText().getText()).snapshot(null, null), event.getX(), event.getY());
@@ -57,12 +68,14 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 		});
 	}
 	
+	/**
+	 * voir la doc de la classe abstraite DragAndDropManager
+	 */
 	@Override
 	public void onDragOver () {
 		group.setOnDragOver(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* data is dragged over the target */
-		        /* accept it only if it is not dragged from the same node 
 		            /* allow for moving */
 	            event.acceptTransferModes(TransferMode.MOVE);
 		        event.consume();
@@ -70,18 +83,23 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 		});
 	}
 	
+	/**
+	 * voir la doc de la classe abstraite DragAndDropManager
+	 */
 	@Override
 	public void onDragEntered () {
 		group.setOnDragEntered(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		    /* the drag-and-drop gesture entered the target */
-		    /* show to the user that it is an actual gesture target */
 		    	DragAndDropMemory.memory.setTarget(group);
 		    	event.consume();
 		    }
 		});
 	}
 	
+	/**
+	 * voir la doc de la classe abstraite DragAndDropManager
+	 */
 	@Override
 	public void onDragExited () {
 		group.setOnDragExited(new EventHandler<DragEvent>() {
@@ -92,31 +110,33 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 		});
 	}	
 	
+	/**
+	 * voir la doc de la classe abstraite DragAndDropManager
+	 */
 	@Override
 	public void onDragDropped () {
 		group.setOnDragDropped(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* data dropped */
-		        /* if there is a string data on dragboard, read it and use it */
 		        Dragboard db = event.getDragboard();
 		        boolean success = false;
 		        if (db.hasString()) {
 		           success = true;
 		        }
-		        /* let the source know whether the string was successfully 
-		         * transferred and used */
 		        event.setDropCompleted(success);
 		        event.consume();
 		     }
 		});
 	}
 	
+	/**
+	 * voir la doc de la classe abstraite DragAndDropManager
+	 */
 	@Override
 	public void onDragDone() {
 		primary.setOnDragDone(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* the drag and drop gesture ended */
-		        /* if the data was successfully moved, clear it */
 		        if (event.getTransferMode() == TransferMode.MOVE) {
 		        	DragAndDropMemory.memory.notifyDragAndDrop();
 		        }
