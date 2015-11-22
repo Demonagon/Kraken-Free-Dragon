@@ -14,19 +14,78 @@ import view.implementation.BinaryGraphicExpression.Orientation;
 
 
 /**
- * 
- * @author Thomas
+ * <b> UnaryGraphicExpression est la classe représentant les opérateurs unaire. </b>
+ * Elle est étendu par la classe GraphicExpression
+ * @see GraphicExpression
+ * <p>
+ * Une expression unaire est caractérisé par les information suivante : 
+ * <ul>
+ * <li>Une expressions</li> 
+ * <li>Un opérateur unaire gauche</li>
+ * <li>Un opérateur unaire droit</li>
+ * <li>L'orientation de l'expression</li>
+ * <li>La possibilité de faire du drag and drop sur un opérateur unaire</li>
+ * <li>La possibilité de cliquer sur un opérateur unaire</li>
+ * </ul>
+ * </p>
  *
+ * @author florian Campanella, Thomas Rambaldi
  */
 public class UnaryGraphicExpression extends GraphicExpression{
 	
+	/**
+	 * 
+	 * @see Expression
+	 */
 	Expression model;
+	
+	/**
+	 * Opérateur unaire pouvant se trouver à droite et/ou à gauche.
+	 * Cette opérateur peut être modifier
+	 * @see UnaryGraphicExpression#getDecoOpen()
+	 * @see UnaryGraphicExpression#getDecoClose()
+	 * @see UnaryGraphicExpression#setDecoOpen(Node)
+	 * @see UnaryGraphicExpression#setDecoClose(Node)
+	 */
 	Node decoOpen, decoClose;
+	
+	/**
+	 * 
+	 * @see GraphicExpression
+	 */
 	GraphicExpression expression;
+	
+	/**
+	 * Définit l'orientation de l'expression (horizontalement ou verticalement)
+	 * @see BinaryGraphicExpression.Orientation
+	 * Cette orientation peut-être changé
+	 * @see UnaryGraphicExpression#setOrientation(Orientation)
+	 * @see UnaryGraphicExpression#getOrientation()
+	 */
 	Orientation orientation;
+	
+	/**
+	 * 
+	 * @see DragAndDropManager
+	 */
 	private DragAndDropManager dADmanagerOpen;
+	
+	/**
+	 * 
+	 * @see MouseEventManager
+	 */
 	private MouseEventManager mEmanagerOpen;
 	
+	/**
+	 * Constructeur UnagryGraphicExpression faisant appel à un autre constructeur.
+	 * @see UnaryGraphicExpression#UnaryGraphicExpression(Expression, GraphicExpression, Node, Node, Orientation, ControlTower, boolean)
+	 * @param model
+	 * @param expression 
+	 * @param decoOpen opérateur unaire gauche
+	 * @param decoClose opérateur unaire droit
+	 * @param orientation orientation de l'expression
+	 * @param tower
+	 */
 	public UnaryGraphicExpression(Expression model,
 									GraphicExpression expression, 
 									Node decoOpen,
@@ -36,6 +95,16 @@ public class UnaryGraphicExpression extends GraphicExpression{
 		this(model, expression, decoOpen, decoClose, orientation, tower, true);
 	}
 	
+	/**
+	 * Constructeur UnagryGraphicExpression
+	 * @param model
+	 * @param expression 
+	 * @param decoOpen opérateur unaire gauche
+	 * @param decoClose opérateur unaire droit
+	 * @param orientation orientation de l'expression
+	 * @param tower
+	 * @param isClickable definit si l'on peut cliquer sur une expression unaire
+	 */
 	public UnaryGraphicExpression  (Expression model,
 									GraphicExpression expression, 
 									Node decoOpen,
@@ -65,8 +134,10 @@ public class UnaryGraphicExpression extends GraphicExpression{
 		constructionSousExpressionWithDeco();
 	}
 	
-	
-	
+	/**
+	 * Construction de l'expression en fonction de l'orientation.
+	 * @return l'expression construite horizontalement ou verticalement
+	 */
 	public BorderPane constructionSousExpressionWithDeco(){
 		BorderPane border = new BorderPane();
 
@@ -89,37 +160,67 @@ public class UnaryGraphicExpression extends GraphicExpression{
 		return border;
 	}
 	
-	/*		Getters		*/
+	/**
+	 * Retourne l'opérateur unaire gauche
+	 * @return L'operateur gauche sous forme de Node
+	 */
 	public Node getDecoOpen() {
 		return decoOpen;
 	}
 	
+	/**
+	 * Retourne l'opérateur unaire droit
+	 * @return L'operateur droit sous forme de Node
+	 */
 	public Node getDecoClose() {
 		return decoClose;
 	}
 	
+	/**
+	 * Retourne l'orientation de l'expression
+	 * @return L'orientation de l'expression verticalement ou horizontalement
+	 */
 	public Orientation getOrientation() {
 		return orientation;
 	}
 	
+	/**
+	 * Retourne l'expression
+	 * @return L'expression sous forme d'Expression
+	 */
 	@Override
 	public Expression getExpression() {
 		return model;
 	}
 	
-	/*		Setters		*/
+	/**
+	 * Permet la modification de l'opérateur unaire gauche
+	 * @param decoOpen Nouveau opérateur unaire gauche
+	 */
 	public void setDecoOpen(Node decoOpen) {
 		this.decoOpen = decoOpen;
 	}
 
+	/**
+	 * Permet la modification de l'opérateur unaire droit
+	 * @param decoOpen Nouveau opérateur unaire droit
+	 */
 	public void setDecoClose(Node decoClose) {
 		this.decoClose = decoClose;
 	}
 
+	/**
+	 * Permet la modification de l'orientation de l'expression
+	 * @param orientation La nouvelle orientation
+	 */
 	public void setOrientation(Orientation orientation) {
 		this.orientation = orientation;
 	}
 
+	/**
+	 * Permet la modification de l'expression
+	 * @param expression La nouvelle expression
+	 */
 	public void setExpression(GraphicExpression expression) {
 		this.expression = expression;
 	}

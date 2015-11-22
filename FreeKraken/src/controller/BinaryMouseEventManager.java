@@ -10,14 +10,44 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
-
+/**
+ * <b>BinaryMouseEventManager est la classe représentant les évènements pouvant être effectuer à la souris sur un binary graphic expression.</b>
+ * Elle est étendu par la classe MouseEventManager
+ * @see MouseEventManager
+ * <p>
+ * Un évènement à la souris sur une expression binaire est caractérisé par les informations suivantes : 
+ * <ul>
+ * <li>Une expression binaire</li>
+ * <li>Un timer pour gérer le double clique</li>
+ * <li></li>
+ * </ul>
+ * </p>
+ * @author florian Campanella, Thomas Rambaldi
+ *
+ */
 public class BinaryMouseEventManager extends MouseEventManager{
 
+	/**
+	 * L'expression binaire
+	 */
 	private BinaryGraphicExpression parentExpression;
+	
+	/**
+	 * Timer pour gérer le double clique
+	 */
 	private Timeline doubleClickTimeline;
+	
+	/**
+	 * 
+	 */
 	private ControlTower tower;
 	
-	
+	/**
+	 * Constructeur de la classe BinaryMouseEventManager
+	 * @param node opérateur de l'expression binaire
+	 * @param parentExpression expression binaire
+	 * @param tower
+	 */
 	public BinaryMouseEventManager(Node node, BinaryGraphicExpression parentExpression, ControlTower tower) {
 		super(node);
 		this.parentExpression = parentExpression;
@@ -25,6 +55,9 @@ public class BinaryMouseEventManager extends MouseEventManager{
 		doubleClickTimeline = null;
 	}
 
+	/**
+	 * Evènement de la souris quand celle-ci entre dans une expression binaire
+	 */
 	@Override
 	public void onMouseEntered() {
 		node.setOnMouseEntered(new EventHandler<MouseEvent>(){
@@ -35,6 +68,9 @@ public class BinaryMouseEventManager extends MouseEventManager{
 		
 	}
 
+	/**
+	 * Evènement de la souris quand celle-ci sort de l'expression binaire
+	 */
 	@Override
 	public void onMouseExited() {
 		node.setOnMouseExited(new EventHandler<MouseEvent>(){
@@ -44,12 +80,17 @@ public class BinaryMouseEventManager extends MouseEventManager{
         });
 	}
 
+	/**
+	 * Permet de gérer le double clique
+	 */
 	public void completeClickEvent () {
 		tower.processSimpleLeftClick(parentExpression);
 		doubleClickTimeline = null;
 	}
 	
-	
+	/**
+	 * Evènement de la souris quand le clique gauche est effectué sur l'opérateur de l'expression binaire
+	 */
 	@Override
 	public void onMousePressed() {
 		 node.setOnMousePressed(new EventHandler<MouseEvent>(){
@@ -78,6 +119,9 @@ public class BinaryMouseEventManager extends MouseEventManager{
 	        });
 	}
 
+	/**
+	 * Evènement de la souris quand le clique gauche est relaché
+	 */
 	@Override
 	public void onMouseReleased() {
 		 node.setOnMouseReleased(new EventHandler<MouseEvent>(){
@@ -86,6 +130,4 @@ public class BinaryMouseEventManager extends MouseEventManager{
 	            }
 	        });
 	}
-
-
 }
