@@ -3,6 +3,7 @@ package controller;
 import javafx.scene.Node;
 
 /**
+ * @author florian Campanella, Thomas Rambaldi
  * <b>MouseEventManager est la classe représentant les évènements pouvant être effectuer à la souris.</b>
  * <p>
  * Un évènement à la souris est caractérisé par les informations suivantes : 
@@ -11,8 +12,6 @@ import javafx.scene.Node;
  * <li></li>
  * </ul>
  * </p>
- * @author florian Campanella, Thomas Rambaldi
- *
  */
 public abstract class MouseEventManager {
 	

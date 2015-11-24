@@ -23,7 +23,7 @@ import javafx.scene.control.Label;
  * 		onDragExited();
  *		onDragDropped();
  *		onDragDone();
- * -> DragAndDropManager étant une classe abstraite
+ * -> DragAndDropManager Ã©tant une classe abstraite
  */
 public class PrimaryDragAndDropManager extends DragAndDropManager{
 
@@ -48,7 +48,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager
 	 */
 	@Override
 	public void onDragDetected() {
@@ -69,7 +69,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	}
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager
 	 */
 	@Override
 	public void onDragOver () {
@@ -84,7 +84,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	}
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager
 	 */
 	@Override
 	public void onDragEntered () {
@@ -98,7 +98,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	}
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager
 	 */
 	@Override
 	public void onDragExited () {
@@ -111,7 +111,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	}	
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager
 	 */
 	@Override
 	public void onDragDropped () {
@@ -130,7 +130,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	}
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager
 	 */
 	@Override
 	public void onDragDone() {

@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author florian Campanella, Thomas Rambaldi, Nicolas Leotier
+ * @author florian Campanella, Thomas Rambaldi, Nicolas LÃ©otier
  * 
- * Cette classe sert literalement de tour de control afin de faire la liaisons entre la partie grammaire et la partie graphique
+ * Cette classe sert littÃ©ralement de tour de control afin de faire la liaisons entre la partie grammaire et la partie graphique
  */
 public class ControlTower {
 
@@ -41,7 +41,7 @@ public class ControlTower {
 	
 	
 	/**
-	 * methodes servant a rafraichir la fenètre javafx
+	 * methodes servant a rafraichir la fenï¿½tre javafx
 	 * elle clear les children associer et rajoute les nouveaux children
 	 * voir fonctionnement de group et stage javafx 
 	 */
@@ -52,11 +52,11 @@ public class ControlTower {
 	
 	
 	/**
-	 * (utilisation pour événements, click, doubleClick...)
-	 * Verifie si il y a des régles applicable à la formule.
+	 * (utilisation pour ï¿½vï¿½nements, click, doubleClick...)
+	 * Verifie si il y a des rï¿½gles applicable ï¿½ la formule.
 	 * S'il y a qu'une regle elle est automatiquement appliquer
-	 * S'il y a plusieurs régles un ChoiceContextMenu est crée proposant toutes les régles possible applicable sur cette formule
-	 * @param result -> la liste des formule possible selon les régles de calcules
+	 * S'il y a plusieurs rï¿½gles un ChoiceContextMenu est crï¿½e proposant toutes les rï¿½gles possible applicable sur cette formule
+	 * @param result -> la liste des formule possible selon les rï¿½gles de calcules
 	 */
 	public void checkContextMenuRuleList (Pair<Expression, List<Rule>> result ) {
 		if( result.second.isEmpty() ) return;
@@ -73,7 +73,7 @@ public class ControlTower {
 
 	
 	/**
-	 * Applique les methodes liées aux événement de souris
+	 * Applique les methodes liï¿½es aux ï¿½vï¿½nement de souris
 	 * ouvre un ChoiceContextMenu si necessaire devoilant les
 	 * actions possibles lors d'un click gauche simple de souris sur une GraphicExpression
 	 * @param expression type:GraphicExpression
@@ -85,7 +85,7 @@ public class ControlTower {
 
 
 	/**
-	 * Applique les methodes liées aux événement de souris
+	 * Applique les methodes liï¿½es aux ï¿½vï¿½nement de souris
 	 * ouvre un ChoiceContextMenu si necessaire devoilant les
 	 * actions possibles lors d'un double click gauche de souris sur une GraphicExpression
 	 * @param expression type:GraphicExpression
@@ -97,7 +97,7 @@ public class ControlTower {
 
 
 	/**
-	 * Applique les methodes liées aux événement de souris
+	 * Applique les methodes liï¿½es aux ï¿½vï¿½nement de souris
 	 * ouvre un ChoiceContextMenu si necessaire devoilant les
 	 * actions possibles lors d'un click droit de souris sur une GraphicExpression 
 	 * @param expression type:GraphicExpression
@@ -108,7 +108,7 @@ public class ControlTower {
 	}
 	
 	/**
-	 * Applique les methodes de drag&drop aux deux GraphicExpression passé en param
+	 * Applique les methodes de drag&drop aux deux GraphicExpression passï¿½ en param
 	 * @param firstExpression type:GraphicExpression
 	 * @param secondExpression type:GraphicExpression
 	 */

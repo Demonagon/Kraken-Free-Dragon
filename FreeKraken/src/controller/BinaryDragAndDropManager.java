@@ -22,7 +22,7 @@ import javafx.scene.input.TransferMode;
  * 		onDragExited();
  *		onDragDropped();
  *		onDragDone();
- * -> DragAndDropManager étant une classe abstraite
+ * -> DragAndDropManager Ã©tant une classe abstraite
  */
 public class BinaryDragAndDropManager extends DragAndDropManager{
 

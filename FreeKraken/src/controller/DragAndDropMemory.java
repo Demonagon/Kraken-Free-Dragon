@@ -47,7 +47,7 @@ public class DragAndDropMemory {
 	
 	
 	/**
-	 * Methodes servant a referencé les instatnces de la sources et de la cibles a la classe ControlTower
+	 * Methodes servant a referencÃ© les instances de la source et de la cible Ã  la classe ControlTower
 	 */
 	public void notifyDragAndDrop () {
 		tower.processDragAndDrop((GraphicExpression) source, (GraphicExpression) target);
@@ -56,8 +56,8 @@ public class DragAndDropMemory {
 	
 	/**
 	 * METHODES UTILISER LORS DE TESTS
-	 * Methode qui echange deux élément de type Text 
-	 * Principalement utiliser pour les élements PrimaryGraphicExpression
+	 * Methode qui echange deux Ã©lÃ©ment de type Text 
+	 * Principalement utiliser pour les Ã©lements PrimaryGraphicExpression
 	 */
 	/*public  void swapText() {
 		if( ! (source instanceof PrimaryGraphicExpression) ) return;
