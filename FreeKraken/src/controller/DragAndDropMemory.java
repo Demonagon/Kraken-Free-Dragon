@@ -6,12 +6,10 @@ import javafx.scene.Group;
 
 
 /**
- * 
  * @author florian Campanella, Thomas Rambaldi, Nicolas Leotier
  * 
  * classe qui sert de bloc-note memoire, pour memoriser les inforamation utile au DragAndDrop
  * comme la source et la cible du dragAndDrop ainsi que toute les informations les concernants
- *
  */
 public class DragAndDropMemory {
 
@@ -22,7 +20,7 @@ public class DragAndDropMemory {
 
 	/**
 	 * constructeur de DragAndDropMemory
-	 * @param tower type:Controltower -> import view.implementation.ControlTower;
+	 * @param tower 
 	 */
 	public DragAndDropMemory (ControlTower tower) {
 		this.tower = tower;
@@ -47,7 +45,7 @@ public class DragAndDropMemory {
 	
 	
 	/**
-	 * Methodes servant a referencé les instances de la source et de la cible à la classe ControlTower
+	 * Methodes servant a reference les instances de la source et de la cible a� la classe ControlTower
 	 */
 	public void notifyDragAndDrop () {
 		tower.processDragAndDrop((GraphicExpression) source, (GraphicExpression) target);
@@ -56,8 +54,8 @@ public class DragAndDropMemory {
 	
 	/**
 	 * METHODES UTILISER LORS DE TESTS
-	 * Methode qui echange deux élément de type Text 
-	 * Principalement utiliser pour les élements PrimaryGraphicExpression
+	 * Methode qui echange deux element de type Text 
+	 * Principalement utiliser pour les elements PrimaryGraphicExpression
 	 */
 	/*public  void swapText() {
 		if( ! (source instanceof PrimaryGraphicExpression) ) return;

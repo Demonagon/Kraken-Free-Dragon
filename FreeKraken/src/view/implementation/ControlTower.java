@@ -11,13 +11,12 @@ import javafx.stage.Stage;
 
 
 /**
- * 
- * @author florian Campanella, Thomas Rambaldi, Nicolas Léotier
- * 
- * Cette classe sert littéralement de tour de control afin de faire la liaisons entre la partie grammaire et la partie graphique
+ * @author florian Campanella, Thomas Rambaldi, Nicolas Leotier
+ * La de tour de control, elle fais la liaisons entre la partie technique et la partie affichage graphique
  */
 public class ControlTower {
 
+	
 	public static ControlTower tower;
 	private KrakenTree tree;
 	private ChoiceContextMenu menu;
@@ -28,9 +27,9 @@ public class ControlTower {
 	
 	/**
 	 * constructeur
-	 * @param tree type:KrakenTree -> import model.KrakenTree;
-	 * @param pane type:StackPane -> import javafx.scene.layout.StackPane;
-	 * @param stage type:Stage -> import javafx.stage.Stage;
+	 * @param tree 
+	 * @param pane 
+	 * @param stage 
 	 */
 	public ControlTower(KrakenTree tree, StackPane pane, Stage stage) {
 		this.tree = tree;
@@ -41,7 +40,7 @@ public class ControlTower {
 	
 	
 	/**
-	 * methodes servant a rafraichir la fen�tre javafx
+	 * methodes servant a rafraichir la fenetre javafx
 	 * elle clear les children associer et rajoute les nouveaux children
 	 * voir fonctionnement de group et stage javafx 
 	 */
@@ -52,11 +51,11 @@ public class ControlTower {
 	
 	
 	/**
-	 * (utilisation pour �v�nements, click, doubleClick...)
-	 * Verifie si il y a des r�gles applicable � la formule.
+	 * (utilisation pour l'evenements, click, doubleClick...)
+	 * Verifie si il y a des regles applicable a la formule.
 	 * S'il y a qu'une regle elle est automatiquement appliquer
-	 * S'il y a plusieurs r�gles un ChoiceContextMenu est cr�e proposant toutes les r�gles possible applicable sur cette formule
-	 * @param result -> la liste des formule possible selon les r�gles de calcules
+	 * S'il y a plusieurs regles un ChoiceContextMenu est cree proposant toutes les regles possible applicable sur cette formule
+	 * @param result 
 	 */
 	public void checkContextMenuRuleList (Pair<Expression, List<Rule>> result ) {
 		if( result.second.isEmpty() ) return;
@@ -73,10 +72,10 @@ public class ControlTower {
 
 	
 	/**
-	 * Applique les methodes li�es aux �v�nement de souris
+	 * Applique les methodes lies aux evenement de souris
 	 * ouvre un ChoiceContextMenu si necessaire devoilant les
 	 * actions possibles lors d'un click gauche simple de souris sur une GraphicExpression
-	 * @param expression type:GraphicExpression
+	 * @param expression
 	 */
 	public void processSimpleLeftClick(GraphicExpression expression) {
 		Pair<Expression, List<Rule>> result = KrakenTree.processInput("left_click" , expression.getExpression());
@@ -85,10 +84,10 @@ public class ControlTower {
 
 
 	/**
-	 * Applique les methodes li�es aux �v�nement de souris
+	 * Applique les methodes liees aux evenement de souris
 	 * ouvre un ChoiceContextMenu si necessaire devoilant les
 	 * actions possibles lors d'un double click gauche de souris sur une GraphicExpression
-	 * @param expression type:GraphicExpression
+	 * @param expression
 	 */
 	public void processDoubleLeftClick(GraphicExpression expression) {
 		Pair<Expression, List<Rule>> result = KrakenTree.processInput("double_left_click" ,expression.getExpression());
@@ -97,10 +96,10 @@ public class ControlTower {
 
 
 	/**
-	 * Applique les methodes li�es aux �v�nement de souris
+	 * Applique les methodes liees aux evenement de souris
 	 * ouvre un ChoiceContextMenu si necessaire devoilant les
 	 * actions possibles lors d'un click droit de souris sur une GraphicExpression 
-	 * @param expression type:GraphicExpression
+	 * @param expression
 	 */
 	public void processRigthClick(GraphicExpression expression) {
 		Pair<Expression, List<Rule>> result = KrakenTree.processInput("rigth_click" ,expression.getExpression());
@@ -108,9 +107,9 @@ public class ControlTower {
 	}
 	
 	/**
-	 * Applique les methodes de drag&drop aux deux GraphicExpression pass� en param
-	 * @param firstExpression type:GraphicExpression
-	 * @param secondExpression type:GraphicExpression
+	 * Applique les methodes de drag&drop aux deux GraphicExpression passee en param
+	 * @param firstExpression
+	 * @param secondExpression 
 	 */
 	public void processDragAndDrop(GraphicExpression firstExpression, GraphicExpression secondExpression) {
 		List<Expression> expressionList = new LinkedList<Expression>();

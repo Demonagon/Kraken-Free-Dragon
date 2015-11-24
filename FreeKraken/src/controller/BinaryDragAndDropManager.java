@@ -12,19 +12,12 @@ import javafx.scene.input.TransferMode;
 
 
 /**
- * 
  * @author florian Campanella, Rambaldi Thomas, Nicolas Leotier
+ * Etend de DragAndDropManager
  * Classe qui implemente les methodes du drag&drop pour les expressions binaires
- * on y trouve les methodes 
- * 		onDragDetected();
- *		onDragOver();
- *		onDragEntered();
- * 		onDragExited();
- *		onDragDropped();
- *		onDragDone();
- * -> DragAndDropManager étant une classe abstraite
  */
 public class BinaryDragAndDropManager extends DragAndDropManager{
+
 
 	private BinaryGraphicExpression binary;
 	private ControlTower tower;
@@ -32,9 +25,9 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	
 	/**
 	 * Constructeur pour effectuer un dragAndDrop d'un expression binaire
-	 * @param group type:groupe -> import javafx.scene.Group;
-	 * @param binary type:BinaryGraphicExpression -> import view.implementation.BinaryGraphicExpression;
-	 * @param tower type:controleTower -> import view.implementation.ControlTower;
+	 * @param group 
+	 * @param binary
+	 * @param tower 
 	 */
 	public BinaryDragAndDropManager(Group group, BinaryGraphicExpression binary, ControlTower tower) {
 		super(group);
@@ -43,7 +36,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	}
 
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragDetected()
 	 */
 	@Override
 	public void onDragDetected() {
@@ -66,7 +59,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	}
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragOver()
 	 */
 	@Override
 	public void onDragOver () {
@@ -80,7 +73,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	}
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragEntered()
 	 */
 	@Override
 	public void onDragEntered () {
@@ -94,7 +87,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	}
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragExited()
 	 */
 	@Override
 	public void onDragExited () {
@@ -107,7 +100,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	}	
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragDropped()
 	 */
 	@Override
 	public void onDragDropped () {
@@ -125,7 +118,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	}
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragDone()
 	 */
 	@Override
 	public void onDragDone() {
