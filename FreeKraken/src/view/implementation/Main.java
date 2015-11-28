@@ -158,7 +158,7 @@ public class Main extends Application {
 	public static void readRules(KrakenTree tree) throws FileNotFoundException, ParseException {
 		Configuration.rules = new RulesConfiguration();
 		G2.readRules(new FileInputStream(new File("bin/model/initialisation/test.rules")));
-		tree.setRoot(G2.readExpression(new FileInputStream(new File("bin/model/initialisation/formula.config"))));
+		tree.setRoot(G2.readExpression(new FileInputStream(new File("config/formula.cfg"))));
 	}
 	
 	@Override

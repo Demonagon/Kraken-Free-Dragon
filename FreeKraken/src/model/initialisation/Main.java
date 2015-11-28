@@ -21,7 +21,7 @@ public class Main {
 		Configuration.rules = new RulesConfiguration();
 		
 		String line = null;
-		BufferedReader buff =  new BufferedReader(new FileReader("bin/model/initialisation/G1.txt"));
+		BufferedReader buff =  new BufferedReader(new FileReader("../res/model/initialisation/G1.txt"));
 		
 		
 

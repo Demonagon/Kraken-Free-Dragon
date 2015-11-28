@@ -32,7 +32,7 @@ public class G1 implements G1Constants {
 listOperators.add(operator);
     }
     jj_consume_token(0);
-PrintWriter writer = new PrintWriter("model/initialisation/G1.txt", "UTF-8");
+PrintWriter writer = new PrintWriter("../res/model/initialisation/G1.txt", "UTF-8");
                 for(Specification s : listOperators)
                         writer.println(s);
                 writer.close();

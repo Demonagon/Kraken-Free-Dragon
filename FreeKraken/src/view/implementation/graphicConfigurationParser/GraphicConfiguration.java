@@ -22,7 +22,7 @@ import javafx.scene.Node;
 
 public class GraphicConfiguration implements GraphicExpressionFactory {
 	
-	public static final String config_file_path = "bin/essais.gconfig";
+	public static final String config_file_path = "config/graphics.cfg";
 	
 	private Map<String, GraphicExpressionConfiguration > configurations;
 	private ControlTower tower;

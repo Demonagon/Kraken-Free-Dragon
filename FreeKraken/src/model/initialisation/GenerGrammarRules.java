@@ -616,7 +616,7 @@ public class GenerGrammarRules{
  */
 public void generateGrammar() throws FileNotFoundException, UnsupportedEncodingException
 {
-	File file = new File("src/model/initialisation/grammaire2.jj");
+	File file = new File("../res/model/initialisation/grammaire2.jj");
 	try {
 		//file.mkdirs();
 		file.createNewFile();
