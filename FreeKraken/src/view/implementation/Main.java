@@ -233,9 +233,9 @@ public class Main extends Application {
         primaryStage.setMinWidth(200);
         primaryStage.show();
         
-        createTicOrToe(tree);
+        //createTicOrToe(tree);
         //createArithmetic(tree);
-       // readRules(tree);
+        readRules(tree);
         
 		tower.refreshWindow();
     }
