@@ -1,0 +1,10 @@
+.defaultFont{
+	-fx-font-family: "Verdana";
+    -fx-font-size: 50px ;
+    -fx-fill: BLACK;
+}
+
+.primaryGraphicExpr_OnMouseEntered {
+	-fx-fill: BLUEVIOLET;
+	-fx-cursor: HAND ;
+}
