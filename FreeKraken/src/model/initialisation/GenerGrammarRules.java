@@ -406,6 +406,7 @@ public class GenerGrammarRules{
 
 			writer.println("\t|\n\t(");
 		}
+		else writer.println("\t(");
 
 		writer.println("\t\texp2 = Epsilon()");
 		writer.println("\t\t{return exp2;}");
