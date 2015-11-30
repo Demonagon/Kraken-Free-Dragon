@@ -15,31 +15,31 @@ import javafx.scene.layout.StackPane;
 
 /**
  * 
- * @author Nicolas Léotier
+ * @author Florian Campanella, Thomas Rambaldi, Nicolas Léotier
  * 
- * Cette classe étend la classe ContextMenu de JavaFX
- * Elle construit un menu pop-up dans le cas ou les clics de souris ne sont pas suffisant pour appliqué toute les règles possibles sur un élément
+ * Etend la classe ContextMenu de JavaFX
+ * Construit un menu pop-up dans le cas où les clics de souris ne sont pas suffisant pour appliqué toute les règles possibles sur un élément
  *
  */
 public class ChoiceContextMenu extends ContextMenu {
 	
 	/**
-	 * 
+	 * Liste des règles
 	 */
 	List<Rule> rules;
 	
 	/**
-	 * 
+	 * Expression sur laquelle le menu a été appelé
 	 */
 	Expression expression;
 	
 	/**
-	 * 
+	 * Arbre abstrait qui fait référence à l'arbre graphique pour gérer l'affichage
 	 */
 	KrakenTree tree;
 	
 	/**
-	 * 
+	 * Pane sur lequel est affiché le menu
 	 */
 	StackPane pane;
 	

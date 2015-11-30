@@ -9,9 +9,8 @@ import controller.PrimaryMouseEventManager;
 
 /**
  * 
- * @author Florian Campanella, Nicolas Leotier, Thomas Rambaldi
- * 
- * Cr�e un �l�ment de base d'une expression, un litt�ral.
+ * @author Florian Campanella, Thomas Rambaldi, Nicolas Léotier
+ * Crée une expression avec un seul opérateur
  *
  */
 public class PrimaryGraphicExpression extends GraphicExpression {
@@ -21,23 +20,32 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	private DragAndDropManager DADmanager;
 	private MouseEventManager MEmanager;
 	
-	
-	
 	/**
-	 * constructeur par defaut
-	 * construit un lit�ral (expression primaire) avec une taille est une couleur par defaut
-	 * l'expression primaire construite capte les evenements survols et click de souris
+	 * Constructeur par défaut (élément cliquable par défaut)
+	 * @param model
+	 * @param tower
 	 */
 	public PrimaryGraphicExpression(Expression model, ControlTower tower) {
 		this(model, tower, true);
 	}
 	
+	/**
+	 * Constructeur qui permet de rendre un élément cliquable
+	 * @param model
+	 * @param tower
+	 * @param isclickable
+	 */
 	public PrimaryGraphicExpression(Expression model, ControlTower tower, boolean isclickable) {
 		init(model, tower);
 		if( isclickable )
 			initEvent(tower);
 	}
 	
+	/**
+	 * Initialise une expression
+	 * @param model
+	 * @param tower
+	 */
 	public void init(Expression model, ControlTower tower) {
 		this.model = model;
 		expr = new Label("Default");
@@ -51,6 +59,10 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 		this.getChildren().add(expr);
 	}
 	
+	/**
+	 * Initialise un événement
+	 * @param tower
+	 */
 	public void initEvent(ControlTower tower) {
 		DADmanager = new PrimaryDragAndDropManager(this, expr, this, tower);
 		MEmanager = new PrimaryMouseEventManager(this, expr, this, tower);
@@ -60,7 +72,7 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	
 	
 	/**
-	 * setteurs
+	 * Mise à jour de l'attribut expression
 	 * @param pExpression
 	 */
 	public void setExpression(String pExpression) {
@@ -68,8 +80,7 @@ public class PrimaryGraphicExpression extends GraphicExpression {
 	}
 	
 	/**
-	 * getteur de la variable expr
-	 * @return type text
+	 * @return une expression
 	 */
 	public Label getText() {
 		return expr;

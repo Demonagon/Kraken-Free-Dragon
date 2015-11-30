@@ -13,10 +13,12 @@ import model.Expression;
 
 /**
  * 
- * @author florian, nico, thomas
+ * @author Florian Campanella, Thomas Rambaldi, Nicolas Léotier
+ * 
+ * Implémente la représentation graphique des expressions binaires
  *
  */
-public class BinaryGraphicExpression extends GraphicExpression{
+public class BinaryGraphicExpression extends GraphicExpression {
 
 	public enum Orientation {
 		VERTICAL, HORIZONTAL
@@ -33,11 +35,14 @@ public class BinaryGraphicExpression extends GraphicExpression{
 	
 	
 	/**
-	 * Construteur par defaut, Construit une expression 
-	 * @param firstExpression la premi�re expression type -> expression 
-	 * @param secondExpression la seconde expression type -> expression
-	 * @param operator un op�rateur 
-	 * @param orientation l'orientation de l'expression (vertical / horizontal)
+	 * 
+	 * @param model
+	 * @param firstExpression
+	 * @param secondExpression
+	 * @param operator
+	 * @param orientation
+	 * @param tower
+	 * 
 	 */
 	public BinaryGraphicExpression (Expression model,
 									GraphicExpression firstExpression, 
@@ -48,6 +53,17 @@ public class BinaryGraphicExpression extends GraphicExpression{
 		this(model, firstExpression, secondExpression, operator, orientation, tower, true);
 	}
 	
+	/**
+	 * 
+	 * @param model
+	 * @param firstExpression
+	 * @param secondExpression
+	 * @param operator
+	 * @param orientation
+	 * @param tower
+	 * @param isClickable
+	 * 
+	 */
 	public BinaryGraphicExpression (Expression model,
 									GraphicExpression firstExpression, 
 									GraphicExpression secondExpression, 
@@ -79,13 +95,9 @@ public class BinaryGraphicExpression extends GraphicExpression{
 
 	
 	/**
-	 * Structure l'expression selon son orientation
-	 * ex:
-	 * 		horizontal pour une addition ( a + b)
-	 * 		vertical pour une fraction ( a/b )
-	 * L'expression est encapsul� dans un hBox (horizontal) ou un vBox (vertical)
-	 * afin que les el�ments de l'expression soit toujours align� et centr�
-	 * @return l'expression structur� selon son orientation
+	 * 
+	 * Construit une expression selon une orientation
+	 * @return borderPane contenant l'expression avec la bonne orientation
 	 */
 	public BorderPane structOfExpression(){
 		BorderPane border = new BorderPane();
@@ -107,12 +119,24 @@ public class BinaryGraphicExpression extends GraphicExpression{
 		}
 		return border;
 	}
+	
+	/**
+	 * @return la première partie de l'expression
+	 */
 	public Expression getFirstExpression() {
 		return firstExpression.getExpression();
 	}
+	
+	/**
+	 * @return la seconde partie de l'expression
+	 */
 	public Expression getSecondExpression() {
 		return secondExpression.getExpression();
 	}
+	
+	/**
+	 * @return l'expression entière
+	 */
 	@Override
 	public Expression getExpression() {
 		return model;

@@ -22,9 +22,7 @@ public class ControlTower {
 	private KrakenTree tree;
 	private ChoiceContextMenu menu;
 	private StackPane pane;
-	private Stage stage;
-	
-	
+	private Stage stage;	
 	
 	/**
 	 * constructeur
