@@ -14,16 +14,8 @@ import javafx.scene.control.Label;
 
 /**
  * @author florian Campanella, Thomas Rambaldi, Nicolas Leotier
- *
+ * etend DragAndDropManager
  * implemente les methodes de drag and drop pour le PrimaryGraphicExpression
- * on y trouve les methodes 
- * 		onDragDetected();
- *		onDragOver();
- *		onDragEntered();
- * 		onDragExited();
- *		onDragDropped();
- *		onDragDone();
- * -> DragAndDropManager étant une classe abstraite
  */
 public class PrimaryDragAndDropManager extends DragAndDropManager{
 
@@ -34,10 +26,10 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	
 	/**
 	 * constructeur PrimaryDragAndDropManager
-	 * @param group type:group -> import javafx.scene.Group;
-	 * @param label type:Label -> import javafx.scene.control.Label;
-	 * @param primary type:PrimaryGraphicExpression -> import view.implementation.PrimaryGraphicExpression;
-	 * @param tower type:ControlTower -> import view.implementation.ControlTower;
+	 * @param group 
+	 * @param label 
+	 * @param primary 
+	 * @param tower
 	 */
 	public PrimaryDragAndDropManager(Group group, Label label, PrimaryGraphicExpression primary, ControlTower tower) {
 		super(group);
@@ -58,7 +50,6 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 		        Dragboard db = primary.startDragAndDrop(TransferMode.MOVE);
 		        //Petite icone
 //		        db.setDragView(new Text(primary.getText().getText()).snapshot(null, null), event.getX(), event.getY());
-		        /* Put a string on a dragboard */
 		        ClipboardContent content = new ClipboardContent();
 		        content.putString(primary.getText().getText());
 		        DragAndDropMemory.memory.setSource(group);

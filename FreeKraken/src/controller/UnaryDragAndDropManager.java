@@ -14,18 +14,9 @@ import javafx.scene.input.TransferMode;
 
 
 /**
- * 
  * @author florian Campanella, Thomas Rambaldi, Nicolas Leotier
- *
+ * etend DragAndDropManager
  * implemente les methodes de drag and drop pour le UnaryGraphicExpression
- * on y trouve les methodes 
- * 		onDragDetected();
- *		onDragOver();
- *		onDragEntered();
- * 		onDragExited();
- *		onDragDropped();
- *		onDragDone();
- * -> DragAndDropManager étant une classe abstraite
  */
 public class UnaryDragAndDropManager extends DragAndDropManager {
 
@@ -38,11 +29,11 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	
 	/**
 	 * constructeur
-	 * @param group type:Group -> import javafx.scene.Group;
-	 * @param decoOpen type:Node -> import javafx.scene.Node;
-	 * @param decoClose type:Node -> import javafx.scene.Node;
-	 * @param unary type:UnaryGrapicExpression -> import view.implementation.UnaryGraphicExpression;
-	 * @param tower type:ControlTower -> import view.implementation.ControlTower;
+	 * @param group 
+	 * @param decoOpen 
+	 * @param decoClose
+	 * @param unary 
+	 * @param tower 
 	 */
 	public UnaryDragAndDropManager(Group group, Node decoOpen, Node decoClose, UnaryGraphicExpression unary, ControlTower tower) {
 		super(group);
@@ -53,7 +44,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	}
 
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragDetected()
 	 */
 	@Override
 	public void onDragDetected() {
@@ -81,7 +72,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragOver()
 	 */
 	@Override
 	public void onDragOver () {
@@ -95,7 +86,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	}
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragEntered()
 	 */
 	@Override
 	public void onDragEntered () {
@@ -109,7 +100,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	}
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragExited()
 	 */
 	@Override
 	public void onDragExited () {
@@ -121,7 +112,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	}	
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragDropped()
 	 */
 	@Override
 	public void onDragDropped () {
@@ -140,7 +131,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	}
 	
 	/**
-	 * voir la doc de la classe abstraite DragAndDropManager
+	 * @see DragAndDropManager#onDragDone()
 	 */
 	@Override
 	public void onDragDone() {
