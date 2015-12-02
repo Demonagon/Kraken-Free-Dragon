@@ -17,7 +17,7 @@ import view.implementation.BinaryGraphicExpression.Orientation;
  * <b> UnaryGraphicExpression est la classe représentant les opérateurs unaire. </b>
  * Elle est étendu par la classe GraphicExpression
  * @see GraphicExpression
- * <p>
+ *
  * Une expression unaire est caractérisé par les information suivante : 
  * <ul>
  * <li>Une expressions</li> 
@@ -27,7 +27,6 @@ import view.implementation.BinaryGraphicExpression.Orientation;
  * <li>La possibilité de faire du drag and drop sur un opérateur unaire</li>
  * <li>La possibilité de cliquer sur un opérateur unaire</li>
  * </ul>
- * </p>
  *
  * @author florian Campanella, Thomas Rambaldi
  */
