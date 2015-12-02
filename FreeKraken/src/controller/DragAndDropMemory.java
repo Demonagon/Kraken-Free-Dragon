@@ -45,7 +45,7 @@ public class DragAndDropMemory {
 	
 	
 	/**
-	 * Methodes servant a reference les instances de la source et de la cible a  la classe ControlTower
+	 * Methodes servant a reference les instances de la source et de la cible Ã  la classe ControlTower
 	 */
 	public void notifyDragAndDrop () {
 		tower.processDragAndDrop((GraphicExpression) source, (GraphicExpression) target);
