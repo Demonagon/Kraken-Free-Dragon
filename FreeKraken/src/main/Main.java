@@ -28,7 +28,7 @@ import view.implementation.graphicConfigurationParser.GraphicConfiguration;
 public class Main extends Application {
 	
 	
-	/* 01 : Distributivité */
+	/* 01 : DistributivitÃ© */
     	
    	public Expression test_01a_expression() {
     	Expression a = new PrimaryExpression("LITTERAL", "a");
@@ -103,14 +103,14 @@ public class Main extends Application {
 	}
 	
 	static List<Rule> applicInput(String input, List<Expression> expressions) {
-		System.out.println("les règles possibles à l'input " + input + " sur " + expressions + " sont :");
+		System.out.println("les rÃ©gles possibles Ã© l'input " + input + " sur " + expressions + " sont :");
 		List<Rule> rules = KrakenTree.processInput(input, expressions).second;
 		System.out.println( rules );
 		return rules;
 	}
 	
 	static List<Rule> applicInput(String input, Expression expression) {
-		System.out.println("les règles possibles à l'input " + input + " sur " + expression.expressionToString() + " sont :");
+		System.out.println("les rÃ©gles possibles Ã© l'input " + input + " sur " + expression.expressionToString() + " sont :");
 		List<Rule> rules = KrakenTree.processInput(input, expression).second;
 		System.out.println( rules );
 		return rules;
@@ -146,7 +146,7 @@ public class Main extends Application {
 			do {
 				System.out.println("La formule est :");
 				System.out.println(expression);
-				System.out.println("Quel opération appliquer sur la racine :");
+				System.out.println("Quel opÃ©ration appliquer sur la racine :");
 				System.out.println("1 : drag_and_drop");
 				System.out.println("2 : clic_gauche");
 				System.out.println("3 : double_clic_gauche");
@@ -167,7 +167,7 @@ public class Main extends Application {
 		if( rules.size() > 0 ) {
 			Rule rule = rules.get(0);
 			
-			System.out.println("L'application de la première règle est :");
+			System.out.println("L'application de la premiÃ©re rÃ©gle est :");
 			System.out.println( rule.applic(expression) );
 		}
 	}
@@ -206,7 +206,7 @@ public class Main extends Application {
 		if( rules.size() > 0 ) {
 			Rule rule = rules.get(0);
 			
-			System.out.println("L'application de la première règle est :");
+			System.out.println("L'application de la premiÃ©re rÃ©gle est :");
 			System.out.println( rule.applic(expression) );
 		}
 	}

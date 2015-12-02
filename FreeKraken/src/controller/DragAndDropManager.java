@@ -4,16 +4,17 @@ import javafx.scene.Group;
 
 
 /**
- * 
- * @author florian campanella, Thomas Rambaldi
- *
- * gestion du drag and drop avec une classe abstraite 
+ * @author florian campanella, Thomas Rambaldi, Nicolas Leotier
+ * gestion du drag and drop avec une classe abstraite  DragAndDropManager
  */
 public abstract class DragAndDropManager {
 	
 	Group group;
 	
-	
+	/**
+	 * Constructeur
+	 * @param group
+	 */
 	public DragAndDropManager(Group group) {
 		this.group = group;
 	}
@@ -21,7 +22,7 @@ public abstract class DragAndDropManager {
 
 	/**
 	 * defines a function to be called when drag gesture has been detected.
-	 * this is the rigth place to start drag and drop operation.  
+	 * this is the rigth place to start drag and drop operation. 
 	 */
 	public abstract void onDragDetected();
 	

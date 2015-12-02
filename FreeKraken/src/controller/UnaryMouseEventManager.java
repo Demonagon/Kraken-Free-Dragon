@@ -10,13 +10,43 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
-
+/**
+ * <b>UnaryMouseEventManager est la classe représentant les évènements pouvant être effectuer à la souris sur un unary graphic expression.</b>
+ * Elle est étendu par la classe MouseEventManager
+ * @see MouseEventManager
+ * <p>
+ * Un évènement à la souris sur une expression unaire est caractérisé par les informations suivantes : 
+ * <ul>
+ * <li>Une expression primaire</li>
+ * <li>Timer pour le double clique</li>
+ * <li></li>
+ * </ul>
+ * </p>
+ * @author florian Campanella, Thomas Rambaldi
+ */
 public class UnaryMouseEventManager extends MouseEventManager{
 
+	/**
+	 * L'expression unaire
+	 */
 	private UnaryGraphicExpression unaryExpression;
+	
+	/**
+	 * Timer pour gérer le double clique
+	 */
 	private Timeline doubleClickTimeline;
+	
+	/**
+	 * 
+	 */
 	private ControlTower tower;
 	
+	/**
+	 * Constructeur de la classe MouseEventManager
+	 * @param node opérateur de l'expression
+	 * @param unaryExpression l'expression unaire
+	 * @param tower
+	 */
 	public UnaryMouseEventManager(Node node, UnaryGraphicExpression unaryExpression, ControlTower tower) {
 		super(node);
 		this.unaryExpression = unaryExpression;
@@ -24,6 +54,9 @@ public class UnaryMouseEventManager extends MouseEventManager{
 		doubleClickTimeline = null;
 	}
 
+	/**
+	 * Evènement de la souris quand celle-ci entre dans une expression unaire
+	 */
 	@Override
 	public void onMouseEntered() {
 		node.setOnMouseEntered(new EventHandler<MouseEvent>(){
@@ -32,7 +65,10 @@ public class UnaryMouseEventManager extends MouseEventManager{
             }
         });		
 	}
-
+	
+	/**
+	 *  Evènement de la souris quand celle-ci sort de l'expression unaire
+	 */
 	@Override
 	public void onMouseExited() {
 		node.setOnMouseExited(new EventHandler<MouseEvent>(){
@@ -42,13 +78,18 @@ public class UnaryMouseEventManager extends MouseEventManager{
         });
 	}
 	
-	
+	/**
+	 * Permet de gérer le double clique
+	 */
 	public void completeClickEvent () {
 		tower.processSimpleLeftClick(unaryExpression);
 		doubleClickTimeline = null;
 	}
 	
-	
+
+	/**
+	 * Evènement de la souris quand le clique gauche est effectué sur l'opérateur de l'expression unaire
+	 */
 	@Override
 	public void onMousePressed() {
 		 node.setOnMousePressed(new EventHandler<MouseEvent>(){
@@ -76,7 +117,10 @@ public class UnaryMouseEventManager extends MouseEventManager{
 	        });
 	}
 	
-	
+
+	/**
+	 * Evènement de la souris quand le clique gauche est relaché
+	 */	
 	@Override
 	public void onMouseReleased() {
 		 node.setOnMouseReleased(new EventHandler<MouseEvent>(){

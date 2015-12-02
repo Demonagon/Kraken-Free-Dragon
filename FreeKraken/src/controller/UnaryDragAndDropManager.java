@@ -12,12 +12,29 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 
 
+
+/**
+ * @author florian Campanella, Thomas Rambaldi, Nicolas Leotier
+ * etend DragAndDropManager
+ * implemente les methodes de drag and drop pour le UnaryGraphicExpression
+ */
 public class UnaryDragAndDropManager extends DragAndDropManager {
 
+	
 	Node decoOpen, decoClose;
 	private UnaryGraphicExpression unary;
 	private ControlTower tower;
 	
+	
+	
+	/**
+	 * constructeur
+	 * @param group 
+	 * @param decoOpen 
+	 * @param decoClose
+	 * @param unary 
+	 * @param tower 
+	 */
 	public UnaryDragAndDropManager(Group group, Node decoOpen, Node decoClose, UnaryGraphicExpression unary, ControlTower tower) {
 		super(group);
 		this.decoOpen = decoOpen;
@@ -26,19 +43,16 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 		this.tower = tower;
 	}
 
+	/**
+	 * @see DragAndDropManager#onDragDetected()
+	 */
 	@Override
 	public void onDragDetected() {
 		decoOpen.setOnDragDetected(new EventHandler<MouseEvent>() {
 		    public void handle(MouseEvent event) {
 		        /* drag was detected, start a drag-and-drop gesture*/
-		        /* allow any transfer mode */
-		    	
 		        Dragboard db = decoOpen.startDragAndDrop(TransferMode.MOVE);
-		        //Petite icone
-//		        db.setDragView(new Text(decoOpen.getText()).snapshot(null, null), event.getX(), event.getY());
-		        /* Put a string on a dragboard */
 		        ClipboardContent content = new ClipboardContent();
-//		        content.putString(decoOpen.get);
 		        DragAndDropMemory.memory.setSource(group);
 		        db.setContent(content);
 		        event.consume();
@@ -47,14 +61,8 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 		decoClose.setOnDragDetected(new EventHandler<MouseEvent>() {
 		    public void handle(MouseEvent event) {
 		        /* drag was detected, start a drag-and-drop gesture*/
-		        /* allow any transfer mode */
-		    	
 		        Dragboard db = decoOpen.startDragAndDrop(TransferMode.MOVE);
-		        //Petite icone 
-//		        db.setDragView(new Text(decoOpen.getText()).snapshot(null, null), event.getX(), event.getY());
-		        /* Put a string on a dragboard */
 		        ClipboardContent content = new ClipboardContent();
-//		        content.putString(decoOpen.getText());
 		        DragAndDropMemory.memory.setSource(group);
 		        db.setContent(content);
 		        event.consume();
@@ -63,66 +71,73 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	}
 
 	
+	/**
+	 * @see DragAndDropManager#onDragOver()
+	 */
 	@Override
 	public void onDragOver () {
 		group.setOnDragOver(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* data is dragged over the target */
-		        /* accept it only if it is not dragged from the same node 
-		            /* allow for moving */
 	            event.acceptTransferModes(TransferMode.MOVE);
 		        event.consume();
 		    }
 		});
 	}
 	
+	/**
+	 * @see DragAndDropManager#onDragEntered()
+	 */
 	@Override
 	public void onDragEntered () {
 		group.setOnDragEntered(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		    /* the drag-and-drop gesture entered the target */
-		    /* show to the user that it is an actual gesture target */
 		    	DragAndDropMemory.memory.setTarget(group);
 		    	event.consume();
 		    }
 		});
 	}
 	
+	/**
+	 * @see DragAndDropManager#onDragExited()
+	 */
 	@Override
 	public void onDragExited () {
 		group.setOnDragExited(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
-		        /* mouse moved away, remove the graphical cues */
 		        event.consume();
 		    }
 		});
 	}	
 	
+	/**
+	 * @see DragAndDropManager#onDragDropped()
+	 */
 	@Override
 	public void onDragDropped () {
 		group.setOnDragDropped(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* data dropped */
-		        /* if there is a string data on dragboard, read it and use it */
 		        Dragboard db = event.getDragboard();
 		        boolean success = false;
 		        if (db.hasString()) {
 		           success = true;
 		        }
-		        /* let the source know whether the string was successfully 
-		         * transferred and used */
 		        event.setDropCompleted(success);
 		        event.consume();
 		     }
 		});
 	}
 	
+	/**
+	 * @see DragAndDropManager#onDragDone()
+	 */
 	@Override
 	public void onDragDone() {
 		decoOpen.setOnDragDone(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* the drag and drop gesture ended */
-		        /* if the data was successfully moved, clear it */
 		        if (event.getTransferMode() == TransferMode.MOVE) {
 		        	DragAndDropMemory.memory.notifyDragAndDrop();
 		        }
@@ -132,7 +147,6 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 		decoClose.setOnDragDone(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* the drag and drop gesture ended */
-		        /* if the data was successfully moved, clear it */
 		        if (event.getTransferMode() == TransferMode.MOVE) {
 		        	DragAndDropMemory.memory.notifyDragAndDrop();
 		        }

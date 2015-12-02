@@ -13,23 +13,49 @@ import javafx.animation.KeyFrame;
 import javafx.util.Duration;
 
 /**
- * 
+ * <b>PrimaryMouseEventManager est la classe représentant les évènements pouvant être effectuer à la souris sur un primary graphic expression.</b>
+ * Elle est étendu par la classe MouseEventManager
+ * @see MouseEventManager
+ * <p>
+ * Un évènement à la souris sur un littéral est caractérisé par les informations suivantes : 
+ * <ul>
+ * <li></li>
+ * <li>Timer pour le double clique</li>
+ * <li></li>
+ * <li>Une expression primaire</li>
+ * </ul>
+ * </p>
  * @author florian Campanella, Thomas Rambaldi
- *
- * implemente les methodes de MouseEvent pour le primary graphic expression
  */
 public class PrimaryMouseEventManager extends MouseEventManager {
 
+	/**
+	 * Le littéral
+	 */
 	Label expr;
+	
+	/**
+	 * Timer pour gérer le double clique
+	 */
 	private Timeline doubleClickTimeline;
+	
+	/**
+	 * 
+	 */
 	private ControlTower tower;
+	
+	/**
+	 * L'expression primaire
+	 */
 	private PrimaryGraphicExpression primary;
 	
 	
 	/**
-	 * constructor 
-	 * @param group Type Group
-	 * @param expr Type Text
+	 * Constructeur de la classe PrimaryMouseEventManager 
+	 * @param group
+	 * @param expr
+	 * @param primary expression primaire
+	 * @param tower
 	 */
 	public PrimaryMouseEventManager(Group group, Label expr, PrimaryGraphicExpression primary, ControlTower tower) {
 		super(group);
@@ -39,7 +65,9 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 		doubleClickTimeline = null;
 	}
 
-
+	/**
+	 * Evènement de la souris quand celle-ci entre dans une expression primaire
+	 */
 	@Override
 	public void onMouseEntered() {
 		node.setOnMouseEntered(new EventHandler<MouseEvent>(){
@@ -49,6 +77,9 @@ public class PrimaryMouseEventManager extends MouseEventManager {
         });
 	}
 	
+	/**
+	 *  Evènement de la souris quand celle-ci sort de l'expression primaire
+	*/
 	@Override
 	public void onMouseExited() {
 		node.setOnMouseExited(new EventHandler<MouseEvent>(){
@@ -58,13 +89,19 @@ public class PrimaryMouseEventManager extends MouseEventManager {
         });
 	}
 	
-	
+
+	/**
+	 * Permet de gérer le double clique
+	 */
 	public void completeClickEvent () {
 		tower.processSimpleLeftClick(primary);
 		doubleClickTimeline = null;
 	}
 	
 	
+	/**
+	 * Evènement de la souris quand le clique gauche est effectué sur l'opérateur de l'expression primaire
+	 */
 	@Override
 	public void onMousePressed() {
 		 node.setOnMousePressed(new EventHandler<MouseEvent>(){
@@ -92,7 +129,9 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 	        });
 	}
 	
-	
+	/**
+	 * Evènement de la souris quand le clique gauche est relaché
+	 */
 	@Override
 	public void onMouseReleased() {
 		 node.setOnMouseReleased(new EventHandler<MouseEvent>(){
@@ -101,11 +140,10 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 	            }
 	        });
 	}
-
 	
 	/**
-	 * getteur de la variable expr
-	 * @return type text
+	 * Retourne le littéral
+	 * @return le littéral sous forme de label
 	 */
 	public Label getText() {
 		return expr;
