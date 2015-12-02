@@ -203,7 +203,7 @@ public class UnaryGraphicExpression extends GraphicExpression{
 
 	/**
 	 * Permet la modification de l'opérateur unaire droit
-	 * @param decoOpen Nouveau opérateur unaire droit
+	 * @param decoClose Nouveau opérateur unaire droit
 	 */
 	public void setDecoClose(Node decoClose) {
 		this.decoClose = decoClose;

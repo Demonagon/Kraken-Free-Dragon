@@ -46,7 +46,7 @@ public class ChoiceContextMenu extends ContextMenu {
 	/**
 	 * Constructeur de la classe ChoiceContextMenu
 	 * 
-	 * @param rules 		type:List<Rule>
+	 * @param rules 		type:List Rule
 	 * @param expression 	type:Expression
 	 * @param tree 			type:KrakenTree
 	 * @param pane 			type:StackPane

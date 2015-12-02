@@ -23,7 +23,7 @@ public class Rule {
 	 * Elle procède d'abord à vérifier la structure du paramètre,
 	 * puis essaye d'affecter des valeurs correctes à toutes les expressions généralistes.
 	 * Exemple :
-	 * avec la règle A + A => 2 * A
+	 * avec la règle "A + A donne 2 * A"
 	 * l'expression input "1 + 2"
 	 * Correspond structurellement au modèle d'entrée,
 	 * mais ne correspond pas sémantiquement puisque

@@ -105,7 +105,7 @@ public class ControlTower {
 	}
 	
 	/**
-	 * Applique les methodes de drag&drop aux deux GraphicExpression passee en param
+	 * Applique les methodes de drag and drop aux deux GraphicExpression passee en param
 	 * @param firstExpression
 	 * @param secondExpression 
 	 */

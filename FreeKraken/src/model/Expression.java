@@ -7,7 +7,6 @@ import java.util.List;
  * Elle oblige les noeuds à disposer d'un ensemble de services.
  * 
  * @author Pacôme
- * @see BinaryExpression, PrimaryExpression, UnaryExpression
  */
 public interface Expression {
 	/**

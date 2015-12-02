@@ -81,7 +81,6 @@ public class KrakenTree {
 	/**
 	 * Fonction statique permettant de récupérer la racine d'une root_path.
 	 * La racine est simplement le dernier élément de la liste.
-	 * @throws IllegalArugmentException dans le cas où la liste est vide
 	 * @param root_path : le root path
 	 * @return la racine
 	 */
@@ -153,7 +152,7 @@ public class KrakenTree {
 	 * qu'elle déduit le noeud cible à partir d'une liste de noeuds en extrayant
 	 * la racine la plus basse commune à tout les noeuds.
 	 * @param input_type : le type d'input
-	 * @param expr : le noeud cible
+	 * @param exprs : les noeuds cibles
 	 * @return une paire contenant le noeud cible, et la liste des règles applicables
 	 * @see deduceRoot
 	 * @see processInput
