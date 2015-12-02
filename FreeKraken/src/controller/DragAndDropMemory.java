@@ -2,6 +2,7 @@ package controller;
 
 import view.implementation.ControlTower;
 import view.implementation.GraphicExpression;
+import javafx.scene.Node;
 import javafx.scene.Group;
 
 
@@ -14,8 +15,8 @@ import javafx.scene.Group;
 public class DragAndDropMemory {
 
 	public static DragAndDropMemory memory;
-	private Group source;
-	private Group target;
+	private GraphicExpression source;
+	private GraphicExpression target;
 	private ControlTower tower;
 
 	/**
@@ -30,7 +31,7 @@ public class DragAndDropMemory {
 	 * setteur de l'attribut source
 	 * @param source Element source du DetD
 	 */
-	public void setSource(Group source) {
+	public void setSource(GraphicExpression source) {
 		this.source = source;
 	}
 	
@@ -39,7 +40,7 @@ public class DragAndDropMemory {
 	 * setteur de l'attibut target
 	 * @param target Element cible du DetD
 	 */
-	public void setTarget(Group target) {
+	public void setTarget(GraphicExpression target) {
 		this.target = target;
 	}
 	

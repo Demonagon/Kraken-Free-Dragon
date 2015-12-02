@@ -3,7 +3,7 @@ package controller;
 import view.implementation.ControlTower;
 import view.implementation.UnaryGraphicExpression;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Node;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -29,14 +29,14 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	
 	/**
 	 * constructeur
-	 * @param group : le group
+	 * @param node : le node
 	 * @param decoOpen  : la première décoration
 	 * @param decoClose : la seconde décoration
 	 * @param unary : l'expression graphique
 	 * @param tower : la controltower
 	 */
-	public UnaryDragAndDropManager(Group group, Node decoOpen, Node decoClose, UnaryGraphicExpression unary, ControlTower tower) {
-		super(group);
+	public UnaryDragAndDropManager(Node node, Node decoOpen, Node decoClose, UnaryGraphicExpression unary, ControlTower tower) {
+		super(node);
 		this.decoOpen = decoOpen;
 		this.decoClose = decoClose;
 		this.unary = unary;
@@ -53,7 +53,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 		        /* drag was detected, start a drag-and-drop gesture*/
 		        Dragboard db = decoOpen.startDragAndDrop(TransferMode.MOVE);
 		        ClipboardContent content = new ClipboardContent();
-		        DragAndDropMemory.memory.setSource(group);
+		        DragAndDropMemory.memory.setSource(unary);
 		        db.setContent(content);
 		        event.consume();
 		    }
@@ -63,7 +63,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 		        /* drag was detected, start a drag-and-drop gesture*/
 		        Dragboard db = decoOpen.startDragAndDrop(TransferMode.MOVE);
 		        ClipboardContent content = new ClipboardContent();
-		        DragAndDropMemory.memory.setSource(group);
+		        DragAndDropMemory.memory.setSource(unary);
 		        db.setContent(content);
 		        event.consume();
 		    }
@@ -76,7 +76,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	 */
 	@Override
 	public void onDragOver () {
-		group.setOnDragOver(new EventHandler<DragEvent>() {
+		node.setOnDragOver(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* data is dragged over the target */
 	            event.acceptTransferModes(TransferMode.MOVE);
@@ -90,10 +90,10 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	 */
 	@Override
 	public void onDragEntered () {
-		group.setOnDragEntered(new EventHandler<DragEvent>() {
+		node.setOnDragEntered(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		    /* the drag-and-drop gesture entered the target */
-		    	DragAndDropMemory.memory.setTarget(group);
+		    	DragAndDropMemory.memory.setTarget(unary);
 		    	event.consume();
 		    }
 		});
@@ -104,7 +104,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	 */
 	@Override
 	public void onDragExited () {
-		group.setOnDragExited(new EventHandler<DragEvent>() {
+		node.setOnDragExited(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        event.consume();
 		    }
@@ -116,7 +116,7 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	 */
 	@Override
 	public void onDragDropped () {
-		group.setOnDragDropped(new EventHandler<DragEvent>() {
+		node.setOnDragDropped(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* data dropped */
 		        Dragboard db = event.getDragboard();

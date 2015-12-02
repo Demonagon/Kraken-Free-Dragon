@@ -3,7 +3,7 @@ package controller;
 import view.implementation.BinaryGraphicExpression;
 import view.implementation.ControlTower;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -25,12 +25,12 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	
 	/**
 	 * Constructeur pour effectuer un dragAndDrop d'un expression binaire
-	 * @param group : le groupe cible
+	 * @param node : le nodee cible
 	 * @param binary : l'objet graphique correspondant
 	 * @param tower : la controltower
 	 */
-	public BinaryDragAndDropManager(Group group, BinaryGraphicExpression binary, ControlTower tower) {
-		super(group);
+	public BinaryDragAndDropManager(Node node, BinaryGraphicExpression binary, ControlTower tower) {
+		super(node);
 		this.binary = binary;
 		this.tower = tower;
 	}
@@ -51,7 +51,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 		        /* Put a string on a dragboard */
 		        ClipboardContent content = new ClipboardContent();
 //		        content.putString(binary.getText());
-		        DragAndDropMemory.memory.setSource(group);
+		        DragAndDropMemory.memory.setSource(binary);
 		        db.setContent(content);
 		        event.consume();
 		    }
@@ -63,7 +63,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	 */
 	@Override
 	public void onDragOver () {
-		group.setOnDragOver(new EventHandler<DragEvent>() {
+		node.setOnDragOver(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* data is dragged over the target */
 	            event.acceptTransferModes(TransferMode.MOVE);
@@ -77,10 +77,10 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	 */
 	@Override
 	public void onDragEntered () {
-		group.setOnDragEntered(new EventHandler<DragEvent>() {
+		node.setOnDragEntered(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		    /* the drag-and-drop gesture entered the target */
-		    	DragAndDropMemory.memory.setTarget(group);
+		    	DragAndDropMemory.memory.setTarget(binary);
 		    	event.consume();
 		    }
 		});
@@ -91,7 +91,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	 */
 	@Override
 	public void onDragExited () {
-		group.setOnDragExited(new EventHandler<DragEvent>() {
+		node.setOnDragExited(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* mouse moved away, remove the graphical cues */
 		        event.consume();
@@ -104,7 +104,7 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	 */
 	@Override
 	public void onDragDropped () {
-		group.setOnDragDropped(new EventHandler<DragEvent>() {
+		node.setOnDragDropped(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        Dragboard db = event.getDragboard();
 		        boolean success = false;

@@ -78,7 +78,7 @@ public class BinaryGraphicExpression extends GraphicExpression {
 		this.orientation 		= orientation;
 		
 		if( isClickable) {
-			dADmanager = new BinaryDragAndDropManager(this, this,tower);
+			dADmanager = new BinaryDragAndDropManager(operator, this,tower);
 			mEmanager = new BinaryMouseEventManager(operator, this, tower);
 	    	//event
 			mEmanager.onMouseEvent();

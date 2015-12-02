@@ -3,7 +3,7 @@ package controller;
 import view.implementation.ControlTower;
 import view.implementation.PrimaryGraphicExpression;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -26,13 +26,13 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	
 	/**
 	 * constructeur PrimaryDragAndDropManager
-	 * @param group : le group
+	 * @param node : le node
 	 * @param label : le label
 	 * @param primary : le primary
 	 * @param tower : tower
 	 */
-	public PrimaryDragAndDropManager(Group group, Label label, PrimaryGraphicExpression primary, ControlTower tower) {
-		super(group);
+	public PrimaryDragAndDropManager(Node node, Label label, PrimaryGraphicExpression primary, ControlTower tower) {
+		super(node);
 		this.label = label;
 		this.primary = primary;
 		this.tower = tower;
@@ -52,7 +52,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 //		        db.setDragView(new Text(primary.getText().getText()).snapshot(null, null), event.getX(), event.getY());
 		        ClipboardContent content = new ClipboardContent();
 		        content.putString(primary.getText().getText());
-		        DragAndDropMemory.memory.setSource(group);
+		        DragAndDropMemory.memory.setSource(primary);
 		        db.setContent(content);
 		        event.consume();
 		    }
@@ -64,7 +64,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	 */
 	@Override
 	public void onDragOver () {
-		group.setOnDragOver(new EventHandler<DragEvent>() {
+		node.setOnDragOver(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* data is dragged over the target */
 		            /* allow for moving */
@@ -79,10 +79,10 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	 */
 	@Override
 	public void onDragEntered () {
-		group.setOnDragEntered(new EventHandler<DragEvent>() {
+		node.setOnDragEntered(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		    /* the drag-and-drop gesture entered the target */
-		    	DragAndDropMemory.memory.setTarget(group);
+		    	DragAndDropMemory.memory.setTarget(primary);
 		    	event.consume();
 		    }
 		});
@@ -93,7 +93,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	 */
 	@Override
 	public void onDragExited () {
-		group.setOnDragExited(new EventHandler<DragEvent>() {
+		node.setOnDragExited(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* mouse moved away, remove the graphical cues */
 		        event.consume();
@@ -106,7 +106,7 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	 */
 	@Override
 	public void onDragDropped () {
-		group.setOnDragDropped(new EventHandler<DragEvent>() {
+		node.setOnDragDropped(new EventHandler<DragEvent>() {
 		    public void handle(DragEvent event) {
 		        /* data dropped */
 		        Dragboard db = event.getDragboard();

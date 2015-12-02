@@ -11,43 +11,63 @@ public interface G2Constants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int TURN_OP = 5;
+  int OR_OP = 5;
   /** RegularExpression Id. */
-  int BOARD_OP = 6;
+  int AND_OP = 6;
   /** RegularExpression Id. */
-  int CHKWIN_OP = 7;
+  int SUPEGAL_OP = 7;
   /** RegularExpression Id. */
-  int DO_OP = 8;
+  int INFEGAL_OP = 8;
   /** RegularExpression Id. */
-  int ROW_OP = 9;
+  int SUP_OP = 9;
   /** RegularExpression Id. */
-  int ROOT_LEFT = 10;
+  int INF_OP = 10;
   /** RegularExpression Id. */
-  int PARENTHESE_LEFT = 11;
+  int DIFF_OP = 11;
   /** RegularExpression Id. */
-  int PARENTHESE_RIGHT = 12;
+  int EGAL_OP = 12;
   /** RegularExpression Id. */
-  int VICTORY_LEFT = 13;
+  int MOINS_B_OP = 13;
   /** RegularExpression Id. */
-  int BRACKETS_LEFT = 14;
+  int PLUS_OP = 14;
   /** RegularExpression Id. */
-  int BRACKETS_RIGHT = 15;
+  int DIVIDE_OP = 15;
   /** RegularExpression Id. */
-  int SPACE = 16;
+  int FOIS_OP = 16;
   /** RegularExpression Id. */
-  int OMARK = 17;
+  int POWER_OP = 17;
   /** RegularExpression Id. */
-  int XMARK = 18;
+  int SQRT_LEFT = 18;
   /** RegularExpression Id. */
-  int EXPRESSION = 19;
+  int NOT_LEFT = 19;
   /** RegularExpression Id. */
-  int RULE_INPUT_TYPE = 20;
+  int CONGRAT_LEFT = 20;
   /** RegularExpression Id. */
-  int LEFT_RULE_EQUIVALENT = 21;
+  int ROOT_LEFT = 21;
   /** RegularExpression Id. */
-  int LEFT_RULE_NOT_EQUIVALENT = 22;
+  int PARENTHESIS_LEFT = 22;
   /** RegularExpression Id. */
-  int RIGHT_RULE = 23;
+  int PARENTHESIS_RIGHT = 23;
+  /** RegularExpression Id. */
+  int BRACKETS_LEFT = 24;
+  /** RegularExpression Id. */
+  int BRACKETS_RIGHT = 25;
+  /** RegularExpression Id. */
+  int LITTERAL = 26;
+  /** RegularExpression Id. */
+  int ZERO = 27;
+  /** RegularExpression Id. */
+  int UN = 28;
+  /** RegularExpression Id. */
+  int EXPRESSION = 29;
+  /** RegularExpression Id. */
+  int RULE_INPUT_TYPE = 30;
+  /** RegularExpression Id. */
+  int LEFT_RULE_EQUIVALENT = 31;
+  /** RegularExpression Id. */
+  int LEFT_RULE_NOT_EQUIVALENT = 32;
+  /** RegularExpression Id. */
+  int RIGHT_RULE = 33;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -59,20 +79,30 @@ public interface G2Constants {
     "\"\\t\"",
     "\"\\n\"",
     "\"\\r\"",
-    "\"turn\"",
-    "\",\"",
-    "\"check\"",
-    "\"applic\"",
     "\"|\"",
+    "\"&\"",
+    "\">=\"",
+    "\"<=\"",
+    "\">\"",
+    "\"<\"",
+    "\"!=\"",
+    "\"=\"",
+    "\"-\"",
+    "\"+\"",
+    "\"/\"",
+    "\"*\"",
+    "\"^\"",
+    "\"sqrt\"",
+    "\"!\"",
+    "\"congrat\"",
     "\"#\"",
     "\"(\"",
     "\")\"",
-    "\"w\"",
     "\"{\"",
     "\"}\"",
-    "\"_\"",
-    "\"o\"",
-    "\"x\"",
+    "<LITTERAL>",
+    "\"0\"",
+    "\"1\"",
     "<EXPRESSION>",
     "<RULE_INPUT_TYPE>",
     "\"<=(\"",

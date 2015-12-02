@@ -1,6 +1,6 @@
 package controller;
 
-import javafx.scene.Group;
+import javafx.scene.Node;
 
 
 /**
@@ -9,14 +9,14 @@ import javafx.scene.Group;
  */
 public abstract class DragAndDropManager {
 	
-	Group group;
+	Node node;
 	
 	/**
 	 * Constructeur
-	 * @param group
+	 * @param node
 	 */
-	public DragAndDropManager(Group group) {
-		this.group = group;
+	public DragAndDropManager(Node node) {
+		this.node = node;
 	}
 
 

@@ -68,12 +68,14 @@ public class UnaryGraphicExpression extends GraphicExpression{
 	 * @see DragAndDropManager
 	 */
 	private DragAndDropManager dADmanagerOpen;
+	private DragAndDropManager dADmanagerClose;
 	
 	/**
 	 * 
 	 * @see MouseEventManager
 	 */
 	private MouseEventManager mEmanagerOpen;
+	private MouseEventManager mEmanagerClose;
 	
 	/**
 	 * Constructeur UnagryGraphicExpression faisant appel à un autre constructeur.
@@ -118,12 +120,16 @@ public class UnaryGraphicExpression extends GraphicExpression{
 		this.orientation = orientation;
 		
 		if( isClickable ) {
-			dADmanagerOpen = new UnaryDragAndDropManager(this, decoOpen, decoClose, this, tower);
+			dADmanagerOpen = new UnaryDragAndDropManager(decoOpen, decoOpen, decoClose, this, tower);
+			dADmanagerClose = new UnaryDragAndDropManager(decoClose, decoOpen, decoClose, this, tower);
 			mEmanagerOpen = new UnaryMouseEventManager(decoOpen,this, tower);
+			mEmanagerClose = new UnaryMouseEventManager(decoClose,this, tower);
 			
 			//event
 			mEmanagerOpen.onMouseEvent();
+			mEmanagerClose.onMouseEvent();
 			dADmanagerOpen.onDragAndDropEvent();
+			dADmanagerClose.onDragAndDropEvent();
 		}
 		else {
 			dADmanagerOpen = null;
