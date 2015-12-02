@@ -3,6 +3,14 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Cette classe représente un noeud à deux fils.
+ * Exemple : + dans 1 + 2
+ * 
+ * @author Pacôme
+ * @see Expression
+ *
+ */
 public class BinaryExpression implements Expression {
 
 	String type;
@@ -22,6 +30,9 @@ public class BinaryExpression implements Expression {
 		return new BinaryExpression(type, first_expression.cloneExpression(), second_expression.cloneExpression());
 	}
 
+	/**
+	 * Génère un équivalent graphique en fonction de la factory de la configuration
+	 */
 	@Override
 	public Object generateExpression() {
 		return Configuration.graphic.generateBinaryExpression(
@@ -31,6 +42,13 @@ public class BinaryExpression implements Expression {
 					second_expression.generateExpression() );
 	}
 
+	/**
+	 * Compare ce noeud avec le noeud en paramètre.
+	 * Tente d'abord de comparer le type du noeud (qui doit être binaire)
+	 * puis essaye de comparer son nom de type ( PLUS == FOIS ? )
+	 * puis essaye de comparer les sous arbres récursivement.
+	 * @param expression : l'expression à comparer
+	 */
 	@Override
 	public boolean compare(Expression expression) {
 		if( ! (expression instanceof BinaryExpression) ) return false;
@@ -41,6 +59,13 @@ public class BinaryExpression implements Expression {
 		return binary_expression.firstExpression().compare(firstExpression()) && binary_expression.secondExpression().compare(secondExpression());
 	}
 
+	/**
+	 * Compare l'expression au modèle en argument.
+	 * Semblable à la fonction compare, à l'exception près qu'une
+	 * expression correspond toujours à une expression primaire générale,
+	 * même si elle ne s'y compare pas.
+	 * @param model : l'expression modèle
+	 */
 	@Override
 	public boolean doesMatchModel(Expression model) {
 		if( model instanceof PrimaryExpression && model.getType() == PrimaryExpression.general_expression_type ) return true;
@@ -94,6 +119,10 @@ public class BinaryExpression implements Expression {
 		return father;
 	}
 
+	/**
+	 * Génère le path de ce noeud.
+	 * @see Expression
+	 */
 	@Override
 	public List<Expression> generatePathList() {
 		if( father == null ) {

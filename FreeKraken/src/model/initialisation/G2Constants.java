@@ -11,61 +11,43 @@ public interface G2Constants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int OR_OP = 5;
+  int TURN_OP = 5;
   /** RegularExpression Id. */
-  int AND_OP = 6;
+  int BOARD_OP = 6;
   /** RegularExpression Id. */
-  int SUPEGAL_OP = 7;
+  int CHKWIN_OP = 7;
   /** RegularExpression Id. */
-  int INFEGAL_OP = 8;
+  int DO_OP = 8;
   /** RegularExpression Id. */
-  int SUP_OP = 9;
+  int ROW_OP = 9;
   /** RegularExpression Id. */
-  int INF_OP = 10;
+  int ROOT_LEFT = 10;
   /** RegularExpression Id. */
-  int DIFF_OP = 11;
+  int PARENTHESE_LEFT = 11;
   /** RegularExpression Id. */
-  int EGAL_OP = 12;
+  int PARENTHESE_RIGHT = 12;
   /** RegularExpression Id. */
-  int MOINS_B_OP = 13;
+  int VICTORY_LEFT = 13;
   /** RegularExpression Id. */
-  int PLUS_OP = 14;
+  int BRACKETS_LEFT = 14;
   /** RegularExpression Id. */
-  int DIVISER_OP = 15;
+  int BRACKETS_RIGHT = 15;
   /** RegularExpression Id. */
-  int FOIS_OP = 16;
+  int SPACE = 16;
   /** RegularExpression Id. */
-  int POWER_OP = 17;
+  int OMARK = 17;
   /** RegularExpression Id. */
-  int SQRT_LEFT = 18;
+  int XMARK = 18;
   /** RegularExpression Id. */
-  int NOT_LEFT = 19;
+  int EXPRESSION = 19;
   /** RegularExpression Id. */
-  int ROOT_LEFT = 20;
+  int RULE_INPUT_TYPE = 20;
   /** RegularExpression Id. */
-  int PARENTHESE_LEFT = 21;
+  int LEFT_RULE_EQUIVALENT = 21;
   /** RegularExpression Id. */
-  int PARENTHESE_RIGHT = 22;
+  int LEFT_RULE_NOT_EQUIVALENT = 22;
   /** RegularExpression Id. */
-  int BRACKETS_LEFT = 23;
-  /** RegularExpression Id. */
-  int BRACKETS_RIGHT = 24;
-  /** RegularExpression Id. */
-  int LITTERAL = 25;
-  /** RegularExpression Id. */
-  int ZERO = 26;
-  /** RegularExpression Id. */
-  int UN = 27;
-  /** RegularExpression Id. */
-  int EXPRESSION = 28;
-  /** RegularExpression Id. */
-  int RULE_INPUT_TYPE = 29;
-  /** RegularExpression Id. */
-  int LEFT_RULE_EQUIVALENT = 30;
-  /** RegularExpression Id. */
-  int LEFT_RULE_NOT_EQUIVALENT = 31;
-  /** RegularExpression Id. */
-  int RIGHT_RULE = 32;
+  int RIGHT_RULE = 23;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -77,29 +59,20 @@ public interface G2Constants {
     "\"\\t\"",
     "\"\\n\"",
     "\"\\r\"",
+    "\"turn\"",
+    "\",\"",
+    "\"check\"",
+    "\"applic\"",
     "\"|\"",
-    "\"&\"",
-    "\">=\"",
-    "\"<=\"",
-    "\">\"",
-    "\"<\"",
-    "\"!=\"",
-    "\"=\"",
-    "\"-\"",
-    "\"+\"",
-    "\"/\"",
-    "\"*\"",
-    "\"^\"",
-    "\"sqrt\"",
-    "\"!\"",
     "\"#\"",
     "\"(\"",
     "\")\"",
+    "\"w\"",
     "\"{\"",
     "\"}\"",
-    "<LITTERAL>",
-    "\"0\"",
-    "\"1\"",
+    "\"_\"",
+    "\"o\"",
+    "\"x\"",
     "<EXPRESSION>",
     "<RULE_INPUT_TYPE>",
     "\"<=(\"",

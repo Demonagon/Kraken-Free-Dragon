@@ -29,15 +29,13 @@ public static void readRules(InputStream stream) throws ParseException {
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-      case MOINS_B_OP:
-      case SQRT_LEFT:
-      case NOT_LEFT:
       case ROOT_LEFT:
       case PARENTHESE_LEFT:
+      case VICTORY_LEFT:
       case BRACKETS_LEFT:
-      case LITTERAL:
-      case ZERO:
-      case UN:
+      case SPACE:
+      case OMARK:
+      case XMARK:
       case EXPRESSION:{
         ;
         break;
@@ -101,10 +99,10 @@ System.out.println(exp.expressionToString());
   static final public Expression Terme0Bis(Expression exp) throws ParseException {Token symbol;
         Expression exp1;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-    case OR_OP:{
-      symbol = jj_consume_token(OR_OP);
+    case TURN_OP:{
+      symbol = jj_consume_token(TURN_OP);
       exp1 = Terme0();
-{if ("" != null) return new BinaryExpression("OR", exp, exp1);}
+{if ("" != null) return new BinaryExpression("TURN", exp, exp1);}
       break;
       }
     default:
@@ -126,10 +124,10 @@ System.out.println(exp.expressionToString());
   static final public Expression Terme1Bis(Expression exp) throws ParseException {Token symbol;
         Expression exp1;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-    case AND_OP:{
-      symbol = jj_consume_token(AND_OP);
+    case BOARD_OP:{
+      symbol = jj_consume_token(BOARD_OP);
       exp1 = Terme1();
-{if ("" != null) return new BinaryExpression("AND", exp, exp1);}
+{if ("" != null) return new BinaryExpression("BOARD", exp, exp1);}
       break;
       }
     default:
@@ -151,40 +149,16 @@ System.out.println(exp.expressionToString());
   static final public Expression Terme2Bis(Expression exp) throws ParseException {Token symbol;
         Expression exp1;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-    case SUPEGAL_OP:{
-      symbol = jj_consume_token(SUPEGAL_OP);
+    case CHKWIN_OP:{
+      symbol = jj_consume_token(CHKWIN_OP);
       exp1 = Terme2();
-{if ("" != null) return new BinaryExpression("SUPEGAL", exp, exp1);}
+{if ("" != null) return new BinaryExpression("CHKWIN", exp, exp1);}
       break;
       }
-    case INFEGAL_OP:{
-      symbol = jj_consume_token(INFEGAL_OP);
+    case DO_OP:{
+      symbol = jj_consume_token(DO_OP);
       exp1 = Terme2();
-{if ("" != null) return new BinaryExpression("INFEGAL", exp, exp1);}
-      break;
-      }
-    case SUP_OP:{
-      symbol = jj_consume_token(SUP_OP);
-      exp1 = Terme2();
-{if ("" != null) return new BinaryExpression("SUP", exp, exp1);}
-      break;
-      }
-    case INF_OP:{
-      symbol = jj_consume_token(INF_OP);
-      exp1 = Terme2();
-{if ("" != null) return new BinaryExpression("INF", exp, exp1);}
-      break;
-      }
-    case DIFF_OP:{
-      symbol = jj_consume_token(DIFF_OP);
-      exp1 = Terme2();
-{if ("" != null) return new BinaryExpression("DIFF", exp, exp1);}
-      break;
-      }
-    case EGAL_OP:{
-      symbol = jj_consume_token(EGAL_OP);
-      exp1 = Terme2();
-{if ("" != null) return new BinaryExpression("EGAL", exp, exp1);}
+{if ("" != null) return new BinaryExpression("DO", exp, exp1);}
       break;
       }
     default:
@@ -206,16 +180,10 @@ System.out.println(exp.expressionToString());
   static final public Expression Terme3Bis(Expression exp) throws ParseException {Token symbol;
         Expression exp1;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-    case MOINS_B_OP:{
-      symbol = jj_consume_token(MOINS_B_OP);
+    case ROW_OP:{
+      symbol = jj_consume_token(ROW_OP);
       exp1 = Terme3();
-{if ("" != null) return new BinaryExpression("MOINS_B", exp, exp1);}
-      break;
-      }
-    case PLUS_OP:{
-      symbol = jj_consume_token(PLUS_OP);
-      exp1 = Terme3();
-{if ("" != null) return new BinaryExpression("PLUS", exp, exp1);}
+{if ("" != null) return new BinaryExpression("ROW", exp, exp1);}
       break;
       }
     default:
@@ -226,101 +194,28 @@ System.out.println(exp.expressionToString());
     throw new Error("Missing return statement in function");
   }
 
-  static final public Expression Terme4() throws ParseException {Expression exp;
-                Expression exp2;
-    exp = Terme5();
-    exp2 = Terme4Bis(exp);
-{if ("" != null) return exp2 == null ? exp : exp2;}
-    throw new Error("Missing return statement in function");
-  }
-
-  static final public Expression Terme4Bis(Expression exp) throws ParseException {Token symbol;
-        Expression exp1;
-    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-    case DIVISER_OP:{
-      symbol = jj_consume_token(DIVISER_OP);
-      exp1 = Terme4();
-{if ("" != null) return new BinaryExpression("DIVISER", exp, exp1);}
-      break;
-      }
-    case FOIS_OP:{
-      symbol = jj_consume_token(FOIS_OP);
-      exp1 = Terme4();
-{if ("" != null) return new BinaryExpression("FOIS", exp, exp1);}
-      break;
-      }
-    default:
-      jj_la1[6] = jj_gen;
-      exp1 = Epsilon();
-{if ("" != null) return exp1;}
-    }
-    throw new Error("Missing return statement in function");
-  }
-
-  static final public Expression Terme5() throws ParseException {Expression exp;
-                Expression exp2;
-    exp = Terme6();
-    exp2 = Terme5Bis(exp);
-{if ("" != null) return exp2 == null ? exp : exp2;}
-    throw new Error("Missing return statement in function");
-  }
-
-  static final public Expression Terme5Bis(Expression exp) throws ParseException {Token symbol;
-        Expression exp1;
-    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-    case POWER_OP:{
-      symbol = jj_consume_token(POWER_OP);
-      exp1 = Terme5();
-{if ("" != null) return new BinaryExpression("POWER", exp, exp1);}
-      break;
-      }
-    default:
-      jj_la1[7] = jj_gen;
-      exp1 = Epsilon();
-{if ("" != null) return exp1;}
-    }
-    throw new Error("Missing return statement in function");
-  }
-
-  static final public Expression Terme6() throws ParseException {Token symbol;
+  static final public Expression Terme4() throws ParseException {Token symbol;
         Expression exp;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-    case SQRT_LEFT:{
-      symbol = jj_consume_token(SQRT_LEFT);
-      exp = Terme6();
-{if ("" != null) return new UnaryExpression("SQRT", exp);}
-      break;
-      }
-    case MOINS_B_OP:{
-      symbol = jj_consume_token(MOINS_B_OP);
-      exp = Terme6();
-{if ("" != null) return new UnaryExpression("MOINS_U", exp);}
-      break;
-      }
-    case NOT_LEFT:{
-      symbol = jj_consume_token(NOT_LEFT);
-      exp = Terme6();
-{if ("" != null) return new UnaryExpression("NOT", exp);}
-      break;
-      }
     case ROOT_LEFT:{
       symbol = jj_consume_token(ROOT_LEFT);
-      exp = Terme6();
+      exp = Terme4();
 {if ("" != null) return new UnaryExpression("ROOT", exp);}
       break;
       }
     case PARENTHESE_LEFT:
+    case VICTORY_LEFT:
     case BRACKETS_LEFT:
-    case LITTERAL:
-    case ZERO:
-    case UN:
+    case SPACE:
+    case OMARK:
+    case XMARK:
     case EXPRESSION:{
       exp = UnaireDroit();
 {if ("" != null) return exp;}
       break;
       }
     default:
-      jj_la1[8] = jj_gen;
+      jj_la1[6] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -338,19 +233,8 @@ if(exp == null) {if ("" != null) return primaire;} {if ("" != null) return exp;}
   static final public Expression UnaireDroitBis(Expression exp) throws ParseException {Token symbol;
         Expression exp2;
         Expression exp3;
-    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-    case NOT_LEFT:{
-      symbol = jj_consume_token(NOT_LEFT);
-exp2 = new UnaryExpression("FACTORIAL",exp);
-      exp3 = UnaireDroitBis(exp2);
-{if ("" != null) return exp3 == null ? exp2 : exp3;}
-      break;
-      }
-    default:
-      jj_la1[9] = jj_gen;
-      exp2 = Epsilon();
+    exp2 = Epsilon();
 {if ("" != null) return exp2;}
-    }
     throw new Error("Missing return statement in function");
   }
 
@@ -365,6 +249,13 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
 {if ("" != null) return new UnaryExpression("PARENTHESE",expression);}
       break;
       }
+    case VICTORY_LEFT:{
+      symbolLeft = jj_consume_token(VICTORY_LEFT);
+      expression = Terme0();
+      symbolRight = jj_consume_token(VICTORY_LEFT);
+{if ("" != null) return new UnaryExpression("VICTORY",expression);}
+      break;
+      }
     case BRACKETS_LEFT:{
       symbolLeft = jj_consume_token(BRACKETS_LEFT);
       expression = Terme0();
@@ -372,19 +263,19 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
 {if ("" != null) return expression;}
       break;
       }
-    case LITTERAL:{
-      symbolLeft = jj_consume_token(LITTERAL);
-{if ("" != null) return new PrimaryExpression("LITTERAL",symbolLeft.image);}
+    case SPACE:{
+      symbolLeft = jj_consume_token(SPACE);
+{if ("" != null) return new PrimaryExpression("SPACE",symbolLeft.image);}
       break;
       }
-    case ZERO:{
-      symbolLeft = jj_consume_token(ZERO);
-{if ("" != null) return new PrimaryExpression("ZERO",symbolLeft.image);}
+    case OMARK:{
+      symbolLeft = jj_consume_token(OMARK);
+{if ("" != null) return new PrimaryExpression("OMARK",symbolLeft.image);}
       break;
       }
-    case UN:{
-      symbolLeft = jj_consume_token(UN);
-{if ("" != null) return new PrimaryExpression("UN",symbolLeft.image);}
+    case XMARK:{
+      symbolLeft = jj_consume_token(XMARK);
+{if ("" != null) return new PrimaryExpression("XMARK",symbolLeft.image);}
       break;
       }
     case EXPRESSION:{
@@ -393,7 +284,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
       break;
       }
     default:
-      jj_la1[10] = jj_gen;
+      jj_la1[7] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -410,18 +301,13 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[11];
+  static final private int[] jj_la1 = new int[8];
   static private int[] jj_la1_0;
-  static private int[] jj_la1_1;
   static {
       jj_la1_init_0();
-      jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x1ebc2000,0xc0000000,0x20,0x40,0x1f80,0x6000,0x18000,0x20000,0x1ebc2000,0x80000,0x1ea00000,};
-   }
-   private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
+      jj_la1_0 = new int[] {0xf6c00,0x600000,0x20,0x40,0x180,0x200,0xf6c00,0xf6800,};
    }
 
   /** Constructor with InputStream. */
@@ -442,7 +328,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 8; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -456,7 +342,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 8; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -473,7 +359,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 8; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -483,7 +369,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 8; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -499,7 +385,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 8; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -508,7 +394,7 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 8; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -559,24 +445,21 @@ exp2 = new UnaryExpression("FACTORIAL",exp);
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[33];
+    boolean[] la1tokens = new boolean[24];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 8; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
             la1tokens[j] = true;
           }
-          if ((jj_la1_1[i] & (1<<j)) != 0) {
-            la1tokens[32+j] = true;
-          }
         }
       }
     }
-    for (int i = 0; i < 33; i++) {
+    for (int i = 0; i < 24; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
