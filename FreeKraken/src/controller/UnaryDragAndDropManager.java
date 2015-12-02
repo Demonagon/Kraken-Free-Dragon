@@ -29,11 +29,11 @@ public class UnaryDragAndDropManager extends DragAndDropManager {
 	
 	/**
 	 * constructeur
-	 * @param group 
-	 * @param decoOpen 
-	 * @param decoClose
-	 * @param unary 
-	 * @param tower 
+	 * @param group : le group
+	 * @param decoOpen  : la première décoration
+	 * @param decoClose : la seconde décoration
+	 * @param unary : l'expression graphique
+	 * @param tower : la controltower
 	 */
 	public UnaryDragAndDropManager(Group group, Node decoOpen, Node decoClose, UnaryGraphicExpression unary, ControlTower tower) {
 		super(group);

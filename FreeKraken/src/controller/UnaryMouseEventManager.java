@@ -14,14 +14,13 @@ import javafx.util.Duration;
  * <b>UnaryMouseEventManager est la classe représentant les évènements pouvant être effectuer à la souris sur un unary graphic expression.</b>
  * Elle est étendu par la classe MouseEventManager
  * @see MouseEventManager
- * <p>
+ *
  * Un évènement à la souris sur une expression unaire est caractérisé par les informations suivantes : 
  * <ul>
  * <li>Une expression primaire</li>
  * <li>Timer pour le double clique</li>
  * <li></li>
  * </ul>
- * </p>
  * @author florian Campanella, Thomas Rambaldi
  */
 public class UnaryMouseEventManager extends MouseEventManager{
@@ -45,7 +44,7 @@ public class UnaryMouseEventManager extends MouseEventManager{
 	 * Constructeur de la classe MouseEventManager
 	 * @param node opérateur de l'expression
 	 * @param unaryExpression l'expression unaire
-	 * @param tower
+	 * @param tower : la control tower
 	 */
 	public UnaryMouseEventManager(Node node, UnaryGraphicExpression unaryExpression, ControlTower tower) {
 		super(node);

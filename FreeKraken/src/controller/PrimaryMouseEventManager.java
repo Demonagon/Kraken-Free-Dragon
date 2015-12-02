@@ -16,7 +16,7 @@ import javafx.util.Duration;
  * <b>PrimaryMouseEventManager est la classe représentant les évènements pouvant être effectuer à la souris sur un primary graphic expression.</b>
  * Elle est étendu par la classe MouseEventManager
  * @see MouseEventManager
- * <p>
+ *
  * Un évènement à la souris sur un littéral est caractérisé par les informations suivantes : 
  * <ul>
  * <li></li>
@@ -24,7 +24,6 @@ import javafx.util.Duration;
  * <li></li>
  * <li>Une expression primaire</li>
  * </ul>
- * </p>
  * @author florian Campanella, Thomas Rambaldi
  */
 public class PrimaryMouseEventManager extends MouseEventManager {
@@ -52,10 +51,10 @@ public class PrimaryMouseEventManager extends MouseEventManager {
 	
 	/**
 	 * Constructeur de la classe PrimaryMouseEventManager 
-	 * @param group
-	 * @param expr
-	 * @param primary expression primaire
-	 * @param tower
+	 * @param group : le group
+	 * @param expr : l'expression
+	 * @param primary : expression primaire
+	 * @param tower : la control tower
 	 */
 	public PrimaryMouseEventManager(Group group, Label expr, PrimaryGraphicExpression primary, ControlTower tower) {
 		super(group);

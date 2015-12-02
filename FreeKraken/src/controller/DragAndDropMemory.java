@@ -20,7 +20,7 @@ public class DragAndDropMemory {
 
 	/**
 	 * constructeur de DragAndDropMemory
-	 * @param tower 
+	 * @param tower : la control tower
 	 */
 	public DragAndDropMemory (ControlTower tower) {
 		this.tower = tower;
@@ -28,7 +28,7 @@ public class DragAndDropMemory {
 
 	/**
 	 * setteur de l'attribut source
-	 * @param source Element source du D&D
+	 * @param source Element source du DetD
 	 */
 	public void setSource(Group source) {
 		this.source = source;
@@ -37,7 +37,7 @@ public class DragAndDropMemory {
 	
 	/**
 	 * setteur de l'attibut target
-	 * @param target Element cible du D&D
+	 * @param target Element cible du DetD
 	 */
 	public void setTarget(Group target) {
 		this.target = target;

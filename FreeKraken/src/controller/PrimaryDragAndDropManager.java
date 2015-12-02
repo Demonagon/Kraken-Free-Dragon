@@ -26,10 +26,10 @@ public class PrimaryDragAndDropManager extends DragAndDropManager{
 	
 	/**
 	 * constructeur PrimaryDragAndDropManager
-	 * @param group 
-	 * @param label 
-	 * @param primary 
-	 * @param tower
+	 * @param group : le group
+	 * @param label : le label
+	 * @param primary : le primary
+	 * @param tower : tower
 	 */
 	public PrimaryDragAndDropManager(Group group, Label label, PrimaryGraphicExpression primary, ControlTower tower) {
 		super(group);

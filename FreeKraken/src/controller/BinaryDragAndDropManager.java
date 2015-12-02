@@ -14,7 +14,7 @@ import javafx.scene.input.TransferMode;
 /**
  * @author florian Campanella, Rambaldi Thomas, Nicolas Leotier
  * Etend de DragAndDropManager
- * Classe qui implemente les methodes du drag&drop pour les expressions binaires
+ * Classe qui implemente les methodes du drag and drop pour les expressions binaires
  */
 public class BinaryDragAndDropManager extends DragAndDropManager{
 
@@ -25,9 +25,9 @@ public class BinaryDragAndDropManager extends DragAndDropManager{
 	
 	/**
 	 * Constructeur pour effectuer un dragAndDrop d'un expression binaire
-	 * @param group 
-	 * @param binary
-	 * @param tower 
+	 * @param group : le groupe cible
+	 * @param binary : l'objet graphique correspondant
+	 * @param tower : la controltower
 	 */
 	public BinaryDragAndDropManager(Group group, BinaryGraphicExpression binary, ControlTower tower) {
 		super(group);
