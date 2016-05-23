@@ -1,0 +1,73 @@
+<html>
+
+	<head>
+		<title>LibreDragon + MathJax</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<!-- Inclusion de MathJax & Configuration-->
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+		  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+		  });
+		</script>
+		
+		<!-- Inclusion de JQuery-->
+		<script   src="http://code.jquery.com/jquery-2.2.3.js"   integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="   crossorigin="anonymous"></script>
+	
+		<script type="text/javascript">
+			var idDraggedFrom, idDraggedTo;
+			
+			var idClickedOn;
+			
+			/**
+			  * Récupère l'ID de l'expression sur laquelle on a cliqué, et la conserve dans une variable globale idClickedOn.
+			  * Ici, on prend soin d'appeler la méthode stopPropagation() afin de pouvoir sélectionner que l'élement fils.
+			  **/
+			$(document).on('click', '[id^="exp0"]', function(event) {
+				event.stopPropagation();
+				idClickedOn = this.id;
+			});
+			
+			function printClickedOn() {
+				if(idClickedOn.match(/exp0+/)) alert(idClickedOn);
+			}
+			
+		</script>
+	</head>
+	
+	<body>
+		<div id="resultat">
+		
+			$$2+3$$
+			<!--$$\cssId{exp0}{\cssId{exp00}{\cssId{exp000}{{\cssId{exp0000}{{2}}\over\cssId{exp0001}{{3}}}}+\cssId{001}{2}} = \cssId{01}{ \cssId{010}{5} + \cssId{011}{x} }}$$-->
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		/*$(document).ready(function(){
+			$("#resultat").load("http://localhost:8080/api/formule", function() {
+				$("#resultat").html(function(obj){
+					$.parseJSON(obj.latex);
+				});
+			});
+		});*/
+		
+		$(document).ready(function(){
+			$.ajax({url: "http://localhost:8080/api/formule"}).done(function(data){
+				var obj = JSON.parse(data);
+				$("#resultat").html(obj.latex);
+			});
+		});
+		
+		
+		$(document).on('click', '[id^="exp0"]', function(event) {
+			event.stopPropagation();
+			$.ajax({url: "http://localhost:8080/api/transform/"+this.id}).done(function(data){
+				var obj = JSON.parse(data);
+				$("#resultat").html(obj.choix);
+			});
+		});
+		</script>
+	
+</html>
