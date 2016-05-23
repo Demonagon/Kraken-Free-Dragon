@@ -21,11 +21,12 @@ public class UnaryExpression implements Expression {
 	}
 
 	@Override
-	public Object generateExpression() {
+	public Object generateExpression(String id) {
 		return Configuration.graphic.generateUnaryExpression(
 					this,
 					type,
-					sub_expression.generateExpression() );
+					sub_expression,
+					id);
 	}
 	
 	public Expression subExpression() {
