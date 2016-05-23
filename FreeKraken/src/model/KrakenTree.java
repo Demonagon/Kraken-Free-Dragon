@@ -16,6 +16,13 @@ import view.GraphicExpressionFactory;
 public class KrakenTree {
 	private Expression root;
 	
+	/*
+	 * locateExpression est une variable globale dans laquelle
+	 * on va sauver le résultat de la méthode getExpressionById().
+	 * Permet de trouver une expression selon un identifiant.
+	 */
+	private Expression locateExpression;
+	
 	/**
 	 * Ce constructeur initialise la librairie en utilisant la factory utilisateur.
 	 * Cette factory permet de faire le lein entre le support physique et l'interface
@@ -165,5 +172,44 @@ public class KrakenTree {
 			if( rule.canApplic(root) ) rules.add(rule);
 		
 		return new Pair<Expression, List<Rule>>(root, rules);
+	}
+	
+	/**
+	 * Cette fonction sert a faire une recherche d'un noeud dans l'arbre via un id donné en paramètre.
+	 * Garde l'expression retournée dans une variable globale locateExpression.
+	 * @param id : l'indice du noeud qu'on veut trouver
+	 */
+	
+	
+	public void getExpressionById(Expression root, String id) {
+		locateExpression = root;
+		int posChar = 0;
+		while (posChar != id.length()) { 
+			if ((locateExpression instanceof BinaryExpression) && (id.charAt(posChar) == '0')){
+				BinaryExpression bexpression = (BinaryExpression) locateExpression;
+				locateExpression = bexpression.firstExpression();
+			}
+			if ((locateExpression instanceof BinaryExpression) && (id.charAt(posChar) == '1')){
+				BinaryExpression bexpression = (BinaryExpression) locateExpression;
+				locateExpression = bexpression.secondExpression();
+			}
+			if (locateExpression instanceof UnaryExpression){
+				UnaryExpression uexpression = (UnaryExpression) locateExpression;
+				locateExpression = uexpression.subExpression();
+			}
+			posChar++;
+		}
+	}
+	
+	/**
+	 * Lance getExpressionById() pour trouver une expression selon son id
+	 * et garder celle-çi dans une variable globale locateExpression.
+	 * Retourne cette expression.
+	 * @return l'expression correspondant à l'id
+	 */
+	
+	public Expression getLocateExpression(Expression root, String id){
+		getExpressionById(root, id);
+		return locateExpression;
 	}
 }
