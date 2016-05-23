@@ -11,9 +11,11 @@ import java.util.List;
 public interface Expression {
 	/**
 	 * Cette fonction génère l'équivalent graphique du noeud.
+	 * A noter que dans l'implémentation MathJax, on a rajouté un argument identifiant.
+	 * Ca permet de donner un tag à chaque expression.
 	 * @return L'objet graphique (le type dépend de la factory de la configuration)
 	 */
-	Object generateExpression();
+	Object generateExpression(String id);
 	
 	/**
 	 * Compare si une expression est équivalente à une autre.
