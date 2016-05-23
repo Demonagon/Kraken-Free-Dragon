@@ -15,8 +15,8 @@ import model.Rule;
 public interface GraphicExpressionFactory {
 
 	/**
-	 * Génère un objet graphique.
-	 * @param expression : l'expression binaire à traduire
+	 * G�n�re un objet graphique.
+	 * @param expression : l'expression binaire � traduire
 	 * @param type : Son type
 	 * @param first : l'objet graphique correspondant au premier sous noeud
 	 * @param second : l'objet graphique correspondant au second sous noeud
@@ -25,8 +25,8 @@ public interface GraphicExpressionFactory {
 	public String generateBinaryExpression(Expression expression, String type, Expression first, Expression second, String id);
 
 	/**
-	 * GÃ©nÃ¨re un objet graphique.
-	 * @param expression : l'expression unaire Ã  traduire
+	 * Génère un objet graphique.
+	 * @param expression : l'expression unaire à traduire
 	 * @param type : Son type
 	 * @param sub : l'objet graphique correspondant au sous noeud
 	 * @return l'objet graphique utilisateur
@@ -34,8 +34,8 @@ public interface GraphicExpressionFactory {
 	public String generateUnaryExpression(Expression expression, String type, Expression sub, String id);
 
 	/**
-	 * GÃ©nÃ¨re un objet graphique.
-	 * @param expression : l'expression primaire Ã  traduire
+	 * Génère un objet graphique.
+	 * @param expression : l'expression primaire à traduire
 	 * @param type : Son type
 	 * @param name : Le nom de l'instance de l'objet primaire
 	 * @return l'objet graphique utilisateur
@@ -43,16 +43,16 @@ public interface GraphicExpressionFactory {
 	public String generatePrimaryExpression(Expression expression, String type, String name, String id);
 	
 	/**
-	 * GÃ©nÃ¨re un objet graphique correspondant Ã  une rÃ¨gle.
-	 * @param rule : la rÃ¨gle Ã  traduire
+	 * Génère un objet graphique correspondant à une règle.
+	 * @param rule : la règle à traduire
 	 * @return l'objet graphique utilisateur
 	 */
 	
 	public String generateRuleExpression(Rule rule);
 	
 	/**
-	 * Fonction permettant Ã  l'utilisateur d'initialiser d'Ã©ventuelles ressources.
-	 * Est appellÃ©e par KrakenTree en dÃ©but de vie du logiciel.
+	 * Fonction permettant à l'utilisateur d'initialiser d'éventuelles ressources.
+	 * Est appellée par KrakenTree en début de vie du logiciel.
 	 */
 	
 	public void init();
