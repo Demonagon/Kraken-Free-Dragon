@@ -34,14 +34,14 @@ public class BinaryExpression implements Expression {
 	 * Génère un équivalent graphique en fonction de la factory de la configuration
 	 */
 	@Override
-	public Object generateExpression() {
+	public String generateExpression(String id) {
 		return Configuration.graphic.generateBinaryExpression(
 					this,
 					type,
-					first_expression.generateExpression(),
-					second_expression.generateExpression() );
+					first_expression,
+					second_expression,
+					id);
 	}
-
 	/**
 	 * Compare ce noeud avec le noeud en paramètre.
 	 * Tente d'abord de comparer le type du noeud (qui doit être binaire)
