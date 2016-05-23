@@ -21,7 +21,7 @@ public class UnaryExpression implements Expression {
 	}
 
 	@Override
-	public Object generateExpression(String id) {
+	public String generateExpression(String id) {
 		return Configuration.graphic.generateUnaryExpression(
 					this,
 					type,
