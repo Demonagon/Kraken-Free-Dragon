@@ -1,0 +1,22 @@
+Primaire LITTERAL $(["a"-"z"])+
+Primaire ZERO $"0"
+Primaire UN $"1"
+Unaire PARENTHESIS "(" ")"
+Unaire SQRT "sqrt" ""
+Unaire MOINS_U "-" ""
+Unaire FACTORIAL "" "!"
+Unaire NOT "!" ""
+Unaire CONGRAT "congrat" ""
+Binaire OR "|" 0
+Binaire AND "&" 1
+Binaire EGAL "=" 2
+Binaire DIFF "!=" 2
+Binaire INF "<" 2
+Binaire SUP ">" 2
+Binaire INFEGAL "<=" 2
+Binaire SUPEGAL ">=" 2
+Binaire PLUS "+" 3
+Binaire MOINS_B "-" 3
+Binaire FOIS "*" 4
+Binaire DIVIDE "/" 4
+Binaire POWER "^" 5
