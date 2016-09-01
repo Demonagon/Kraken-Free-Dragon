@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ant "Main (8)"
+ant "Main (1)"
