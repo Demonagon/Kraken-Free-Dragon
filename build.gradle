@@ -1,0 +1,34 @@
+apply plugin: "java"
+apply plugin: "application"
+
+mainClassName = "view.implementation.Main"
+
+sourceSets {
+    modelInit {
+        java {
+            srcDir 'src/model/initialisation'
+        }
+    }
+
+    main {
+        java {
+            srcDirs = [ 'src', 'build/gen-G2' ]
+            exclude '**/model/initialisation/*'
+        }
+        compileClasspath += modelInit.compileClasspath + modelInit.output
+    }
+}
+
+task generateGrammaire2jj (dependsOn: modelInitClasses, type: JavaExec) {
+    main = 'model.initialisation.Main'
+    classpath = sourceSets.modelInit.runtimeClasspath
+    args = [ 'config/G1.txt', 'build/grammaire2.jj' ]
+}
+
+task generateG2 (dependsOn: generateGrammaire2jj, type: Exec) {
+    outputs.dir file('build/gen-G2')
+    commandLine 'javacc-6.0/bin/javacc', '-OUTPUT_DIRECTORY=build/gen-G2', 'build/grammaire2.jj'
+}
+
+compileJava.dependsOn generateG2.outputs.files
+
