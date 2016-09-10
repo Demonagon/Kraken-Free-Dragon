@@ -1,7 +1,13 @@
 apply plugin: "java"
 apply plugin: "application"
 
+// The current configuration
+def configPath = "config"
+
 mainClassName = "view.implementation.Main"
+run {
+    args = [ configPath ]
+}
 
 sourceSets {
     modelInit {
@@ -12,7 +18,7 @@ sourceSets {
 
     main {
         java {
-            srcDirs = [ 'src', 'build/gen-G2' ]
+            srcDirs = [ "src", "$buildDir/gen-G2" ]
             exclude '**/model/initialisation/*'
         }
         compileClasspath += modelInit.compileClasspath + modelInit.output
@@ -22,12 +28,12 @@ sourceSets {
 task generateGrammaire2jj (dependsOn: modelInitClasses, type: JavaExec) {
     main = 'model.initialisation.Main'
     classpath = sourceSets.modelInit.runtimeClasspath
-    args = [ 'config/G1.txt', 'build/grammaire2.jj' ]
+    args = [ configPath + "/G1.txt", "$buildDir/grammaire2.jj" ]
 }
 
 task generateG2 (dependsOn: generateGrammaire2jj, type: Exec) {
-    outputs.dir file('build/gen-G2')
-    commandLine 'javacc-6.0/bin/javacc', '-OUTPUT_DIRECTORY=build/gen-G2', 'build/grammaire2.jj'
+    outputs.dir file("$buildDir/gen-G2")
+    commandLine "javacc-6.0/bin/javacc", "-OUTPUT_DIRECTORY=$buildDir/gen-G2", "$buildDir/grammaire2.jj"
 }
 
 compileJava.dependsOn generateG2.outputs.files

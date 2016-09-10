@@ -155,10 +155,11 @@ public class Main extends Application {
 		//Configuration.rules.addRule("double_left_click", new Rule(expr_A.cloneExpression() , plus_A1.cloneExpression()) );
 	}
 	
-	public static void readRules(KrakenTree tree) throws FileNotFoundException, ParseException {
+	public void readRules(KrakenTree tree) throws FileNotFoundException, ParseException {
+        String configPath = getParameters().getRaw().get(0);
 		Configuration.rules = new RulesConfiguration();
-		G2.readRules(new FileInputStream(new File("config/rules.cfg")));
-		tree.setRoot(G2.readExpression(new FileInputStream(new File("config/formula.cfg"))));
+		G2.readRules(new FileInputStream(new File(configPath + "/rules.cfg")));
+		tree.setRoot(G2.readExpression(new FileInputStream(new File(configPath + "/formula.cfg"))));
 	}
 	
 	@Override
@@ -167,9 +168,11 @@ public class Main extends Application {
     	
     	
     	//=================== Partie de test A SUPPRIMER DANS L'AVENIR   =============================================
+        String configPath = getParameters().getRaw().get(0);
+
         StackPane center = new StackPane();
     	BorderPane root = new BorderPane();
-    	GraphicConfiguration config = new GraphicConfiguration();
+    	GraphicConfiguration config = new GraphicConfiguration(configPath + "/graphics.cfg");
 		KrakenTree tree = new KrakenTree(config);
 		ControlTower tower = new ControlTower(tree, center, primaryStage);
     	DragAndDropMemory.memory = new DragAndDropMemory(tower);

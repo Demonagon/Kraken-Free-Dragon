@@ -22,13 +22,14 @@ import javafx.scene.Node;
 
 public class GraphicConfiguration implements GraphicExpressionFactory {
 	
-	public static final String config_file_path = "config/graphics.cfg";
+	private String configFilePath;
 	
 	private Map<String, GraphicExpressionConfiguration > configurations;
 	private ControlTower tower;
 
-	public GraphicConfiguration() {
+	public GraphicConfiguration(String filePath) {
 		configurations = new HashMap<String, GraphicExpressionConfiguration >();
+		configFilePath = filePath;
 		addConfiguration("ROOT",
 					new GraphicExpressionConfiguration(BinaryGraphicExpression.Orientation.HORIZONTAL, 
 					new Pair<Node, Node>(
@@ -71,7 +72,7 @@ public class GraphicConfiguration implements GraphicExpressionFactory {
 	
 	@Override
 	public void init() {
-		File config_file = new File(config_file_path);
+		File config_file = new File(configFilePath);
 		
 		try {
 			GraphicConfigurationParser.read(config_file, tower);
