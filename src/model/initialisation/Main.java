@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class Main {
 
 	/**
-	 * @param args args[0] is the path of G1.txt, args[1] is the path of the grammaire2.jj
+	 * @param args  args[0] is the path of the input configuration file
+	 *              args[1] is the path of the output grammar file
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {

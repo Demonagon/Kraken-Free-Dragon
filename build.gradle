@@ -28,7 +28,7 @@ sourceSets {
 task generateGrammaire2jj (dependsOn: modelInitClasses, type: JavaExec) {
     main = 'model.initialisation.Main'
     classpath = sourceSets.modelInit.runtimeClasspath
-    args = [ configPath + "/G1.txt", "$buildDir/grammaire2.jj" ]
+    args = [ configPath + "/operators.cfg", "$buildDir/grammaire2.jj" ]
 }
 
 task generateG2 (dependsOn: generateGrammaire2jj, type: Exec) {
