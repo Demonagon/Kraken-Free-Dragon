@@ -20,7 +20,7 @@ import model.PrimaryExpression;
 import model.Rule;
 import model.RulesConfiguration;
 import model.UnaryExpression;
-import model.initialisation.G2;
+import model.initialisation.RuleParser;
 import model.initialisation.ParseException;
 import view.implementation.graphicConfigurationParser.GraphicConfiguration;
 
@@ -158,8 +158,8 @@ public class Main extends Application {
 	public void readRules(KrakenTree tree) throws FileNotFoundException, ParseException {
         String configPath = getParameters().getRaw().get(0);
 		Configuration.rules = new RulesConfiguration();
-		G2.readRules(new FileInputStream(new File(configPath + "/rules.cfg")));
-		tree.setRoot(G2.readExpression(new FileInputStream(new File(configPath + "/formula.cfg"))));
+		RuleParser.readRules(new FileInputStream(new File(configPath + "/rules.cfg")));
+		tree.setRoot(RuleParser.readExpression(new FileInputStream(new File(configPath + "/formula.cfg"))));
 	}
 	
 	@Override

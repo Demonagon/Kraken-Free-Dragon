@@ -638,33 +638,31 @@ public void generateGrammar() throws FileNotFoundException, UnsupportedEncodingE
 		return;
 	}
 
-	writer.println("PARSER_BEGIN(G2)");
+	writer.println("PARSER_BEGIN(RuleParser)");
 	writer.println("package model.initialisation;");
 	writer.println("import java.util.ArrayList;");
 	writer.println("import model.*;");
 	writer.println("import java.io.InputStream;");
-	//writer.println("import model.initialisation.*;");
-	writer.println("public class G2 {");
+	writer.println("public class RuleParser {");
 	writer.println("\tpublic static void main(String args[]) throws ParseException {");
-	writer.println("\t\tG2 parser = new G2(System.in);");
+	writer.println("\t\tRuleParser parser = new RuleParser(System.in);");
 	writer.println("\t\tConfiguration.rules = new RulesConfiguration();");
 	writer.println("\t\tparser.Rule();");
 	writer.println("\t}");
 	
 
 	writer.println("public static void readRules(InputStream stream) throws ParseException {");
-	writer.println("\tG2 parser = new G2(stream);");
+	writer.println("\tRuleParser parser = new RuleParser(stream);");
 	writer.println("\tparser.RuleList();");
 	writer.println("}");
 
 	writer.println("\tpublic static Expression readExpression(InputStream stream) throws ParseException {");
-	//writer.println("\t\tG2 parser = new G2(stream);");
-	writer.println("\t\tG2.ReInit(stream);");
+	writer.println("\t\tRuleParser.ReInit(stream);");
 	writer.println("\t\tExpression expression = Terme0();");
 	writer.println("\t\treturn new UnaryExpression(\"ROOT\", expression);");
 	writer.println("\t}");
 	writer.println("}");
-	writer.println("\nPARSER_END(G2)\n");
+	writer.println("\nPARSER_END(RuleParser)\n");
 
 	writer.println("SKIP :\n{");
 	writer.println("  \" \"\n| \"\\t\"");	 // les caractères espace " " et \t 
