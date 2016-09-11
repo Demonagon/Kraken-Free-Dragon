@@ -28,7 +28,7 @@ sourceSets {
 task generateRuleParserGrammar (dependsOn: modelInitClasses, type: JavaExec) {
     main = 'model.initialisation.Main'
     classpath = sourceSets.modelInit.runtimeClasspath
-    args = [ configPath + "/operators.cfg", "$buildDir/RPgrammar.jj" ]
+    args = [ "$configPath/operators.cfg", "$buildDir/RPgrammar.jj" ]
 }
 
 task generateRuleParser (dependsOn: generateRuleParserGrammar, type: Exec) {
