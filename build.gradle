@@ -1,0 +1,44 @@
+apply plugin: "java"
+apply plugin: "application"
+
+// The current configuration
+def configPath = "config"
+
+mainClassName = "view.implementation.Main"
+run {
+    args = [ configPath ]
+}
+
+sourceSets {
+    modelInit {
+        java {
+            srcDir 'src/model/initialisation'
+        }
+    }
+
+    main {
+        java {
+            srcDirs = [ "src", "$buildDir/generated-RuleParser" ]
+            exclude '**/model/initialisation/*'
+        }
+        compileClasspath += modelInit.compileClasspath + modelInit.output
+    }
+}
+
+javadoc {
+    source sourceSets.modelInit.allJava
+}
+
+task generateRuleParserGrammar (dependsOn: modelInitClasses, type: JavaExec) {
+    main = 'model.initialisation.Main'
+    classpath = sourceSets.modelInit.runtimeClasspath
+    args = [ "$configPath/operators.cfg", "$buildDir/RPgrammar.jj" ]
+}
+
+task generateRuleParser (dependsOn: generateRuleParserGrammar, type: Exec) {
+    outputs.dir file("$buildDir/generated-RuleParser")
+    commandLine "javacc-6.0/bin/javacc", "-OUTPUT_DIRECTORY=$buildDir/generated-RuleParser", "$buildDir/RPgrammar.jj"
+}
+
+compileJava.dependsOn generateRuleParser.outputs.files
+
