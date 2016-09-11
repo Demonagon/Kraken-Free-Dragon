@@ -25,6 +25,10 @@ sourceSets {
     }
 }
 
+javadoc {
+    source sourceSets.modelInit.allJava
+}
+
 task generateRuleParserGrammar (dependsOn: modelInitClasses, type: JavaExec) {
     main = 'model.initialisation.Main'
     classpath = sourceSets.modelInit.runtimeClasspath
